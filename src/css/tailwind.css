@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .border,
+    .border-2,
+    .border-r,
+    .border-l,
+    .border-t,
+    .border-b,
+    .border-x,
+    .border-y {
+        @apply dark:border-gray-800;
+    }
+  }
+
+/* to see list of all values, go to the React Masonry CSS link above */
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+  margin: 10px; /* gutter size offset */
+}
+.my-masonry-grid_column {
+ /* gutter size */
+  background-clip: padding-box;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* style items */
+.my-masonry-grid_column > div { /* change div to reference elements in <Masonry> */
+  margin-bottom: 20px;
+}
+
+.buttonStyle {
+  @apply rounded-md border-2 py-[14px] px-6 font-medium md:hover:bg-gray-200 md:dark:hover:border-gray-700 md:dark:hover:bg-gray-700 md:dark:hover:text-white;
+}
+
+.primaryButton {
+  @apply rounded-md py-2 px-3 font-medium bg-gray-200 md:dark:border-gray-700 dark:bg-gray-700 md:dark:text-white text-sm active:bg-[#dad4d4] active:dark:bg-[#5c5a5a];
+}
+
+.secondaryButton {
+  @apply py-2 px-3 text-sm font-medium rounded-md active:text-gray-400 active:dark:text-gray-500;
+}
+
+.navbarButton {
+  @apply relative rounded-md py-3 px-3 font-medium hover:rounded-md hover:bg-gray-200 hover:py-3 hover:px-3 dark:text-white dark:hover:bg-gray-800;
+}
+
+.toolTip {
+  @apply absolute left-full translate-x-2 translate-y-2 whitespace-nowrap rounded bg-gray-800 py-2 px-2 text-xs font-medium text-gray-100 opacity-0 transition-opacity group-hover:opacity-95;
+}
+
+.imageUpload {
+  @apply z-10 cursor-pointer rounded py-[116px] text-sm text-slate-500 file:mx-60 file:ml-[164px] file:rounded file:border-0  file:px-[70px] file:text-sm file:font-medium file:text-transparent focus:outline-0 focus:ring-1 focus:ring-gray-900 focus:dark:ring-gray-100 w-full file:bg-transparent;
+}
+
+.settingsButton {
+  @apply h-[32px] w-[110px] rounded border-none bg-gray-200 text-sm font-semibold text-gray-700 focus:ring-gray-900 active:bg-[#dad4d4] dark:bg-gray-700 dark:text-gray-300 dark:focus:ring-gray-100 active:dark:bg-[#5c5a5a] focus:ring-1 focus:outline-none;
+}
