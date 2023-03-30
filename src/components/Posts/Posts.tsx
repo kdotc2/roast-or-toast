@@ -74,7 +74,7 @@ const PostsPage = ({}) => {
         columnClassName="my-masonry-grid_column"
       >
         {postStateValue.posts.map((post: Post) => (
-          <div>
+          <div key={post.id}>
             {loading ? (
               <div>
                 <Loader />
@@ -82,7 +82,6 @@ const PostsPage = ({}) => {
             ) : (
               <>
                 <PostItem
-                  key={post.id}
                   post={post}
                   userIsCreator={user?.uid === post.creatorId}
                   userVoteValue={
