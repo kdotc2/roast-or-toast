@@ -2,7 +2,7 @@ import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-export default function terms() {
+export default function Terms() {
   const router = useRouter()
 
   return (
