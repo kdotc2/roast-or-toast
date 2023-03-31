@@ -139,26 +139,47 @@ const Comments = ({ selectedPost }: CommentsProps) => {
     [setComments, setPostState]
   )
 
-  const getPostComments = () => {
+  const getPostComments = async () => {
     try {
       const commentsQuery = query(
         collection(db, 'comments'),
         where('postId', '==', selectedPost.id),
         orderBy('createdAt', 'desc')
       )
-      const unsubscribe = onSnapshot(commentsQuery, (querySnapshot) => {
-        const comments = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-
-        setComments(comments as Comment[])
-        setCommentFetchLoading(false)
-      })
-
-      return () => unsubscribe()
-    } catch (error: any) {}
+      const commentDocs = await getDocs(commentsQuery)
+      const comments = commentDocs.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setComments(comments as Comment[])
+    } catch (error: any) {
+      console.log('getPostComments error', error.message)
+    }
+    setCommentFetchLoading(false)
   }
+
+  // const getPostComments = () => {
+  //   try {
+  //     const commentsQuery = query(
+  //       collection(db, 'comments'),
+  //       where('postId', '==', selectedPost.id),
+  //       orderBy('createdAt', 'desc')
+  //     )
+  //     const unsubscribe = onSnapshot(commentsQuery, (querySnapshot) => {
+  //       const comments = querySnapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }))
+
+  //       setComments(comments as Comment[])
+  //       setCommentFetchLoading(false)
+  //     })
+
+  //     return () => unsubscribe()
+  //   } catch (error: any) {
+  //     console.log('getPostComments error', error.message)
+  //   }
+  // }
 
   useEffect(() => {
     getPostComments()
@@ -204,7 +225,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
                 ))}
               </>
             ) : (
-              <div className="flex items-center justify-center py-6 text-sm">
+              <div className="flex items-center justify-center py-10 text-sm">
                 No Comments Yet
               </div>
             )}

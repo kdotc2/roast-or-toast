@@ -63,7 +63,7 @@ export default function Modal() {
 
                     {modalState.view === 'login' && (
                       <div className="relative">
-                        <div className="items-center justify-center pb-4">
+                        <div className="items-center justify-center pb-5">
                           <p className="py-4 text-sm">
                             By continuing, you are agreeing to our{' '}
                             <Link
@@ -84,10 +84,10 @@ export default function Modal() {
                             .
                           </p>
                           <OAuthButtons />
-                          {/* <p className="pb-4 text-center text-xs font-semibold uppercase text-gray-400 dark:text-gray-300">
+                          <p className="pb-4 text-center text-xs font-semibold uppercase text-gray-400 dark:text-gray-300">
                             or
                           </p>
-                          <SignInWithEmail /> */}
+                          <SignInWithEmail />
                         </div>
                       </div>
                     )}

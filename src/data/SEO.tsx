@@ -27,6 +27,12 @@ const CommonSEO = ({
   const router = useRouter()
   return (
     <Head>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
       <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
@@ -50,9 +56,7 @@ const CommonSEO = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
-      <meta name="viewport" content="width=device-width, user-scalable=no" />
-      {/* <meta name="apple-mobile-web-app-status-bar-style" content="default" /> */}
-      <meta name="apple-mobile-web-app-capable" content="no" />
+
       <link
         rel="canonical"
         href={

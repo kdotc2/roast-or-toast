@@ -33,18 +33,9 @@ const CommentInput = ({
             onChange={(event) => setComment(event.target.value)}
             name="body"
             value={comment}
-            // id="floating_outlined"
             className="border-1 peer block min-h-[84px] w-full resize-none appearance-none overflow-hidden rounded border-gray-300 bg-transparent px-[11px] pt-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
             placeholder={`Any feedback to share?`}
           />
-          {/* <label
-            htmlFor="floating_outlined"
-            className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-[#fdfbfb] px-2 text-sm text-gray-500 dark:text-gray-400 duration-300 peer-placeholder-shown:top-[27%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-gray-500 dark:bg-[#161515] dark:peer-focus:text-gray-400"
-          >
-            {user
-              ? `Any feedback to share, ${user?.displayName}?`
-              : 'Any feedback to share?'}
-          </label> */}
         </form>
       </>
       <div className="flex justify-end">

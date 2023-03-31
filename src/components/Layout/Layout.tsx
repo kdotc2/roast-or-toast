@@ -11,7 +11,7 @@ import PostModal from '../Modal/Post/PostModal'
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <div className="relative z-10 flex w-full flex-row">
+      <div className="relative z-10 flex w-full flex-row h-screen">
         <Navbar />
         <MobileNav />
         <main className="mx-auto flex-auto">{children}</main>
@@ -24,9 +24,9 @@ const Layout = ({ children }: PropsWithChildren) => {
         <NewUserModal />
         <PostModal />
         <AboutModal />
-        {/* <span className="hidden">
+        <span className="hidden">
           <SignInWithEmail />
-        </span> */}
+        </span>
       </div>
     </>
   )

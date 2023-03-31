@@ -30,7 +30,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-30 hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
+      <div className="sticky top-0 z-[100] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
           onMouseEnter={() => setTooltipStatus(true)}
@@ -152,8 +152,10 @@ export const MobileNav = () => {
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
+        document.body.style.overflow = 'auto'
         setNavShow(false)
       } else {
+        document.body.style.overflow = 'hidden'
         setNavShow(true)
       }
       return !status
@@ -161,8 +163,8 @@ export const MobileNav = () => {
   }
 
   return (
-    <div className="flex h-screen flex-col-reverse sm:hidden">
-      <div className="fixed z-[100] m-5 mb-10">
+    <div className="flex h-screen sm:hidden">
+      <div className="fixed z-[100] mt-5 flex w-[calc(100%-20px)] justify-end">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
             type="button"
@@ -178,22 +180,22 @@ export const MobileNav = () => {
           </button>
         </div>
       </div>
-      <div
+      {/* <div
         className={
           navShow
             ? `fixed inset-0 z-40 ml-auto bg-black/40 duration-300 ease-in-out`
             : ``
         }
         onClick={onToggleNav}
-      ></div>
+      ></div> */}
       <div
-        className={`fixed bottom-0 z-50 flex h-screen w-[300px] transform flex-col-reverse bg-[#f5f2f2]  dark:bg-[#1c1b1b]  ${
+        className={`fixed bottom-0 z-50 flex h-screen w-full transform bg-[#f5f2f2] dark:bg-[#1c1b1b]  ${
           navShow
-            ? '-translate-x-0 shadow-lg duration-300 ease-out'
-            : '-translate-x-full duration-300 ease-in'
+            ? 'translate-x-0 shadow-lg duration-300 ease-out'
+            : 'translate-x-full duration-300 ease-in'
         }`}
       >
-        <nav className="z-[150] mx-auto ml-8 mb-28 flex flex-col space-y-16 text-sm">
+        <nav className="z-[150] mx-auto ml-8 justify-center flex flex-col space-y-16 text-sm">
           <div className="flex flex-col justify-between space-y-6">
             <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
               Create a post

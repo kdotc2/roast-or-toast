@@ -45,7 +45,7 @@ const PostModal = () => {
             <FocusTrap
               focusTrapOptions={{ setReturnFocus: false, initialFocus: false }}
             >
-              <div className="fixed inset-0 z-30 bg-black/40 ">
+              <div className="fixed inset-0 z-30 bg-black/40">
                 <div>
                   <div className="fixed inset-0 z-40 flex items-center justify-center">
                     <PostDetail />
