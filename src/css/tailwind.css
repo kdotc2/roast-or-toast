@@ -55,7 +55,7 @@
 }
 
 .imageUpload {
-  @apply z-10 cursor-pointer rounded py-[116px] text-sm text-slate-500 file:mx-60 file:ml-[164px] file:rounded file:border-0  file:px-[70px] file:text-sm file:font-medium file:text-transparent focus:outline-0 focus:ring-1 focus:ring-gray-900 focus:dark:ring-gray-100 w-full file:bg-transparent;
+  @apply z-10 cursor-pointer rounded py-[116px] text-sm text-slate-500 file:mx-60 file:ml-[164px] file:rounded file:border-0 file:px-[70px] file:text-sm file:font-medium file:text-transparent text-transparent focus:outline-0 focus:ring-1 focus:ring-gray-900 focus:dark:ring-gray-100 w-full file:bg-transparent;
 }
 
 .settingsButton {

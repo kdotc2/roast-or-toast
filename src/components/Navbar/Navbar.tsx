@@ -162,7 +162,7 @@ export const MobileNav = () => {
 
   return (
     <div className="flex h-screen flex-col-reverse sm:hidden">
-      <div className="fixed z-[80] m-5">
+      <div className="fixed z-[100] m-5 mb-10">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
             type="button"
@@ -193,7 +193,7 @@ export const MobileNav = () => {
             : '-translate-x-full duration-300 ease-in'
         }`}
       >
-        <nav className="z-[150] mx-auto ml-8 mb-24 flex flex-col space-y-16 text-sm">
+        <nav className="z-[150] mx-auto ml-8 mb-28 flex flex-col space-y-16 text-sm">
           <div className="flex flex-col justify-between space-y-6">
             <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
               Create a post

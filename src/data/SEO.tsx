@@ -51,11 +51,7 @@ const CommonSEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
+      {/* <meta name="apple-mobile-web-app-status-bar-style" content="default" /> */}
       <meta name="apple-mobile-web-app-capable" content="no" />
       <link
         rel="canonical"
