@@ -164,7 +164,7 @@ export const MobileNav = () => {
 
   return (
     <div className="flex h-screen sm:hidden">
-      <div className="fixed z-[100] mt-5 flex w-[calc(100%-20px)] justify-end">
+      <div className="fixed z-[80] mt-5 flex w-[calc(100%-20px)] justify-end">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
             type="button"

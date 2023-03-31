@@ -4,7 +4,7 @@ const PostPage = () => {
   return (
     <>
       <div>
-        <div className="fixed inset-0 z-40 flex items-center justify-center">
+        <div className="fixed inset-0 z-[90] flex items-center justify-center">
           <PostDetail />
         </div>
       </div>

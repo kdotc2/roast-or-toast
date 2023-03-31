@@ -10,9 +10,7 @@ export default function Home() {
         title={siteMetadata.title}
         description={siteMetadata.description}
       />
-      <div className="">
-        <PostsPage />
-      </div>
+      <PostsPage />
     </>
   )
 }

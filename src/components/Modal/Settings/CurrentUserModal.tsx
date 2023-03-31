@@ -43,8 +43,8 @@ export default function CurrentUserModal() {
     signOut(auth)
       .then(() => handleClose())
       .catch((error) => setErrorMessage('Failed to logout'))
-    // window.location.reload()
   }
+
   const handleClose = () => {
     setModalState((prev) => ({
       ...prev,
@@ -52,20 +52,18 @@ export default function CurrentUserModal() {
     }))
   }
 
-  useEffect(() => {
-    const unsub = auth.onAuthStateChanged(async (user) => {
-      unsub()
-      if (user) {
-        const userSnap = doc(db, 'users', user.uid)
-        const unsubscribe = onSnapshot(userSnap, (querySnapshot) => {
-          const userDoc = querySnapshot
-          setDisplayName(userDoc.data()?.displayName)
-          setEmail(userDoc.data()?.email)
-        })
-        return () => unsubscribe()
-      }
-    })
-  }, [])
+  const unsub = auth.onAuthStateChanged(async (user) => {
+    unsub()
+    if (user) {
+      const userSnap = doc(db, 'users', user.uid)
+      const unsubscribe = onSnapshot(userSnap, (querySnapshot) => {
+        const userDoc = querySnapshot
+        setDisplayName(userDoc.data()?.displayName)
+        setEmail(userDoc.data()?.email)
+      })
+      return () => unsubscribe()
+    }
+  })
 
   useEffect(() => {
     const close = (event: KeyboardEvent) => {

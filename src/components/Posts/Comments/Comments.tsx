@@ -153,7 +153,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
       }))
       setComments(comments as Comment[])
     } catch (error: any) {
-      console.log('getPostComments error', error.message)
+      // console.log('getPostComments error', error.message)
     }
     setCommentFetchLoading(false)
   }

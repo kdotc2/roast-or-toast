@@ -1,9 +1,9 @@
 import { aboutModalState } from '@/atoms/aboutModalAtom'
-import { auth } from '@/firebase/clientApp'
+
 import FocusTrap from 'focus-trap-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { useEffect } from 'react'
+
 import { useRecoilState } from 'recoil'
 
 export default function CurrentUserModal() {

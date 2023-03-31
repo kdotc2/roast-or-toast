@@ -25,7 +25,7 @@ export default function Modal() {
   const [loading, setLoading] = useState(false)
   const auth = getAuth()
   const [user] = useAuthState(auth)
-  const setUserDisplayName = useSetRecoilState(userState)
+  const [userDisplayName, setUserDisplayName] = useRecoilState(userState)
   const router = useRouter()
 
   const handleClose = () => {
@@ -33,9 +33,9 @@ export default function Modal() {
       ...prev,
       open: false,
     }))
-
     router.push('/')
   }
+
   const onTextChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) => {

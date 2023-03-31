@@ -7,12 +7,14 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useRecoilState } from 'recoil'
 import OAuthButtons from './OAuthButtons'
 import SignInWithEmail from './SignInWithEmail'
+import { useRouter } from 'next/router'
 
 export default function Modal() {
   const [modalState, setModalState] = useRecoilState(authModalState)
   const [user, loading, error] = useAuthState(auth)
   const [currentUser, setCurrentUser] = useState(false)
   const [scroll, setScroll] = useState(false)
+  const router = useRouter()
 
   const handleClose = () => {
     setModalState((prev) => ({
