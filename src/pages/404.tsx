@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function FourZeroFour() {
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex items-center justify-center supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] sm:h-screen">
         <div className="item-start flex flex-col md:items-center">
           <div className="flex flex-col items-start justify-start md:flex-row md:items-center md:justify-center md:space-x-6">
             <div className="space-x-2 pt-4 pb-8 md:space-y-5">

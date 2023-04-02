@@ -189,13 +189,13 @@ export const MobileNav = () => {
         onClick={onToggleNav}
       ></div> */}
       <div
-        className={`fixed bottom-0 z-50 flex h-screen w-full transform bg-[#f5f2f2] dark:bg-[#1c1b1b]  ${
+        className={`fixed bottom-0 z-50 flex w-full transform bg-[#f5f2f2] supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] dark:bg-[#1c1b1b]  ${
           navShow
             ? 'translate-x-0 shadow-lg duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'
         }`}
       >
-        <nav className="z-[150] mx-auto ml-8 justify-center flex flex-col space-y-16 text-sm">
+        <nav className="z-[150] mx-auto ml-8 flex flex-col justify-center space-y-16 text-sm">
           <div className="flex flex-col justify-between space-y-6">
             <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
               Create a post
@@ -247,9 +247,9 @@ export const MobileNav = () => {
               Link
             </button>
           </div>
-          <div className="flex-col space-y-6 pb-8">
+          <div className="flex-col space-y-6">
             <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
-              Other
+            miscellaneous
             </p>
             {currentUser ? (
               <button

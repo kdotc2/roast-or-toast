@@ -73,7 +73,7 @@ const PostDetail = () => {
           onClick={(event) => {
             event.stopPropagation()
           }}
-          className={`dark:bg-gray-80 relative h-screen w-[750px] bg-[#f5f2f2] shadow-lg supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] dark:bg-[#1c1b1b] ${
+          className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] shadow-lg [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
             modalState.open && 'overflow-y-auto overscroll-contain'
           }`}
         >
