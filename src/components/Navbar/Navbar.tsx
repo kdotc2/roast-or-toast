@@ -30,7 +30,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-[100] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
+      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
           onMouseEnter={() => setTooltipStatus(true)}

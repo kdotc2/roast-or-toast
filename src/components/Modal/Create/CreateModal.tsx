@@ -80,8 +80,6 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     postInputs.title = ''
     setSelectedFile('')
     setCount(0)
-    setError('')
-    handleClose()
   }
 
   const onTextChange = ({
@@ -152,7 +150,8 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
       // console.log('createPost error', error)
       setError('Error creating post')
     }
-    resetState()
+    setError('')
+    handleClose()
     setLoading(false)
   }
 
@@ -161,6 +160,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
       ...prev,
       open: false,
     }))
+    resetState()
   }
 
   return (
@@ -243,6 +243,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                         </button>
                         {loading}
                         <button
+                        
                           disabled={
                             ((!postInputs.title || !postInputs.body) &&
                               (!postInputs.title || !postInputs.url) &&

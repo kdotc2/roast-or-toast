@@ -45,7 +45,6 @@ const PostItem = ({
   const [error, setError] = useState(false)
   const singlePostPage = !onSelectPost
   const router = useRouter()
-  const setPostModalState = useSetRecoilState(postsModalState)
 
   const formatter = Intl.NumberFormat('en', { notation: 'compact' })
 
