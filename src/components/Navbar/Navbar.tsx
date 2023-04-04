@@ -189,7 +189,7 @@ export const MobileNav = () => {
         onClick={onToggleNav}
       ></div> */}
       <div
-        className={`fixed bottom-0 z-50 flex w-full transform bg-[#f5f2f2] supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] dark:bg-[#1c1b1b]  ${
+        className={`fixed bottom-0 z-50 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b]  ${
           navShow
             ? 'translate-x-0 shadow-lg duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'
