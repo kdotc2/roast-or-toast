@@ -182,8 +182,9 @@ const Comments = ({ selectedPost }: CommentsProps) => {
   }
 
   useEffect(() => {
+    if (!selectedPost) return
     getPostComments()
-  }, [])
+  }, [selectedPost])
 
   return (
     <div>
