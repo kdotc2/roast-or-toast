@@ -1,7 +1,7 @@
 import { Post } from '@/atoms/postAtom'
 import { postsModalState } from '@/atoms/postModalAtom'
 import Comments from '@/components/Posts/Comments/Comments'
-import PostItem from '@/components/Posts/PostItem'
+import PostView from '@/components/Posts/PostView'
 import { auth, db } from '@/firebase/clientApp'
 import usePosts from '@/hooks/usePosts'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
@@ -94,7 +94,7 @@ const PostDetail = () => {
             <div className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]">
               {postStateValue.selectedPost && (
                 <div className="">
-                  <PostItem
+                  <PostView
                     post={postStateValue.selectedPost}
                     onVote={onVote}
                     onDeletePost={onDeletePost}

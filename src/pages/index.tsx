@@ -1,4 +1,4 @@
-import PostsPage from '@/components/Posts/Posts'
+import PostFeed from '@/components/Posts/PostFeed'
 import { PageSEO } from '@/data/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import React from 'react'
@@ -10,7 +10,7 @@ export default function Home() {
         title={siteMetadata.title}
         description={siteMetadata.description}
       />
-      <PostsPage />
+      <PostFeed />
     </>
   )
 }
