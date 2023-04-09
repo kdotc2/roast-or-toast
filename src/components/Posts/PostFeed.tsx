@@ -24,7 +24,7 @@ const breakpointCols = {
   640: 1,
 }
 
-const PostsPage = () => {
+const PostFeed = () => {
   const [user] = useAuthState(auth)
   const {
     postStateValue,
@@ -70,4 +70,4 @@ const PostsPage = () => {
   )
 }
 
-export default PostsPage
+export default PostFeed

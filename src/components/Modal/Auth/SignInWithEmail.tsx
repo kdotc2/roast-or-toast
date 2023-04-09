@@ -81,7 +81,7 @@ export const SignInWithEmail = () => {
     event.preventDefault()
     setLoginLoading(true)
     sendSignInLinkToEmail(auth, email, {
-      url: 'http://localhost:3000',
+      url: 'https://roastortoast.me',
       handleCodeInApp: true,
       iOS: {
         bundleId: 'com.example.ios',
