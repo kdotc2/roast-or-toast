@@ -1,10 +1,7 @@
-import { authModalState } from '@/atoms/authModalAtom'
 import { auth } from '@/firebase/clientApp'
-import FocusTrap from 'focus-trap-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useRecoilState } from 'recoil'
 import OAuthButtons from './OAuthButtons'
 import SignInWithEmail from './SignInWithEmail'
 import ModalWrapper from '../ModalWrapper'
@@ -13,7 +10,9 @@ type Props = {
   close: () => void
 }
 
-export default function AuthModal({close}:Props) {
+// TODO this needs reverted partially. this can be triggered from a lot of places so we
+// we should make one instance and use recoil to trigger it
+export default function SignupModal({ close }:Props) {
   const [user] = useAuthState(auth)
 
   useEffect(() => {

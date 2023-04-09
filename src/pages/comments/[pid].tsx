@@ -5,7 +5,8 @@ const PostPage = () => {
     <>
       <div>
         <div className="fixed inset-0 z-[90] flex items-center justify-center">
-          <PostDetail />
+          {/* TODO navgate to / or something */}
+          <PostDetail close={console.log} /> 
         </div>
       </div>
     </>

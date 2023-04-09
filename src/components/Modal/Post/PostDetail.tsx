@@ -12,7 +12,12 @@ import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useRecoilState } from 'recoil'
 
-const PostDetail = () => {
+type Props = {
+  post?: Post
+  close: () => void
+}
+// TODO fix routing to post links and back on close
+const PostDetail = ({ post, close }: Props) => {
   const { postStateValue, setPostStateValue, onDeletePost, onVote } = usePosts()
   const [user] = useAuthState(auth)
   const router = useRouter()
@@ -20,58 +25,48 @@ const PostDetail = () => {
   const { pid } = router.query
   const [error, setError] = useState('')
 
-  const fetchPost = async () => {
-    try {
-      const postDocRef = doc(db, 'posts', pid as string)
-      const unsubscribe = onSnapshot(postDocRef, (querySnapshot) => {
-        const postDoc = querySnapshot
-        setPostStateValue((prev) => ({
-          ...prev,
-          selectedPost: { id: postDoc.id, ...postDoc.data() } as Post,
-        }))
-      })
-      return () => unsubscribe()
-    } catch (error) {
-      setError('Error loading post')
-    }
-  }
+  // if (post) {
+  //   setPostStateValue((prev) => ({
+  //     ...prev,
+  //     selectedPost: post,
+  //   }))
+  // }
 
-  useEffect(() => {
-    const { pid } = router.query
+  // const fetchPost = async () => {
+  //   try {
+  //     const postDocRef = doc(db, 'posts', pid as string)
+  //     const unsubscribe = onSnapshot(postDocRef, (querySnapshot) => {
+  //       const postDoc = querySnapshot
+  //       setPostStateValue((prev) => ({
+  //         ...prev,
+  //         selectedPost: { id: postDoc.id, ...postDoc.data() } as Post,
+  //       }))
+  //     })
+  //     return () => unsubscribe()
+  //   } catch (error) {
+  //     setError('Error loading post')
+  //   }
+  // }
 
-    if (pid && !postStateValue.selectedPost) {
-      fetchPost()
-    }
-  }, [router.query, postStateValue.selectedPost])
+  // useEffect(() => {
+  //   const { pid } = router.query
 
-  const handleClose = () => {
-    setModalState((prev) => ({
-      ...prev,
-      open: false,
-    }))
-    router.push(`/`, undefined, { scroll: false })
-  }
-
-  useEffect(() => {
-    window.onpopstate = () => {
-      setModalState((prev) => ({
-        ...prev,
-        open: false,
-      }))
-      // router.push(`/`, undefined, { scroll: false })
-    }
-  }, [])
+  //   if (pid && !postStateValue.selectedPost) {
+  //     fetchPost()
+  //   }
+  // }, [router.query, postStateValue.selectedPost])
 
   return (
     <>
       <Head>
-        <title>{postStateValue?.selectedPost?.title}</title>
+        <title>{post?.title}</title>
       </Head>
 
       <div className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto overscroll-contain">
         <div
           onClick={(event) => {
             event.stopPropagation()
+            close()
           }}
           className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
             modalState.open && 'overflow-y-auto overscroll-contain shadow-lg'
@@ -85,17 +80,17 @@ const PostDetail = () => {
           <div className="sm:mx-6">
             <div className="sticky top-0 z-10 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#1c1b1b] sm:mx-8">
               <button
-                onClick={handleClose}
+                onClick={() => close()}
                 className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-white dark:hover:bg-gray-800"
               >
                 <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
               </button>
             </div>
             <div className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]">
-              {postStateValue.selectedPost && (
+              {post && (
                 <div className="">
                   <PostView
-                    post={postStateValue.selectedPost}
+                    post={post}
                     onVote={onVote}
                     onDeletePost={onDeletePost}
                     userVoteValue={
@@ -108,12 +103,14 @@ const PostDetail = () => {
                       user?.uid === postStateValue.selectedPost?.creatorId
                     }
                   />
-                </div>
-              )}
-              <Comments
+                <Comments
                 user={user}
-                selectedPost={postStateValue.selectedPost!}
+                selectedPost={post}
               />
+ 
+
+                </div>
+             )}
             </div>
           </div>
         </div>
