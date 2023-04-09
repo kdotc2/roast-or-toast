@@ -14,6 +14,10 @@ import { newUserModalState } from '@/atoms/newUserModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { getDoc, doc } from 'firebase/firestore'
 
+const getEmailLink = () =>  {
+  return process.env.LOCAL_DEV ? 'http://localhost:3000' : 'https://roastortoast.me'
+}
+
 export const SignInWithEmail = () => {
   const [modalState, setModalState] = useRecoilState(authModalState)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
@@ -81,7 +85,7 @@ export const SignInWithEmail = () => {
     event.preventDefault()
     setLoginLoading(true)
     sendSignInLinkToEmail(auth, email, {
-      url: 'https://roastortoast.me',
+      url: getEmailLink(),
       handleCodeInApp: true,
       iOS: {
         bundleId: 'com.example.ios',
