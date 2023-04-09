@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Post } from '../../atoms/postAtom'
 import {
   HeartIcon,
@@ -9,13 +9,11 @@ import {
 
 import moment from 'moment'
 import { useRouter } from 'next/router'
-import { useSetRecoilState } from 'recoil'
-import { postsModalState } from '../../atoms/postModalAtom'
 import LinkMetadata from './LinkMetadata'
-import FocusTrap from 'focus-trap-react'
 import Link from 'next/link'
+import DeleteConfirmationModal from './DeleteConfirmationModal'
 
-type PostItemProps = {
+type PostViewProps = {
   post: Post
   userIsCreator: boolean
   userVoteValue?: number
@@ -30,7 +28,7 @@ type PostItemProps = {
   postIdx?: number
 }
 
-const PostItem = ({
+const PostView = ({
   post,
   postIdx,
   userIsCreator,
@@ -38,8 +36,7 @@ const PostItem = ({
   onVote,
   onDeletePost,
   onSelectPost,
-}: PostItemProps) => {
-  const [loadingImage, setLoadingImage] = useState(true)
+}: PostViewProps) => {
   const [loadingDelete, setLoadingDelete] = useState(false)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState(false)
   const [error, setError] = useState(false)
@@ -66,75 +63,14 @@ const PostItem = ({
 
   return (
     <>
-      {confirmDeleteModal ? (
-        <FocusTrap
-          focusTrapOptions={{
-            returnFocusOnDeactivate: false,
-            initialFocus: false,
-          }}
-        >
-          <div
-            className="fixed inset-0 z-40 bg-black/40"
-            onClick={() => {
-              setConfirmDeleteModal(false)
-            }}
-          >
-            <div>
-              <div
-                className="fixed inset-0 z-50 flex cursor-default items-center justify-center"
-                onClick={(event) => {
-                  event.stopPropagation()
-                }}
-              >
-                <div className="relative w-[400px] rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800">
-                  <div className="pt-5">
-                    <h3 className="text-xl font-semibold">
-                      Confirm delete post
-                    </h3>
-                  </div>
-                  <div className="relative">
-                    <div className="items-center justify-center">
-                      <p className="py-4 text-sm">
-                        Are you sure you want to delete{' '}
-                        <span className="font-bold">{post.title}</span>? This
-                        action cannont be undone.
-                      </p>
-                      <div className="flex justify-between pb-4">
-                        <div className="flex items-center justify-start">
-                          {error && (
-                            <p className="text-xs font-medium text-red-500 dark:text-red-400">
-                              {error}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex justify-end gap-3">
-                          <button
-                            className="secondaryButton"
-                            aria-label="Cancel"
-                            type="button"
-                            onClick={() => setConfirmDeleteModal(false)}
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            className="primaryButton"
-                            type="button"
-                            aria-label="Confirm delete"
-                            onClick={handleDelete}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FocusTrap>
-      ) : null}
-
+      {confirmDeleteModal && (
+        <DeleteConfirmationModal 
+          onCancel={() => setConfirmDeleteModal(false)}
+          onSuccess={() => handleDelete()}
+          post={post}
+          error={error}
+          />
+      )}
       <div
         onClick={() => {
           {
@@ -184,15 +120,11 @@ const PostItem = ({
                       'mx-auto flex object-scale-down sm:w-[500px]'
                     }`}
                   >
-                    {/* {loadingImage ? (
-                      <div className="mx-auto mb-4 flex h-48 w-full animate-pulse items-center bg-gray-300 dark:bg-gray-700"></div>
-                    ) : ( */}
                     <img
                       src={post.imageURL}
                       alt="Post image"
                       // onLoad={() => setLoadingImage(false)}
                     />
-                    {/* )} */}
                   </div>
                 )}
               </div>
@@ -235,18 +167,6 @@ const PostItem = ({
               >
                 {formatter.format(post.voteStatus)}
               </span>
-              {/* <button
-              aria-label="Downvote"
-              type="button"
-              className="hover:text-gray-400 hover:dark:text-gray-500"
-              onClick={(event) => onVote(event, post, -1)}
-            >
-              {userVoteValue === -1 ? (
-                <BsArrowDownCircleFill className="text-xl" />
-              ) : (
-                <BsArrowDownCircle className="text-xl" />
-              )}
-            </button> */}
             </div>
             <div className="justify flex items-center gap-2 text-gray-500 dark:text-gray-400">
               <ChatBubbleOvalLeftIcon className="h-6 w-6" />
@@ -314,4 +234,4 @@ const PostItem = ({
     </>
   )
 }
-export default PostItem
+export default PostView

@@ -13,19 +13,15 @@ import {
   writeBatch,
 } from 'firebase/firestore'
 import { deleteObject, ref } from 'firebase/storage'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 const usePosts = () => {
   const [postStateValue, setPostStateValue] = useRecoilState(postState)
-  const [loading, setLoading] = useState(false)
   const [user, loadingUser] = useAuthState(auth)
-  const currentPost = useRecoilValue(postState)
   const setLoginState = useSetRecoilState(authModalState)
   const setPostModalState = useSetRecoilState(postsModalState)
-  const router = useRouter()
 
   const onVote = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -210,29 +206,8 @@ const usePosts = () => {
     getPostVotes()
   }, [user])
 
-  // const getPosts = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const postsQuery = query(
-  //       collection(db, 'posts'),
-  //       orderBy('createdAt', 'desc')
-  //     )
-  //     const postDocs = await getDocs(postsQuery)
-  //     const posts = postDocs.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-  //     setPostStateValue((prev) => ({
-  //       ...prev,
-  //       posts: posts as Post[],
-  //     }))
-  //     console.log('posts', posts)
-  //   } catch (error: any) {
-  //     console.log('getPosts error', error.message)
-  //   }
-  //   setLoading(false)
-  // }
-
   const getPosts = async () => {
     try {
-      setLoading(true)
       const postsQuery = query(
         collection(db, 'posts'),
         orderBy('createdAt', 'desc')
@@ -253,10 +228,8 @@ const usePosts = () => {
       return () => unsubscribe()
       // console.log('posts', postsQuery)
     } catch (error: any) {
-      // console.log('getPosts error', error.message)
-      alert('Error getting posts')
+      alert(`Error getting posts ${error}`)
     }
-    setLoading(false)
   }
 
   useEffect(() => {
