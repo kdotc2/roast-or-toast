@@ -2,6 +2,7 @@ import { auth } from '@/firebase/clientApp'
 import usePosts from '@/hooks/usePosts'
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useRouter } from 'next/router'
 import { Post } from '../../atoms/postAtom'
 import PostView from './PostView'
 import Masonry from 'react-masonry-css'
@@ -40,13 +41,16 @@ const PostFeed = () => {
   useEffect(() => {
     getPosts()
   }, [])
+  const router = useRouter()
 
   return (
     <div>
       { clickedPost && (
         <PostModal
           close={() => {
+            console.log('feed modal close')
             setClickedPost(undefined)
+            router.push('/')
             // setShowPostModal(false)
           }}
 

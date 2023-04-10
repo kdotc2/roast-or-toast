@@ -14,7 +14,7 @@ import { useRecoilState } from 'recoil'
 
 type Props = {
   post?: Post
-  close: () => void
+  close?: () => void
 }
 // TODO fix routing to post links and back on close
 const PostDetail = ({ post, close }: Props) => {
@@ -24,6 +24,13 @@ const PostDetail = ({ post, close }: Props) => {
   const [modalState, setModalState] = useRecoilState(postsModalState)
   const { pid } = router.query
   const [error, setError] = useState('')
+
+  if (!close) {
+    close = () => {
+      console.log('default close')
+      router.push("/")
+    }
+  }
 
   // if (post) {
   //   setPostStateValue((prev) => ({
@@ -62,15 +69,19 @@ const PostDetail = ({ post, close }: Props) => {
         <title>{post?.title}</title>
       </Head>
 
-      <div className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto overscroll-contain">
+      {/*
+        TODO some of this css should be refactored but im not going to do it right now
+        ideally the modal wrapper should contain all background and container css and the PostDetail
+        just contains things for the post itself but they are intermingled currently with some overlaps
+        so we have duplicate click listeners for outside of the modal
+       */}
+      <div 
+          className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto overscroll-contain"
+          onClick={() => close()}
+        >
         <div
-          onClick={(event) => {
-            event.stopPropagation()
-            close()
-          }}
-          className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
-            modalState.open && 'overflow-y-auto overscroll-contain shadow-lg'
-          }`}
+          onClick={() => close()}
+          className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain shadow-lg`}
         >
           {error && (
             <p className="flex h-screen items-center justify-center text-xs font-medium text-red-500 dark:text-red-400">

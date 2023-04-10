@@ -21,7 +21,6 @@ const usePosts = () => {
   const [postStateValue, setPostStateValue] = useRecoilState(postState)
   const [user, loadingUser] = useAuthState(auth)
   const setLoginState = useSetRecoilState(authModalState)
-  const setPostModalState = useSetRecoilState(postsModalState)
 
   const onVote = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
