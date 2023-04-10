@@ -1,5 +1,4 @@
 import { Post } from '@/atoms/postAtom'
-import { postsModalState } from '@/atoms/postModalAtom'
 import Comments from '@/components/Posts/Comments/Comments'
 import PostView from '@/components/Posts/PostView'
 import { auth, db } from '@/firebase/clientApp'
@@ -21,8 +20,6 @@ const PostDetail = ({ post, close }: Props) => {
   const { postStateValue, setPostStateValue, onDeletePost, onVote } = usePosts()
   const [user] = useAuthState(auth)
   const router = useRouter()
-  const [modalState, setModalState] = useRecoilState(postsModalState)
-  const { pid } = router.query
   const [error, setError] = useState('')
 
   if (!close) {
@@ -32,6 +29,8 @@ const PostDetail = ({ post, close }: Props) => {
     }
   }
 
+  const safeClose = close
+
   // if (post) {
   //   setPostStateValue((prev) => ({
   //     ...prev,
@@ -39,21 +38,7 @@ const PostDetail = ({ post, close }: Props) => {
   //   }))
   // }
 
-  // const fetchPost = async () => {
-  //   try {
-  //     const postDocRef = doc(db, 'posts', pid as string)
-  //     const unsubscribe = onSnapshot(postDocRef, (querySnapshot) => {
-  //       const postDoc = querySnapshot
-  //       setPostStateValue((prev) => ({
-  //         ...prev,
-  //         selectedPost: { id: postDoc.id, ...postDoc.data() } as Post,
-  //       }))
-  //     })
-  //     return () => unsubscribe()
-  //   } catch (error) {
-  //     setError('Error loading post')
-  //   }
-  // }
+
 
   // useEffect(() => {
   //   const { pid } = router.query
@@ -75,12 +60,22 @@ const PostDetail = ({ post, close }: Props) => {
         just contains things for the post itself but they are intermingled currently with some overlaps
         so we have duplicate click listeners for outside of the modal
        */}
-      <div 
-          className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto overscroll-contain"
-          // onClick={() => close()}
+      <div
+          id="post-detail" 
+          className="fixed inset-0 z-20 flex items-center justify-center overflow-y-auto overscroll-contain"
+          onClick={(e: any) => {
+            // since this element lays over the top of the modal wrapper we have to make a separate
+            // click listener for outside of the actual content to close
+            console.log('real click')
+            const el = document.getElementById('post-detail-content')
+            // ts-ignore
+            if (el && !el.contains(e.target)) {
+              safeClose()
+            }
+          }}
         >
         <div
-          // onClick={() => close()}
+          id="post-detail-content"
           className={`z-41 dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain shadow-lg`}
         >
           {error && (
@@ -89,15 +84,15 @@ const PostDetail = ({ post, close }: Props) => {
             </p>
           )}
           <div className="sm:mx-6">
-            <div className="sticky top-0 z-10 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#1c1b1b] sm:mx-8">
+            <div className="sticky top-0 z-60 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#1c1b1b] sm:mx-8">
               <button
-                onClick={() => close()}
+                onClick={() => safeClose()}
                 className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-white dark:hover:bg-gray-800"
               >
                 <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
               </button>
             </div>
-            <div className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]">
+            <div className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]" onClick={(e)=> e.preventDefault()}>
               {post && (
                 <div className="">
                   <PostView
@@ -114,11 +109,17 @@ const PostDetail = ({ post, close }: Props) => {
                       user?.uid === postStateValue.selectedPost?.creatorId
                     }
                   />
-                  <Comments
-                    user={user}
-                    selectedPost={post}
-                  />
                 </div>
+             )}
+             {/*
+              this is redudant but here is a css spacing issue if you put this back to back
+              with the PostView i dont want to figure out right now
+             */}
+             {post && (
+                <Comments
+                  user={user}
+                  selectedPost={post}
+                />
              )}
             </div>
           </div>

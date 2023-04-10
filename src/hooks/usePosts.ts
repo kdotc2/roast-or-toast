@@ -1,12 +1,12 @@
 import { authModalState } from '@/atoms/authModalAtom'
 import { Post, postState, PostVote } from '@/atoms/postAtom'
-import { postsModalState } from '@/atoms/postModalAtom'
 import { auth, db, storage } from '@/firebase/clientApp'
 import {
   collection,
   deleteDoc,
   doc,
   getDocs,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
@@ -221,6 +221,16 @@ const usePosts = () => {
     }
   }
 
+  const getPost = async (pid: string) => {
+    const docRef = doc(db, 'posts', pid as string)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      return docSnap.data()
+    } else {
+      return undefined
+    }
+  }
+
   useEffect(() => {
     // Logout or no authenticated user
     if (!user?.uid && !loadingUser) {
@@ -238,6 +248,7 @@ const usePosts = () => {
     onVote,
     onDeletePost,
     getPosts,
+    getPost,
   }
 }
 
