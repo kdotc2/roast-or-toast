@@ -77,11 +77,11 @@ const PostDetail = ({ post, close }: Props) => {
        */}
       <div 
           className="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto overscroll-contain"
-          onClick={() => close()}
+          // onClick={() => close()}
         >
         <div
-          onClick={() => close()}
-          className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain shadow-lg`}
+          // onClick={() => close()}
+          className={`z-41 dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain shadow-lg`}
         >
           {error && (
             <p className="flex h-screen items-center justify-center text-xs font-medium text-red-500 dark:text-red-400">
@@ -114,12 +114,10 @@ const PostDetail = ({ post, close }: Props) => {
                       user?.uid === postStateValue.selectedPost?.creatorId
                     }
                   />
-                <Comments
-                user={user}
-                selectedPost={post}
-              />
- 
-
+                  <Comments
+                    user={user}
+                    selectedPost={post}
+                  />
                 </div>
              )}
             </div>

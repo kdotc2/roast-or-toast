@@ -151,16 +151,6 @@ const usePosts = () => {
     }
   }
 
-  const onSelectPost = (post: Post, postIdx: number) => {
-    // console.log('HERE IS THE SELECTED POST', post, postIdx)
-
-    setPostStateValue((prev) => ({
-      ...prev,
-      selectedPost: { ...post, postIdx },
-    }))
-    setPostModalState({ open: true, view: 'posts' })
-  }
-
   const onDeletePost = async (post: Post): Promise<boolean> => {
     // console.log('DELETEING POST', 'post.id')
 
@@ -246,7 +236,6 @@ const usePosts = () => {
     postStateValue,
     setPostStateValue,
     onVote,
-    onSelectPost,
     onDeletePost,
     getPosts,
   }

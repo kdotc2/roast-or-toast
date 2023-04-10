@@ -10,13 +10,12 @@ export default function ModalWrapper({ child, close }: Props) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        // event.target.blur()
         close()
       }
     }
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [])
+  })
 
   return (
     <div id="modal-wrapper" onClick={() => {console.log('modal wrapper click');close()}

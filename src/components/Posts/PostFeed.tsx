@@ -34,7 +34,6 @@ const PostFeed = () => {
     postStateValue,
     onVote,
     onDeletePost,
-    onSelectPost,
     getPosts,
   } = usePosts()
 
