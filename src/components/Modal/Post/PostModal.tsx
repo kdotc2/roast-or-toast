@@ -1,63 +1,20 @@
-import { postsModalState } from '@/atoms/postModalAtom'
-import FocusTrap from 'focus-trap-react'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
 import PostDetail from './PostDetail'
+import ModalWrapper from '../ModalWrapper'
+import { Post } from '@/atoms/postAtom'
 
-const PostModal = () => {
-  const router = useRouter()
-  const [modalState, setModalState] = useRecoilState(postsModalState)
+type Props = {
+  close: () => void
+  post?: Post
+}
 
-  const handleClose = () => {
-    setModalState((prev) => ({
-      ...prev,
-      open: false,
-    }))
-    router.push(`/`, undefined, { scroll: false })
-  }
-
-  useEffect(() => {
-    const close = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        // event.target.blur()
-        handleClose()
-      }
-    }
-    window.addEventListener('keydown', close)
-    return () => window.removeEventListener('keydown', close)
-  }, [])
-
-  useEffect(() => {
-    window.onpopstate = () => {
-      setModalState((prev) => ({
-        ...prev,
-        open: false,
-      }))
-    }
-  }, [])
+const PostModal = ({ close, post }: Props) => {
+  console.log(`modal for ${post?.title}`)
+  const content = <PostDetail post={post} close={close}/>
 
   return (
-    <>
-      <div onClick={handleClose}>
-        {modalState.open ? (
-          <>
-            <FocusTrap
-              focusTrapOptions={{ setReturnFocus: false, initialFocus: false }}
-            >
-              <div className="fixed inset-0 z-30 bg-black/40">
-                <div>
-                  <div className="fixed inset-0 z-40 flex items-center justify-center">
-                    <PostDetail />
-                  </div>
-                </div>
-              </div>
-            </FocusTrap>
-          </>
-        ) : null}
-      </div>
-    </>
+    <ModalWrapper close={close} child={content}/>
   )
 }
 
 export default PostModal
+

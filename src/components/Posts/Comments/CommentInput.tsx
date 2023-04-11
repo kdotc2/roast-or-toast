@@ -1,9 +1,7 @@
 import React, { MouseEventHandler, useState } from 'react'
 import { User } from 'firebase/auth'
 import { useSetRecoilState } from 'recoil'
-import { authModalState } from '@/atoms/authModalAtom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '@/firebase/clientApp'
+import { loginModalState } from '@/atoms/authModalAtom'
 import TextareaAutosize from 'react-textarea-autosize'
 import { SpinningLoader } from '../Loader'
 
@@ -22,7 +20,7 @@ const CommentInput = ({
   user,
   onCreateComment,
 }: CommentInputProps) => {
-  const setLoginState = useSetRecoilState(authModalState)
+  const setLoginState = useSetRecoilState(loginModalState)
   // const [user, error] = useAuthState(auth)
 
   return (
@@ -45,7 +43,7 @@ const CommentInput = ({
           onClick={() => {
             user
               ? onCreateComment(comment)
-              : setLoginState({ open: true, view: 'login' })
+              : setLoginState({ open: true })
           }}
         >
           {loading ? (

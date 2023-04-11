@@ -1,12 +1,12 @@
-import { authModalState } from '@/atoms/authModalAtom'
+import { loginModalState } from '@/atoms/authModalAtom'
 import { Post, postState, PostVote } from '@/atoms/postAtom'
-import { postsModalState } from '@/atoms/postModalAtom'
 import { auth, db, storage } from '@/firebase/clientApp'
 import {
   collection,
   deleteDoc,
   doc,
   getDocs,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
@@ -20,8 +20,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 const usePosts = () => {
   const [postStateValue, setPostStateValue] = useRecoilState(postState)
   const [user, loadingUser] = useAuthState(auth)
-  const setLoginState = useSetRecoilState(authModalState)
-  const setPostModalState = useSetRecoilState(postsModalState)
+  const setLoginModalState = useSetRecoilState(loginModalState)
 
   const onVote = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -30,7 +29,7 @@ const usePosts = () => {
   ) => {
     event.stopPropagation()
     if (!user?.uid) {
-      setLoginState({ open: true, view: 'login' })
+      setLoginModalState({ open: true })
       return
     }
 
@@ -152,16 +151,6 @@ const usePosts = () => {
     }
   }
 
-  const onSelectPost = (post: Post, postIdx: number) => {
-    // console.log('HERE IS THE SELECTED POST', post, postIdx)
-
-    setPostStateValue((prev) => ({
-      ...prev,
-      selectedPost: { ...post, postIdx },
-    }))
-    setPostModalState({ open: true, view: 'posts' })
-  }
-
   const onDeletePost = async (post: Post): Promise<boolean> => {
     // console.log('DELETEING POST', 'post.id')
 
@@ -232,6 +221,16 @@ const usePosts = () => {
     }
   }
 
+  const getPost = async (pid: string) => {
+    const docRef = doc(db, 'posts', pid as string)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      return docSnap.data()
+    } else {
+      return undefined
+    }
+  }
+
   useEffect(() => {
     // Logout or no authenticated user
     if (!user?.uid && !loadingUser) {
@@ -247,9 +246,9 @@ const usePosts = () => {
     postStateValue,
     setPostStateValue,
     onVote,
-    onSelectPost,
     onDeletePost,
     getPosts,
+    getPost,
   }
 }
 

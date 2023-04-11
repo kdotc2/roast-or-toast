@@ -1,11 +1,13 @@
 import { auth } from '@/firebase/clientApp'
 import usePosts from '@/hooks/usePosts'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useRouter } from 'next/router'
 import { Post } from '../../atoms/postAtom'
 import PostView from './PostView'
 import Masonry from 'react-masonry-css'
 import { Loader } from './Loader'
+import PostModal from '../Modal/Post/PostModal'
 
 const breakpointCols = {
   7200: 14,
@@ -26,20 +28,32 @@ const breakpointCols = {
 
 const PostFeed = () => {
   const [user] = useAuthState(auth)
+  // const [showPostModal, setShowPostModal] = useState(false)
+  const [clickedPost, setClickedPost] = useState<Post | undefined>(undefined)
   const {
     postStateValue,
     onVote,
     onDeletePost,
-    onSelectPost,
     getPosts,
   } = usePosts()
 
   useEffect(() => {
     getPosts()
   }, [])
+  const router = useRouter()
 
   return (
     <div>
+      { clickedPost && (
+        <PostModal
+          close={() => {
+            setClickedPost(undefined)
+            router.push('/')
+          }}
+
+          post={clickedPost} />
+      )}
+
       <Masonry
         breakpointCols={breakpointCols}
         className="my-masonry-grid w-auto"
@@ -60,7 +74,11 @@ const PostFeed = () => {
                   )?.voteValue
                 }
                 onVote={onVote}
-                onSelectPost={onSelectPost}
+                onSelectPost={() => {
+                  console.log("post click")
+                  setClickedPost(post)
+                  // setShowPostModal(true)
+                }}
                 onDeletePost={onDeletePost}
               />
           </div>

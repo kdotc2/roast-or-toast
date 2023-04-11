@@ -73,9 +73,7 @@ const PostView = ({
       )}
       <div
         onClick={() => {
-          {
             onSelectPost && post && onSelectPost(post, postIdx!)
-          }
         }}
         className={`rounded border bg-[#fdfbfb] dark:bg-[#161515] ${
           singlePostPage

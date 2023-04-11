@@ -11,25 +11,26 @@ import {
 } from '@heroicons/react/24/outline'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useSetRecoilState } from 'recoil'
-import { authModalState } from '../../atoms/authModalAtom'
 import { createModalState } from '../../atoms/createModalAtom'
 import { settingsModalState } from '../../atoms/settingsModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
-import { aboutModalState } from '../../atoms/aboutModalAtom'
 import { useState } from 'react'
+import AboutModal from '../Modal/About/AboutModal'
 
 export const Navbar = () => {
   const [user, loading, error] = useAuthState(auth)
   const [tooltipStatus, setTooltipStatus] = useState(false)
   const setCreateState = useSetRecoilState(createModalState)
-  const setLoginState = useSetRecoilState(authModalState)
   const setAuthModalState = useSetRecoilState(settingsModalState)
-  const setAboutModalState = useSetRecoilState(aboutModalState)
+  const [showAboutModal, setShowAboutModal] = useState(false)
 
   const currentUser = auth.currentUser
 
   return (
     <>
+      { showAboutModal && (
+        <AboutModal close={() => setShowAboutModal(false)}/>
+      )}
       <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
@@ -59,7 +60,7 @@ export const Navbar = () => {
             ) : (
               <div className="group">
                 <button
-                  onClick={() => setLoginState({ open: true, view: 'login' })}
+                  onClick={() => setShowSignupModal(true)}
                   className="navbarButton group"
                   aria-label="Log In & Sign Up"
                 >
@@ -86,7 +87,7 @@ export const Navbar = () => {
                 onClick={() => {
                   user
                     ? setCreateState({ open: true, view: 'text' })
-                    : setLoginState({ open: true, view: 'login' })
+                    : setShowSignupModal(true)
                 }}
               >
                 <DocumentTextIcon className="h-6 w-6" />
@@ -100,7 +101,7 @@ export const Navbar = () => {
                 onClick={() => {
                   user
                     ? setCreateState({ open: true, view: 'image' })
-                    : setLoginState({ open: true, view: 'login' })
+                    : setShowSignupModal(true)
                 }}
               >
                 <PhotoIcon className="h-6 w-6" />
@@ -114,7 +115,7 @@ export const Navbar = () => {
                 onClick={() => {
                   user
                     ? setCreateState({ open: true, view: 'link' })
-                    : setLoginState({ open: true, view: 'login' })
+                    : setShowSignupModal(true)
                 }}
               >
                 <LinkIcon className="h-6 w-6" />
@@ -128,7 +129,7 @@ export const Navbar = () => {
               aria-label="About"
               className="navbarButton group"
               onClick={() => {
-                setAboutModalState({ open: true, view: 'about' })
+                setShowAboutModal(true)
               }}
             >
               <InformationCircleIcon className="h-6 w-6" />
@@ -146,9 +147,10 @@ export const MobileNav = () => {
   const [user, loading, error] = useAuthState(auth)
   const currentUser = auth.currentUser
   const setCreateState = useSetRecoilState(createModalState)
-  const setLoginState = useSetRecoilState(authModalState)
   const setAuthModalState = useSetRecoilState(settingsModalState)
-  const setAboutModalState = useSetRecoilState(aboutModalState)
+  const [showAboutModal, setShowAboutModal] = useState(false)
+  const [showSignupModal, setShowSignupModal] = useState(false)
+
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
@@ -164,6 +166,9 @@ export const MobileNav = () => {
 
   return (
     <div className="flex h-screen sm:hidden">
+            { showAboutModal && (
+              <AboutModal close={() => setShowAboutModal(false)}/>
+            )}
       <div className="fixed z-[80] mt-5 flex w-[calc(100%-20px)] justify-end">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
@@ -209,7 +214,7 @@ export const MobileNav = () => {
                 }
                 user
                   ? setCreateState({ open: true, view: 'text' })
-                  : setLoginState({ open: true, view: 'login' })
+                  : setShowSignupModal(true)
               }}
             >
               <DocumentTextIcon className="mr-3 h-6 w-6" /> Text
@@ -224,7 +229,7 @@ export const MobileNav = () => {
                 }
                 user
                   ? setCreateState({ open: true, view: 'image' })
-                  : setLoginState({ open: true, view: 'login' })
+                  : setShowSignupModal(true)
               }}
             >
               <PhotoIcon className="mr-3 h-6 w-6" />
@@ -240,7 +245,7 @@ export const MobileNav = () => {
                 }
                 user
                   ? setCreateState({ open: true, view: 'link' })
-                  : setLoginState({ open: true, view: 'login' })
+                  : setShowSignupModal(true)
               }}
             >
               <LinkIcon className="mr-3 h-6 w-6" />
@@ -267,7 +272,10 @@ export const MobileNav = () => {
               </button>
             ) : (
               <button
-                onClick={() => setLoginState({ open: true, view: 'login' })}
+                onClick={() => {
+                  onToggleNav()
+                  setShowSignupModal(true)
+                }}
                 className="flex items-center"
                 aria-label="Log In & Sign Up"
               >
@@ -286,10 +294,8 @@ export const MobileNav = () => {
             <button
               className="flex items-center"
               onClick={() => {
-                {
-                  onToggleNav()
-                }
-                setAboutModalState({ open: true, view: 'about' })
+                onToggleNav()
+                setShowAboutModal(true)
               }}
             >
               <InformationCircleIcon className="mr-3 h-6 w-6" />
