@@ -4,8 +4,13 @@ import NewUserModal from '../Modal/Auth/NewUserModal'
 import SignInWithEmail from '../Modal/Auth/SignInWithEmail'
 import { Navbar, MobileNav } from '../Navbar/Navbar'
 import CurrentUserModal from '../Modal/Settings/CurrentUserModal'
+import { useRecoilState } from 'recoil'
+import { loginModalState } from '@/atoms/authModalAtom'
+import LoginModal from '../Modal/Auth/LoginModal'
 
 const Layout = ({ children }: PropsWithChildren) => {
+  const [loginState, setLoginModalState] = useRecoilState(loginModalState)
+
   return (
     <>
       <div className="relative z-10 flex w-full flex-row">
@@ -21,6 +26,9 @@ const Layout = ({ children }: PropsWithChildren) => {
         <span className="hidden">
           <SignInWithEmail />
         </span>
+        { loginState.open && (
+          <LoginModal close={() => setLoginModalState({open: false})}/>
+        )}
       </div>
     </>
   )

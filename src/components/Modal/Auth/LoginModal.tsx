@@ -12,7 +12,7 @@ type Props = {
 
 // TODO this needs reverted partially. this can be triggered from a lot of places so we
 // we should make one instance and use recoil to trigger it
-export default function SignupModal({ close }:Props) {
+export default function LoginModal({ close }:Props) {
   const [user] = useAuthState(auth)
 
   useEffect(() => {

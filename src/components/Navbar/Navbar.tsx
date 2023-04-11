@@ -10,14 +10,14 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useSetRecoilState } from 'recoil'
-import { authModalState } from '../../atoms/authModalAtom'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { loginModalState } from '../../atoms/authModalAtom'
 import { createModalState } from '../../atoms/createModalAtom'
 import { settingsModalState } from '../../atoms/settingsModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { useState } from 'react'
 import AboutModal from '../Modal/About/AboutModal'
-import SignupModal from '../Modal/Auth/SignupModal'
+import LoginModal from '../Modal/Auth/LoginModal'
 
 export const Navbar = () => {
   const [user, loading, error] = useAuthState(auth)
@@ -26,6 +26,7 @@ export const Navbar = () => {
   const setAuthModalState = useSetRecoilState(settingsModalState)
   const [showAboutModal, setShowAboutModal] = useState(false)
   const [showSignupModal, setShowSignupModal] = useState(false)
+  const [loginState, setLoginModalState] = useRecoilState(loginModalState)
 
   const currentUser = auth.currentUser
 
@@ -33,9 +34,6 @@ export const Navbar = () => {
     <>
       { showAboutModal && (
         <AboutModal close={() => setShowAboutModal(false)}/>
-      )}
-      { showSignupModal && (
-        <SignupModal close={() => setShowSignupModal(false)}/>
       )}
       <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
         <div
@@ -176,9 +174,6 @@ export const MobileNav = () => {
             { showAboutModal && (
               <AboutModal close={() => setShowAboutModal(false)}/>
             )}
-        { showSignupModal && (
-        <SignupModal close={() => setShowSignupModal(false)}/>
-      )}
       <div className="fixed z-[80] mt-5 flex w-[calc(100%-20px)] justify-end">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button

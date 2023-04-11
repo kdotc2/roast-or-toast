@@ -1,4 +1,4 @@
-import { authModalState } from '@/atoms/authModalAtom'
+import { loginModalState } from '@/atoms/authModalAtom'
 import { Post, postState } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
 import {
@@ -37,14 +37,14 @@ const Comments = ({ selectedPost }: CommentsProps) => {
   const [commentCreateLoading, setCommentCreateLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState('')
   const [user, error] = useAuthState(auth)
-  const setAuthModalState = useSetRecoilState(authModalState)
+  const setAuthModalState = useSetRecoilState(loginModalState)
   const setPostState = useSetRecoilState(postState)
 
   const { onVote, commentStateValue } = useComments()
 
   const onCreateComment = async (comment: string) => {
     if (!user) {
-      setAuthModalState({ open: true, view: 'login' })
+      setAuthModalState({ open: true })
       return
     }
 

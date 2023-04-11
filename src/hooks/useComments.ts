@@ -1,17 +1,15 @@
-import { authModalState } from '@/atoms/authModalAtom'
+import { loginModalState } from '@/atoms/authModalAtom'
 import { Comment, commentState, CommentVote } from '@/atoms/commentAtom'
-import { postState } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
 import { collection, doc, getDocs, query, writeBatch } from 'firebase/firestore'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 const useComments = () => {
   const [commentStateValue, setCommentStateValue] = useRecoilState(commentState)
   const [user, loadingUser] = useAuthState(auth)
-  const setLoginState = useSetRecoilState(authModalState)
+  const setLoginModalState = useSetRecoilState(loginModalState)
 
   const onVote = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -20,7 +18,7 @@ const useComments = () => {
   ) => {
     event.stopPropagation()
     if (!user?.uid) {
-      setLoginState({ open: true, view: 'login' })
+      setLoginModalState({ open: true })
       return
     }
 

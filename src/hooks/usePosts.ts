@@ -1,4 +1,4 @@
-import { authModalState } from '@/atoms/authModalAtom'
+import { loginModalState } from '@/atoms/authModalAtom'
 import { Post, postState, PostVote } from '@/atoms/postAtom'
 import { auth, db, storage } from '@/firebase/clientApp'
 import {
@@ -20,7 +20,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 const usePosts = () => {
   const [postStateValue, setPostStateValue] = useRecoilState(postState)
   const [user, loadingUser] = useAuthState(auth)
-  const setLoginState = useSetRecoilState(authModalState)
+  const setLoginModalState = useSetRecoilState(loginModalState)
 
   const onVote = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -29,7 +29,7 @@ const usePosts = () => {
   ) => {
     event.stopPropagation()
     if (!user?.uid) {
-      setLoginState({ open: true, view: 'login' })
+      setLoginModalState({ open: true })
       return
     }
 

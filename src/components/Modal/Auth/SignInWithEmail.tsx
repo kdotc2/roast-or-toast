@@ -9,17 +9,17 @@ import {
 } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { authModalState } from '@/atoms/authModalAtom'
 import { newUserModalState } from '@/atoms/newUserModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { getDoc, doc } from 'firebase/firestore'
+import { loginModalState } from '@/atoms/authModalAtom'
 
 const getEmailLink = () =>  {
   return process.env.LOCAL_DEV ? 'http://localhost:3000' : 'https://roastortoast.me'
 }
 
 export const SignInWithEmail = () => {
-  const [modalState, setModalState] = useRecoilState(authModalState)
+  const [loginState, setLoginModalState] = useRecoilState(loginModalState)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
   const [user] = useAuthState(auth)
   const router = useRouter()
@@ -34,10 +34,7 @@ export const SignInWithEmail = () => {
   const [initialError, setInitialError] = useState('')
 
   const handleClose = () => {
-    setModalState((prev) => ({
-      ...prev,
-      open: false,
-    }))
+    setLoginModalState({open: false})
   }
 
   useEffect(() => {

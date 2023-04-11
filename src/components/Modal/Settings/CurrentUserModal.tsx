@@ -1,4 +1,3 @@
-import { authModalState } from '@/atoms/authModalAtom'
 import { settingsModalState } from '@/atoms/settingsModalAtom'
 import { userState } from '@/atoms/userAtom'
 import ThemeSwitch from '@/components/Modal/Settings/ThemeSwitch'

@@ -4,12 +4,10 @@ import PostView from '@/components/Posts/PostView'
 import { auth, db } from '@/firebase/clientApp'
 import usePosts from '@/hooks/usePosts'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
-import { doc, onSnapshot } from 'firebase/firestore'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useRecoilState } from 'recoil'
 
 type Props = {
   post?: Post
@@ -17,7 +15,7 @@ type Props = {
 }
 // TODO fix routing to post links and back on close
 const PostDetail = ({ post, close }: Props) => {
-  const { postStateValue, setPostStateValue, onDeletePost, onVote } = usePosts()
+  const { postStateValue, onDeletePost, onVote } = usePosts()
   const [user] = useAuthState(auth)
   const router = useRouter()
   const [error, setError] = useState('')
@@ -102,18 +100,18 @@ const PostDetail = ({ post, close }: Props) => {
                     userVoteValue={
                       postStateValue.postVotes.find(
                         (item) =>
-                          item.postId === postStateValue.selectedPost?.id
+                          item.postId === post.id
                       )?.voteValue
                     }
                     userIsCreator={
-                      user?.uid === postStateValue.selectedPost?.creatorId
+                      user?.uid === post.creatorId
                     }
                   />
                 </div>
              )}
              {/*
-              this is redudant but here is a css spacing issue if you put this back to back
-              with the PostView i dont want to figure out right now
+              this is redudant but there is a css spacing issue if you put this immediately after
+              the PostView and i dont want to figure out right now
              */}
              {post && (
                 <Comments
