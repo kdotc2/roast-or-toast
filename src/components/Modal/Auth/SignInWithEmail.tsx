@@ -18,10 +18,6 @@ const getEmailLink = () =>  {
   return process.env.LOCAL_DEV ? 'http://localhost:3000' : 'https://roastortoast.me'
 }
 
-const getEmailLink = () =>  {
-  return process.env.LOCAL_DEV ? 'http://localhost:3000' : 'https://roastortoast.me'
-}
-
 export const SignInWithEmail = () => {
   const [loginState, setLoginModalState] = useRecoilState(loginModalState)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
