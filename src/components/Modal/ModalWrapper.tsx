@@ -31,7 +31,7 @@ export default function ModalWrapper({ child, close }: Props) {
             initialFocus: false,
           }}
         >
-          <div className="fixed inset-0 z-40 bg-black/40">
+          <div className="fixed inset-0 z-[45] bg-black/40">
             <div>
               <div className="fixed inset-0 z-50 flex items-center justify-center px-5 sm:px-0">
                 <div

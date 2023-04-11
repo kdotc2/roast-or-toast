@@ -16,6 +16,7 @@ import { settingsModalState } from '../../atoms/settingsModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { useState } from 'react'
 import AboutModal from '../Modal/About/AboutModal'
+import LoginModal from '../Modal/Auth/LoginModal'
 
 export const Navbar = () => {
   const [user, loading, error] = useAuthState(auth)
@@ -30,6 +31,9 @@ export const Navbar = () => {
   return (
     <>
       {showAboutModal && <AboutModal close={() => setShowAboutModal(false)} />}
+      {showSignupModal && (
+        <LoginModal close={() => setShowSignupModal(false)} />
+      )}
       <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
@@ -166,7 +170,10 @@ export const MobileNav = () => {
   return (
     <div className="flex h-screen sm:hidden">
       {showAboutModal && <AboutModal close={() => setShowAboutModal(false)} />}
-      <div className="fixed z-[80] mt-5 flex w-[calc(100%-20px)] justify-end">
+      {showSignupModal && (
+        <LoginModal close={() => setShowSignupModal(false)} />
+      )}
+      <div className="fixed z-[40] mt-5 ml-auto flex w-[calc(100%-20px)] justify-end">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
             type="button"
@@ -191,7 +198,7 @@ export const MobileNav = () => {
         onClick={onToggleNav}
       ></div> */}
       <div
-        className={`fixed bottom-0 z-50 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b]  ${
+        className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b]  ${
           navShow
             ? 'translate-x-0 shadow-lg duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'
