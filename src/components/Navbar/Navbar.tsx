@@ -10,14 +10,12 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { loginModalState } from '../../atoms/authModalAtom'
+import { useSetRecoilState } from 'recoil'
 import { createModalState } from '../../atoms/createModalAtom'
 import { settingsModalState } from '../../atoms/settingsModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { useState } from 'react'
 import AboutModal from '../Modal/About/AboutModal'
-import LoginModal from '../Modal/Auth/LoginModal'
 
 export const Navbar = () => {
   const [user, loading, error] = useAuthState(auth)
@@ -25,8 +23,6 @@ export const Navbar = () => {
   const setCreateState = useSetRecoilState(createModalState)
   const setAuthModalState = useSetRecoilState(settingsModalState)
   const [showAboutModal, setShowAboutModal] = useState(false)
-  const [showSignupModal, setShowSignupModal] = useState(false)
-  const [loginState, setLoginModalState] = useRecoilState(loginModalState)
 
   const currentUser = auth.currentUser
 
@@ -133,7 +129,6 @@ export const Navbar = () => {
               aria-label="About"
               className="navbarButton group"
               onClick={() => {
-                console.log('click')
                 setShowAboutModal(true)
               }}
             >

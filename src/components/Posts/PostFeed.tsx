@@ -47,10 +47,8 @@ const PostFeed = () => {
       { clickedPost && (
         <PostModal
           close={() => {
-            console.log('feed modal close')
             setClickedPost(undefined)
             router.push('/')
-            // setShowPostModal(false)
           }}
 
           post={clickedPost} />

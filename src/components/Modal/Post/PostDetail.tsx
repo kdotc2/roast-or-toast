@@ -13,7 +13,6 @@ type Props = {
   post?: Post
   close?: () => void
 }
-// TODO fix routing to post links and back on close
 const PostDetail = ({ post, close }: Props) => {
   const { postStateValue, onDeletePost, onVote } = usePosts()
   const [user] = useAuthState(auth)
@@ -28,23 +27,6 @@ const PostDetail = ({ post, close }: Props) => {
   }
 
   const safeClose = close
-
-  // if (post) {
-  //   setPostStateValue((prev) => ({
-  //     ...prev,
-  //     selectedPost: post,
-  //   }))
-  // }
-
-
-
-  // useEffect(() => {
-  //   const { pid } = router.query
-
-  //   if (pid && !postStateValue.selectedPost) {
-  //     fetchPost()
-  //   }
-  // }, [router.query, postStateValue.selectedPost])
 
   return (
     <>

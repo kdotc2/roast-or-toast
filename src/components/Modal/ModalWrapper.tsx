@@ -18,7 +18,7 @@ export default function ModalWrapper({ child, close }: Props) {
   })
 
   return (
-    <div id="modal-wrapper" onClick={() => {console.log('modal wrapper click');close()}
+    <div id="modal-wrapper" onClick={() => close()
     }>
           {/* TODO consider adding this to this element className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
             modalState.open && 'overflow-y-auto overscroll-contain shadow-lg'
