@@ -8,7 +8,11 @@ import { useRecoilState } from 'recoil'
 import { loginModalState } from '@/atoms/authModalAtom'
 import LoginModal from '../Modal/Auth/LoginModal'
 
-const Layout = ({ children }: PropsWithChildren) => {
+type Props = {
+  close: () => void
+}
+
+const Layout = ({ children }: PropsWithChildren, { close }: Props) => {
   const [loginState, setLoginModalState] = useRecoilState(loginModalState)
 
   return (
@@ -24,10 +28,10 @@ const Layout = ({ children }: PropsWithChildren) => {
         <NewUserModal />
         <NewUserModal />
         <span className="hidden">
-          <SignInWithEmail />
+          <SignInWithEmail close={() => close()} />
         </span>
-        { loginState.open && (
-          <LoginModal close={() => setLoginModalState({open: false})}/>
+        {loginState.open && (
+          <LoginModal close={() => setLoginModalState({ open: false })} />
         )}
       </div>
     </>
