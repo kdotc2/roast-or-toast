@@ -128,7 +128,7 @@ export default function Modal() {
                               value={userInputs.displayName}
                               minLength={4}
                               maxLength={24}
-                              className="h-[38px] w-full rounded border resize-none border-gray-300 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+                              className="h-[38px] w-full resize-none rounded border border-gray-300 bg-transparent text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
                               placeholder="Display name"
                               onChange={onTextChange}
                             />
