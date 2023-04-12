@@ -22,12 +22,12 @@ export default function LoginModal({ close }: Props) {
   const content = (
     <>
       <div className="pt-6">
-        <div className="font-bold">Log In / Sign Up</div>
+        <div className="text-lg font-semibold">Log In / Sign Up</div>
       </div>
 
       <div className="relative">
-        <div className="items-center justify-center pb-6">
-          <p className="py-4 text-sm">
+        <div className="items-center justify-center pb-6 space-y-4 pt-6">
+          <p className="text-sm">
             By continuing, you are agreeing to our{' '}
             <Link
               className="hover:underline"
@@ -47,10 +47,10 @@ export default function LoginModal({ close }: Props) {
             .
           </p>
           <OAuthButtons />
-          <p className="pb-4 text-center text-xs font-semibold uppercase text-gray-400 dark:text-gray-300">
+          <p className="text-center text-xs font-semibold uppercase text-gray-400 dark:text-gray-300">
             or
           </p>
-          <SignInWithEmail />
+          <SignInWithEmail close={() => close()}/>
         </div>
       </div>
     </>

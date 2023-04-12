@@ -38,7 +38,7 @@ export default function Modal() {
 
   const onTextChange = ({
     target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setUserInputs((prev) => ({
       ...prev,
       [name]: value,
@@ -118,18 +118,17 @@ export default function Modal() {
                           least four characters.
                         </p>
                         <form
-                          className="relative flex flex-col gap-4 border-gray-500"
+                          className="relative flex flex-col border-gray-500"
                           onSubmit={updateDisplayName}
                         >
                           <div className="relative flex">
-                            <input
+                            <textarea
                               name="displayName"
                               required
                               value={userInputs.displayName}
                               minLength={4}
-                              maxLength={20}
-                              id="floating_displayname"
-                              className="peer block w-full rounded border border-gray-300 bg-transparent px-[11px] py-2 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+                              maxLength={24}
+                              className="h-[38px] w-full rounded border resize-none border-gray-300 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
                               placeholder="Display name"
                               onChange={onTextChange}
                             />

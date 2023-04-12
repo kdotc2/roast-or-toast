@@ -155,7 +155,7 @@ export default function CurrentUserModal() {
                       onClick={(event) => {
                         event.stopPropagation()
                       }}
-                      className="relative w-[500px] space-y-5 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
+                      className="relative w-[500px] space-y-6 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
                     >
                       <div className="pt-6">
                         <h3 className="text-lg font-semibold">

@@ -14,11 +14,17 @@ import { SpinningLoader } from '@/components/Posts/Loader'
 import { getDoc, doc } from 'firebase/firestore'
 import { loginModalState } from '@/atoms/authModalAtom'
 
-const getEmailLink = () =>  {
-  return process.env.LOCAL_DEV ? 'http://localhost:3000' : 'https://roastortoast.me'
+type Props = {
+  close: () => void
 }
 
-export const SignInWithEmail = () => {
+const getEmailLink = () => {
+  return process.env.LOCAL_DEV
+    ? 'http://localhost:3000'
+    : 'https://roastortoast.me'
+}
+
+export const SignInWithEmail = ({ close }: Props) => {
   const [loginState, setLoginModalState] = useRecoilState(loginModalState)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
   const [user] = useAuthState(auth)
@@ -34,7 +40,7 @@ export const SignInWithEmail = () => {
   const [initialError, setInitialError] = useState('')
 
   const handleClose = () => {
-    setLoginModalState({open: false})
+    setLoginModalState({ open: false })
   }
 
   useEffect(() => {
@@ -120,7 +126,7 @@ export const SignInWithEmail = () => {
             <div className="justify-betweeb flex h-[38px] gap-4 text-sm font-medium">
               <p className="flex items-center justify-center">{infoMsg}</p>
               <div className="flex justify-end">
-                <button className="primaryButton" onClick={handleClose}>
+                <button className="primaryButton" onClick={() => close()}>
                   Done
                 </button>
               </div>
