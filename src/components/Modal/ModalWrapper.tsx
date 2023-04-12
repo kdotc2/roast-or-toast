@@ -4,9 +4,10 @@ import { ReactNode, useEffect } from 'react'
 type Props = {
   child: ReactNode
   close: () => void
+  width: number
 }
 
-export default function ModalWrapper({ child, close }: Props) {
+export default function ModalWrapper({ child, close, width }: Props) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -18,9 +19,8 @@ export default function ModalWrapper({ child, close }: Props) {
   })
 
   return (
-    <div id="modal-wrapper" onClick={() => close()
-    }>
-          {/* TODO consider adding this to this element className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
+    <div id="modal-wrapper" onClick={() => close()}>
+      {/* TODO consider adding this to this element className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
             modalState.open && 'overflow-y-auto overscroll-contain shadow-lg'
  */}
 
@@ -38,7 +38,7 @@ export default function ModalWrapper({ child, close }: Props) {
                   onClick={(event) => {
                     event.stopPropagation()
                   }}
-                  className="relative w-[500px] space-y-4 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
+                  className={`relative space-y-4 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800 w-[${width}px]`}
                 >
                   {child}
                 </div>

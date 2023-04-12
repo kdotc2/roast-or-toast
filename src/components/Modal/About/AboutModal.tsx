@@ -64,7 +64,7 @@ export default function AboutModal({ close }:Props) {
   )
 
   return (
-    <ModalWrapper child={content} close={close} />
+    <ModalWrapper child={content} close={close} width={500} />
   )
 }
 

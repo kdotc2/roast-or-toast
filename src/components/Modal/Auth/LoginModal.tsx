@@ -29,7 +29,7 @@ export default function LoginModal({ close }:Props) {
 
       <div className="relative">
         <div className="items-center justify-center pb-5">
-          <p className="py-4 text-sm">
+          <p className="pb-4 text-sm">
             By continuing, you are agreeing to our{' '}
             <Link
               className="hover:underline"
@@ -59,6 +59,6 @@ export default function LoginModal({ close }:Props) {
   )
 
   return (
-    <ModalWrapper child={content} close={() => close()}/>
+    <ModalWrapper child={content} close={() => close()} width={400}/>
   )
 }
