@@ -155,14 +155,14 @@ export default function CurrentUserModal() {
                       onClick={(event) => {
                         event.stopPropagation()
                       }}
-                      className="relative w-[500px] space-y-4 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
+                      className="relative w-[500px] space-y-5 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
                     >
-                      <div className="pt-5">
-                        <h3 className="text-xl font-semibold">
+                      <div className="pt-6">
+                        <h3 className="text-lg font-semibold">
                           {modalState.view === 'currentUser' && 'Settings'}
                         </h3>
                       </div>
-                      <div className="space-y-5 pt-5 text-sm">
+                      <div className="space-y-4 text-sm">
                         <p className="-mb-3 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
                           Appearance
                         </p>
@@ -170,7 +170,7 @@ export default function CurrentUserModal() {
                           <ThemeSwitch />
                         </div>
                       </div>
-                      <div className="space-y-5 pt-5 text-sm">
+                      <div className="space-y-4 text-sm">
                         <p className="-mb-3 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
                           Account
                         </p>
@@ -208,14 +208,14 @@ export default function CurrentUserModal() {
                       </div>
 
                       <div className="flex justify-between">
-                        <div className="flex items-center justify-start ">
+                        <div className="flex items-center justify-start">
                           {error && (
                             <p className="text-xs font-medium text-red-500 dark:text-red-400">
                               {errorMessage}
                             </p>
                           )}
                         </div>
-                        <div className="flex justify-end gap-3 py-6">
+                        <div className="flex justify-end py-6">
                           <button
                             className="primaryButton"
                             type="button"

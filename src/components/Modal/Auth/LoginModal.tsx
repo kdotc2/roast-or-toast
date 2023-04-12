@@ -12,7 +12,7 @@ type Props = {
 
 // TODO this needs reverted partially. this can be triggered from a lot of places so we
 // we should make one instance and use recoil to trigger it
-export default function LoginModal({ close }:Props) {
+export default function LoginModal({ close }: Props) {
   const [user] = useAuthState(auth)
 
   useEffect(() => {
@@ -21,20 +21,18 @@ export default function LoginModal({ close }:Props) {
 
   const content = (
     <>
-      <div className="pt-5">
-        <h3 className="text-xl font-semibold">
-          Log In / Sign Up
-        </h3>
+      <div className="pt-6">
+        <div className="font-bold">Log In / Sign Up</div>
       </div>
 
       <div className="relative">
-        <div className="items-center justify-center pb-5">
-          <p className="pb-4 text-sm">
+        <div className="items-center justify-center pb-6">
+          <p className="py-4 text-sm">
             By continuing, you are agreeing to our{' '}
             <Link
               className="hover:underline"
               href="/terms"
-              onClick={()=> close()}
+              onClick={() => close()}
             >
               Terms of Service
             </Link>{' '}
@@ -42,7 +40,7 @@ export default function LoginModal({ close }:Props) {
             <Link
               className="hover:underline"
               href="/privacy"
-              onClick={()=>close()}
+              onClick={() => close()}
             >
               Privacy Policy
             </Link>
@@ -58,7 +56,5 @@ export default function LoginModal({ close }:Props) {
     </>
   )
 
-  return (
-    <ModalWrapper child={content} close={() => close()} width={400}/>
-  )
+  return <ModalWrapper child={content} close={() => close()} width={400} />
 }

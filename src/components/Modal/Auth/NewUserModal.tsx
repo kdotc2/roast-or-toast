@@ -102,8 +102,8 @@ export default function Modal() {
           >
             <div className="fixed inset-0 z-50 flex items-center justify-center px-5 sm:px-0">
               <div className="relative w-[400px] rounded-md bg-white px-6 pb-6 shadow-lg dark:bg-gray-800">
-                <div className="pt-5">
-                  <h3 className="text-xl font-semibold">
+                <div className="pt-6">
+                  <h3 className="text-lg font-semibold">
                     {modalState.view === 'newUser' &&
                       'Update account information'}
                   </h3>

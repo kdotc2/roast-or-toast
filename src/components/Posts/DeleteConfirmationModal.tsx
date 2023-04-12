@@ -19,8 +19,8 @@ const DeleteConfirmationModal = ({
 
   const content = (
     <>
-      <div className="pt-5">
-        <h3 className="text-xl font-semibold">
+      <div className="pt-6">
+        <h3 className="text-lg font-semibold">
           Confirm delete post
         </h3>
       </div>
@@ -31,7 +31,7 @@ const DeleteConfirmationModal = ({
           <span className="font-bold">{post.title}</span>? This
           action cannont be undone.
         </p>
-        <div className="flex justify-between pb-4">
+        <div className="flex justify-between pb-6">
           <div className="flex items-center justify-start">
             {error && (
               <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -63,7 +63,7 @@ const DeleteConfirmationModal = ({
   )
 
   return (
-    <ModalWrapper child={content} close={() => onCancel()}/>
+    <ModalWrapper child={content} close={() => onCancel()} width={400}/>
   )
 }
 

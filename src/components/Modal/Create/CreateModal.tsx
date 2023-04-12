@@ -180,8 +180,8 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                   }}
                   className="relative w-[500px] rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
                 >
-                  <div className="py-5">
-                    <h3 className="text-xl font-semibold">
+                  <div className="py-6">
+                    <h3 className="text-lg font-semibold">
                       {modalState.view === 'text' && 'Create a text post'}
                       {modalState.view === 'image' && 'Create an image post'}
                       {modalState.view === 'link' && 'Create a link post'}
@@ -196,7 +196,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                         value={postInputs.title}
                         onChange={onTitleChange}
                         placeholder="Title"
-                        className="group block h-[38px] w-full resize-none overflow-y-hidden break-words rounded border-none bg-gray-50 px-4 py-2 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-0 focus:ring-0 dark:bg-gray-800 dark:placeholder:text-gray-500 dark:focus:border-gray-100"
+                        className="group block h-[38px] w-full resize-none overflow-y-hidden break-words rounded border-none bg-gray-50 py-2 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-0 focus:ring-0 dark:bg-gray-800 dark:placeholder:text-gray-500 dark:focus:border-gray-100"
                       />
                       <span className="px-2 text-xs font-semibold text-gray-400 dark:text-gray-500">
                         {count}/250

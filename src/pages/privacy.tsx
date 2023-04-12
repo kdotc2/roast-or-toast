@@ -18,7 +18,7 @@ export default function Privacy() {
         </div>
         <div className="rounded border bg-[#fdfbfb] dark:bg-[#161515]">
           <div className="prose max-w-[800px] p-10 text-sm text-gray-900 marker:text-gray-900 prose-h4:text-base prose-h4:text-gray-900 dark:text-gray-100 marker:dark:text-gray-100 prose-h4:dark:text-gray-100 md:p-20">
-            <div className="text-xl font-semibold">
+            <div className="text-xl font-bold">
               Roast or Toast Privacy Policy
             </div>
             <p>Last updated: March 20, 2023</p>

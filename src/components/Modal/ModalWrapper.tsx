@@ -38,7 +38,7 @@ export default function ModalWrapper({ child, close, width }: Props) {
                   onClick={(event) => {
                     event.stopPropagation()
                   }}
-                  className={`relative space-y-4 rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800 w-[${width}px]`}
+                  className={`relative rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800 w-[${width}px]`}
                 >
                   {child}
                 </div>

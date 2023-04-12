@@ -114,8 +114,8 @@ const CommentItem = ({
                                 }}
                               >
                                 <div className="relative w-[400px] rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800">
-                                  <div className="pt-5">
-                                    <h3 className="text-xl font-semibold">
+                                  <div className="pt-6">
+                                    <h3 className="text-lg font-semibold">
                                       Confirm delete
                                     </h3>
                                   </div>
@@ -125,8 +125,8 @@ const CommentItem = ({
                                         Are you sure you want to delete this
                                         comment? This action cannont be undone.
                                       </p>
-                                      <div className="flex justify-end pb-4">
-                                        <div className="flex gap-6">
+                                      <div className="flex justify-end pb-6">
+                                        <div className="flex gap-3">
                                           <button
                                             className="secondaryButton"
                                             aria-label="Cancel"
