@@ -89,7 +89,7 @@ const PostView = ({
           } `}
           scroll={false}
           href={`/?pid=${post.id}`}
-          as={`/comments/${post.id}`}
+          as={`/post/${post.id}`}
           aria-label="Post card"
         >
           <div className="py-3 pb-12">
