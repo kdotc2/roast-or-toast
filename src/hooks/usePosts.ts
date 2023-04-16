@@ -1,4 +1,5 @@
 import { loginModalState } from '@/atoms/authModalAtom'
+import { Comment } from '@/atoms/commentAtom'
 import { Post, postState, PostVote } from '@/atoms/postAtom'
 import { auth, db, storage } from '@/firebase/clientApp'
 import {
@@ -11,6 +12,7 @@ import {
   orderBy,
   query,
   writeBatch,
+  where,
 } from 'firebase/firestore'
 import { deleteObject, ref } from 'firebase/storage'
 import { useEffect } from 'react'
@@ -225,7 +227,7 @@ const usePosts = () => {
     const docRef = doc(db, 'posts', pid as string)
     const docSnap = await getDoc(docRef)
     if (docSnap.exists()) {
-      return docSnap.data()
+      return {id: docSnap.id, ...docSnap.data()}
     } else {
       return undefined
     }
@@ -242,6 +244,23 @@ const usePosts = () => {
     }
   }, [user, loadingUser])
 
+  const getPostComments = async (postID: string) => {
+    try {
+      const commentsQuery = query(
+        collection(db, 'comments'),
+        where('postId', '==', postID),
+        orderBy('createdAt', 'desc')
+      )
+
+      const snapshot = await getDocs(commentsQuery)
+      let comments: Array<Comment> = []
+      snapshot.forEach((doc) => comments.push({id: doc.id, ...doc.data()} as Comment))
+      return comments
+    } catch (error: any) {
+      console.log('getPostComments error', error.message)
+    }
+  }
+
   return {
     postStateValue,
     setPostStateValue,
@@ -249,6 +268,7 @@ const usePosts = () => {
     onDeletePost,
     getPosts,
     getPost,
+    getPostComments,
   }
 }
 

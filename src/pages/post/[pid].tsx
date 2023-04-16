@@ -8,8 +8,6 @@ const PostPage = () => {
   const [post, setPost] = useState<Post | undefined>(undefined)
   const router = useRouter()
   const { pid } = router.query
-  console.log(router.query)
-  console.log(pid)
   const { getPost } = usePosts()
 
   useEffect(() => {
