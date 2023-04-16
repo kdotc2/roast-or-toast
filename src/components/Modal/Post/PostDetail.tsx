@@ -21,7 +21,6 @@ const PostDetail = ({ post, close }: Props) => {
 
   if (!close) {
     close = () => {
-      console.log('default close')
       router.push("/")
     }
   }
@@ -46,7 +45,6 @@ const PostDetail = ({ post, close }: Props) => {
           onClick={(e: any) => {
             // since this element lays over the top of the modal wrapper we have to make a separate
             // click listener for outside of the actual content to close
-            console.log('real click')
             const el = document.getElementById('post-detail-content')
             // ts-ignore
             if (el && !el.contains(e.target)) {

@@ -75,7 +75,6 @@ const PostFeed = () => {
                 }
                 onVote={onVote}
                 onSelectPost={() => {
-                  console.log("post click")
                   setClickedPost(post)
                   // setShowPostModal(true)
                 }}

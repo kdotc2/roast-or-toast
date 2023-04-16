@@ -24,9 +24,10 @@ import CommentInput from './CommentInput'
 import { CommentLoader, Loader } from '../Loader'
 import { User } from 'firebase/auth'
 import useComments from '@/hooks/useComments'
+import usePosts from '@/hooks/usePosts'
 
 type CommentsProps = {
-  user?: User | null
+  user?: User | null // if the user is nil they are not logged in
   selectedPost: Post
 }
 
@@ -39,6 +40,9 @@ const Comments = ({ selectedPost }: CommentsProps) => {
   const [user, error] = useAuthState(auth)
   const setAuthModalState = useSetRecoilState(loginModalState)
   const setPostState = useSetRecoilState(postState)
+  const {
+    getPostComments,
+  } = usePosts()
 
   const { onVote, commentStateValue } = useComments()
 
@@ -48,7 +52,6 @@ const Comments = ({ selectedPost }: CommentsProps) => {
       return
     }
 
-    setCommentCreateLoading(true)
     try {
       const batch = writeBatch(db)
       const userSnap = await getDoc(doc(db, 'users', user.uid))
@@ -71,7 +74,6 @@ const Comments = ({ selectedPost }: CommentsProps) => {
       })
       await batch.commit()
 
-      setComment('')
       const { id: postId, title } = selectedPost
       setComments((prev) => [
         {
@@ -101,6 +103,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
       // console.log('onCreateComment error', error.message)
       alert('Error creating comment')
     }
+
     setCommentCreateLoading(false)
   }
 
@@ -139,52 +142,16 @@ const Comments = ({ selectedPost }: CommentsProps) => {
     [setComments, setPostState]
   )
 
-  // const getPostComments = async () => {
-  //   try {
-  //     const commentsQuery = query(
-  //       collection(db, 'comments'),
-  //       where('postId', '==', selectedPost.id),
-  //       orderBy('createdAt', 'desc')
-  //     )
-  //     const commentDocs = await getDocs(commentsQuery)
-  //     const comments = commentDocs.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }))
-  //     setComments(comments as Comment[])
-  //   } catch (error: any) {
-  //     // console.log('getPostComments error', error.message)
-  //   }
-  //   setCommentFetchLoading(false)
-  // }
-
-  const getPostComments = () => {
-    try {
-      const commentsQuery = query(
-        collection(db, 'comments'),
-        where('postId', '==', selectedPost.id),
-        orderBy('createdAt', 'desc')
-      )
-      const unsubscribe = onSnapshot(commentsQuery, (querySnapshot) => {
-        const comments = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-
-        setComments(comments as Comment[])
-        setCommentFetchLoading(false)
-      })
-
-      return () => unsubscribe()
-    } catch (error: any) {
-      console.log('getPostComments error', error.message)
-    }
-  }
-
   useEffect(() => {
-    if (!selectedPost) return
-    getPostComments()
-  }, [selectedPost])
+    if (!selectedPost || !commentFetchLoading) return
+    getPostComments(selectedPost.id)
+    .then((comments) => {
+      if (comments) {
+        setComments(comments)
+      }
+      setCommentFetchLoading(false)
+    })
+  })
 
   return (
     <div>
@@ -198,8 +165,8 @@ const Comments = ({ selectedPost }: CommentsProps) => {
         />
         {commentFetchLoading ? (
           <>
-            {[...Array(10)].map((key) => (
-              <div key={key}>
+            {[...Array(10)].map((_, i) => (
+              <div key={i}>
                 <CommentLoader />
               </div>
             ))}
@@ -211,6 +178,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
                 {comments.map((comment: Comment) => (
                   <div key={comment.id}>
                     <CommentItem
+                      key={comment.id}
                       onVote={onVote}
                       userVoteValue={
                         commentStateValue.commentVotes.find(
