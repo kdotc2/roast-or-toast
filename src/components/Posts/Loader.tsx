@@ -45,7 +45,6 @@ export const CommentLoader = () => {
   return (
     <div className="w-full">
       <div className="mb-2 flex animate-pulse flex-col space-y-3 p-4">
-
         <div className="mb-2 h-2 w-32 rounded-full bg-gray-200 dark:bg-gray-700"></div>
         <div className="h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
         <div className="h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
@@ -55,12 +54,6 @@ export const CommentLoader = () => {
         </div> */}
       </div>
     </div>
-  )
-}
-
-export const InputLoader = () => {
-  return (
-    <div className="mx-4 flex h-[86px] animate-pulse items-center justify-center rounded bg-gray-300 dark:bg-gray-700"></div>
   )
 }
 
@@ -77,12 +70,16 @@ export const MetadataLoader = () => {
   )
 }
 
-export const SpinningLoader = () => {
+type SpinningLoaderProps = {
+  height: number
+  width: number
+}
+export const SpinningLoader = ({ height, width }: SpinningLoaderProps) => {
   return (
     <div role="status spinner">
       <svg
         aria-hidden="true"
-        className="h-5 w-5 animate-spin fill-gray-800 text-gray-200 dark:fill-gray-200 dark:text-gray-600"
+        className={`animate-spin fill-gray-800 text-gray-200 dark:fill-gray-200 dark:text-gray-600 h-${height} w-${width}`}
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

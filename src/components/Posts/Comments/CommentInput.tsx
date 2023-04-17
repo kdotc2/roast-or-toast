@@ -38,17 +38,15 @@ const CommentInput = ({
       </>
       <div className="flex justify-end">
         <button
-          className="primaryButton mt-3 disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
+          className="primaryButton mt-2 disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
           disabled={!comment.length}
           onClick={() => {
-            user
-              ? onCreateComment(comment)
-              : setLoginState({ open: true })
+            user ? onCreateComment(comment) : setLoginState({ open: true })
           }}
         >
           {loading ? (
             <div className="px-[22.5px]">
-              <SpinningLoader />
+              <SpinningLoader height={5} width={5} />
             </div>
           ) : (
             <span>Comment</span>

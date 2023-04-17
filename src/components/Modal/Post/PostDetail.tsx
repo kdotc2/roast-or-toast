@@ -54,7 +54,7 @@ const PostDetail = ({ post, close }: Props) => {
         >
         <div
           id="post-detail-content"
-          className={`z-41 dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain shadow-lg`}
+          className={`z-41 dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain`}
         >
           {error && (
             <p className="flex h-screen items-center justify-center text-xs font-medium text-red-500 dark:text-red-400">

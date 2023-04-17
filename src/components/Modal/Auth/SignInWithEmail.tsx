@@ -13,6 +13,7 @@ import { newUserModalState } from '@/atoms/newUserModalAtom'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { getDoc, doc } from 'firebase/firestore'
 import { loginModalState } from '@/atoms/authModalAtom'
+import { ArrowRightIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
 type Props = {
   close: () => void
@@ -123,9 +124,9 @@ export const SignInWithEmail = ({ close }: Props) => {
       ) : (
         <>
           {infoMsg !== '' ? (
-            <div className="justify-betweeb flex h-[38px] gap-4 text-sm font-medium">
+            <div className="flex justify-between gap-4 text-sm font-medium">
               <p className="flex items-center justify-center">{infoMsg}</p>
-              <div className="flex justify-end">
+              <div className="flex">
                 <button className="primaryButton" onClick={() => close()}>
                   Done
                 </button>
@@ -133,40 +134,43 @@ export const SignInWithEmail = ({ close }: Props) => {
             </div>
           ) : (
             <form
-              className="relative flex gap-4 border-gray-500 "
+              className="relative flex items-center justify-center"
               onSubmit={handleClose}
             >
               <input
-                type={'email'}
+                type="email"
                 required
                 value={email}
-                id="floating_outlined"
-                className="peer block w-full rounded border-gray-300 bg-transparent px-[11px] py-2 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+                id="label"
+                className="peer block h-[40px] w-full items-center rounded border-gray-200 bg-transparent px-[11px] py-2 pr-10 text-sm text-gray-900 placeholder:text-center placeholder:font-medium focus:border-gray-900 focus:placeholder-transparent focus:outline-none focus:ring-0 dark:border-gray-700 dark:text-gray-100 dark:focus:border-gray-100"
                 placeholder=" "
                 onChange={newEmail}
               />
               <label
-                htmlFor="floating_outlined"
-                className="absolute top-2 left-1 z-10 flex origin-[0] -translate-y-4 scale-75 transform cursor-text bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-gray-500 dark:bg-gray-800 peer-focus:dark:text-gray-100"
+                htmlFor="label"
+                className="invisible absolute z-10 flex cursor-text items-center gap-4 bg-transparent px-2 text-sm text-gray-800 peer-placeholder-shown:visible peer-focus:text-transparent dark:text-gray-200"
               >
-                {loginError ? (
-                  <p className="text-red-500 dark:text-red-400">{loginError}</p>
-                ) : (
-                  <p>Continue with Email</p>
-                )}
+                <EnvelopeIcon className="h-[18px] w-[18px]" />
+                <p className="font-medium">Continue with Email</p>
               </label>
+
               <button
+                id="label"
                 type="submit"
-                disabled={!email.includes('@') || loginLoading}
-                className="primaryButton"
+                disabled={
+                  !email.match(
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                  ) || loginLoading
+                }
+                className="absolute right-2 flex rounded bg-gray-200 p-2 text-sm font-medium active:bg-[#dad4d4] disabled:bg-gray-100 disabled:text-gray-200 peer-placeholder-shown:invisible peer-focus:visible dark:bg-gray-700 active:dark:bg-[#5c5a5a] disabled:dark:bg-gray-900 disabled:dark:text-gray-700 md:dark:border-gray-700 md:dark:text-white"
                 onClick={handleLogin}
               >
                 {loginLoading ? (
-                  <div className="mx-[13.5px]">
-                    <SpinningLoader />
+                  <div className="flex h-3 w-3 items-center justify-center">
+                    <SpinningLoader height={3} width={3} />
                   </div>
                 ) : (
-                  <p>Submit</p>
+                  <ArrowRightIcon className="h-3 w-3 stroke-[2.5]" />
                 )}
               </button>
             </form>

@@ -26,7 +26,7 @@ export default function LoginModal({ close }: Props) {
       </div>
 
       <div className="relative">
-        <div className="items-center justify-center pb-6 space-y-4 pt-6">
+        <div className="items-center justify-center space-y-4 pb-6 pt-6">
           <p className="text-sm">
             By continuing, you are agreeing to our{' '}
             <Link
@@ -47,10 +47,7 @@ export default function LoginModal({ close }: Props) {
             .
           </p>
           <OAuthButtons />
-          <p className="text-center text-xs font-semibold uppercase text-gray-400 dark:text-gray-300">
-            or
-          </p>
-          <SignInWithEmail close={() => close()}/>
+          <SignInWithEmail close={() => close()} />
         </div>
       </div>
     </>

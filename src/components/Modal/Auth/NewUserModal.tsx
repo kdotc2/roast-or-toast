@@ -122,13 +122,13 @@ export default function Modal() {
                           onSubmit={updateDisplayName}
                         >
                           <div className="relative flex">
-                            <textarea
+                            <input
                               name="displayName"
                               required
                               value={userInputs.displayName}
                               minLength={4}
                               maxLength={24}
-                              className="h-[38px] w-full resize-none rounded border border-gray-300 bg-transparent text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+                              className="h-[40px] w-full resize-none rounded border border-gray-300 bg-transparent pl-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
                               placeholder="Display name"
                               onChange={onTextChange}
                             />
@@ -138,7 +138,7 @@ export default function Modal() {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-between pt-5">
+                <div className="flex justify-between pt-2">
                   <div className="flex items-center justify-start">
                     {inputError && (
                       <p className="mr-2 text-xs font-medium text-red-500 dark:text-red-400">
@@ -157,7 +157,7 @@ export default function Modal() {
                     >
                       {loading ? (
                         <div className="mx-[13.5px]">
-                          <SpinningLoader />
+                          <SpinningLoader height={5} width={5} />
                         </div>
                       ) : (
                         <span>Submit</span>

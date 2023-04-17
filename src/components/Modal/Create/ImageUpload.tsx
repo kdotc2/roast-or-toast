@@ -2,6 +2,7 @@ import { createModalState, ModalView } from '@/atoms/createModalAtom'
 import Image from 'next/image'
 import React from 'react'
 import { BsXCircleFill } from 'react-icons/bs'
+import { XCircleIcon } from '@heroicons/react/24/solid'
 import { useRecoilState } from 'recoil'
 
 type ImageUploadProps = {
@@ -40,12 +41,12 @@ ImageUploadProps) => {
             <>
               <div className="flex justify-end">
                 <button
-                  className="absolute z-20 translate-y-2 -translate-x-2"
+                  className="absolute z-10 translate-y-2 -translate-x-2 text-gray-400 hover:text-gray-800 dark:text-gray-500 hover:dark:text-gray-200"
                   onClick={() => setSelectedFile('')}
                 >
-                  <BsXCircleFill className="text-3xl" />
+                  <XCircleIcon className="h-6 w-6" />
                 </button>
-                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-800">
+                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-[#2b2b2b]">
                   <div className="fixed flex max-h-[250px] p-2">
                     <Image
                       className="object-scale-down"
@@ -60,7 +61,7 @@ ImageUploadProps) => {
             </>
           ) : (
             <div className="flex w-full cursor-pointer items-center justify-center">
-              <label className="flex h-[250px] w-full flex-col items-center justify-center rounded border border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-gray-500 dark:hover:bg-[#303032]">
+              <label className="flex h-[250px] w-full flex-col items-center justify-center rounded border border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-[#2b2b2b] dark:hover:border-gray-500 dark:hover:bg-[#303032]">
                 <span className="z-1 absolute hidden appearance-none text-sm text-gray-400 dark:text-gray-500 sm:flex">
                   Drag and drop or click to upload
                 </span>
@@ -72,7 +73,7 @@ ImageUploadProps) => {
                   type="file"
                   title=""
                   className="imageUpload"
-                  accept="image/x-png,image/gif,image/jpeg"
+                  accept=".jpg, .jpeg, .png"
                   onChange={onSelectImage}
                 />
               </label>

@@ -52,7 +52,7 @@ export const Navbar = () => {
                 >
                   {loading ? (
                     <div className="my-[2px]">
-                      <SpinningLoader />
+                      <SpinningLoader height={5} width={5} />
                     </div>
                   ) : (
                     <Cog8ToothIcon className="h-6 w-6" />
@@ -69,7 +69,7 @@ export const Navbar = () => {
                 >
                   {loading ? (
                     <div className="my-[2px]">
-                      <SpinningLoader />
+                      <SpinningLoader height={5} width={5} />
                     </div>
                   ) : (
                     <ArrowLeftOnRectangleIcon className="h-6 w-6 rotate-180" />
@@ -173,7 +173,7 @@ export const MobileNav = () => {
       {showSignupModal && (
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
-      <div className="fixed z-[40] mt-5 ml-auto flex w-[calc(100%-20px)] justify-end">
+      <div className="fixed top-5 right-5 z-[40]">
         <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
           <button
             type="button"
@@ -285,7 +285,7 @@ export const MobileNav = () => {
               >
                 {loading ? (
                   <div className="my-[2px]">
-                    <SpinningLoader />
+                    <SpinningLoader height={5} width={5} />
                   </div>
                 ) : (
                   <span className="flex items-center">
