@@ -22,10 +22,12 @@ import LinkAdd from './LinkAdd'
 import PostInputs from './PostInput'
 import { TagSelection } from './TagSelection'
 import { SpinningLoader } from '@/components/Posts/Loader'
+import { MultiValue } from 'react-select'
 
 type CreateModalProps = {
   onSelectPost?: (value: Post, postIdx: number) => void
 }
+
 
 export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const [modalState, setModalState] = useRecoilState(createModalState)
@@ -44,7 +46,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const [user] = useAuthState(auth)
   const [count, setCount] = useState(0)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
-  const [selected, setSelected] = useState(null)
+  const [tags, setTags] = useState<Array<string>>([])
 
   const toggleView = (view: string) => {
     setModalState({
@@ -127,6 +129,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         voteStatus: 0,
         createdAt: serverTimestamp(),
         editedAt: serverTimestamp(),
+        tags,
       })
 
       // console.log('HERE IS NEW POST ID', postDocRef.id)
@@ -166,10 +169,11 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     resetState()
   }
 
-  const onTagSelection = (selectedOption: React.SetStateAction<null>) => {
-    setSelected(selectedOption)
-    console.log(`Option selected:`, selectedOption)
+  const onTagSelection = (selectedOptions: MultiValue<unknown>) => {
+    setTags(selectedOptions.map((v: any) => v.value))
+    console.log(`Option selected:`, selectedOptions)
   }
+  console.log(tags)
 
   return (
     <div onClick={handleClose}>

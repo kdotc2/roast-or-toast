@@ -94,6 +94,8 @@ const PostView = ({
           aria-label="Post card"
         >
           <div className="py-3 pb-12">
+              {/* TODO this is just to test that the tags are stored in the database and are retrieved. obviously not final */}
+            {/* {post.tags && post.tags.map((t) => t)} */}
             <div className="flex justify-between px-4">
               <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
                 <div className="flex gap-[6px]">

@@ -4,6 +4,7 @@ import Select, {
   MultiValueRemoveProps,
   ClearIndicatorProps,
   ActionMeta,
+  MultiValue,
 } from 'react-select'
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
@@ -63,8 +64,6 @@ const optionStyles = {
   focus: 'hover:bg-gray-200 active:bg-gray-200 dark:bg-gray-900',
 }
 
-type SelectOptionType = { label: string; value: string }
-
 const options = [
   { value: 'Roast Me', label: 'Roast Me' },
   { value: 'Toast Me', label: 'Toast Me' },
@@ -74,7 +73,7 @@ type TagSelectionProps = {
   onTagSelection: (
     // option: readonly Option[],
     // actionMeta: ActionMeta<Option>
-    event: any
+    newValue: MultiValue<unknown>
   ) => void
 }
 

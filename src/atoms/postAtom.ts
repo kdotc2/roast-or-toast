@@ -19,6 +19,7 @@ export type Post = {
   postIdx?: number
   createdAt: Timestamp
   editedAt?: Timestamp
+  tags: string[]
 }
 
 export type PostVote = {
