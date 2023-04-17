@@ -20,6 +20,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import ImageUpload from './ImageUpload'
 import LinkAdd from './LinkAdd'
 import PostInputs from './PostInput'
+import { TagSelection } from './TagSelection'
 import { SpinningLoader } from '@/components/Posts/Loader'
 
 type CreateModalProps = {
@@ -43,6 +44,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const [user] = useAuthState(auth)
   const [count, setCount] = useState(0)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
+  const [selected, setSelected] = useState(null)
 
   const toggleView = (view: string) => {
     setModalState({
@@ -164,6 +166,11 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     resetState()
   }
 
+  const onTagSelection = (selectedOption: React.SetStateAction<null>) => {
+    setSelected(selectedOption)
+    console.log(`Option selected:`, selectedOption)
+  }
+
   return (
     <div onClick={handleClose}>
       {modalState.open ? (
@@ -187,6 +194,10 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                       {modalState.view === 'image' && 'Create an image post'}
                       {modalState.view === 'link' && 'Create a link post'}
                     </h3>
+                  </div>
+
+                  <div className="pb-2 z-20 relative">
+                    <TagSelection onTagSelection={onTagSelection} />
                   </div>
 
                   <div className="flex w-full items-center pb-2">
