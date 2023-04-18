@@ -28,7 +28,6 @@ type CreateModalProps = {
   onSelectPost?: (value: Post, postIdx: number) => void
 }
 
-
 export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const [modalState, setModalState] = useRecoilState(createModalState)
   const selectFileRef = useRef<HTMLInputElement>(null)
@@ -85,6 +84,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     postInputs.title = ''
     setSelectedFile('')
     setCount(0)
+    setTags([])
   }
 
   const onTextChange = ({
@@ -111,9 +111,15 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     setLoading(true)
     const { title, body, url } = postInputs
 
-    if (url.match('https://') || url.match('http://')) {
-      setLoading(false)
-      return setError('Please provide a valid url')
+    if (postInputs.url) {
+      if (
+        !url.match(
+          /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/
+        )
+      ) {
+        setLoading(false)
+        return setError('Please provide a valid url')
+      }
     }
 
     const userSnap = await getDoc(doc(db, 'users', user!.uid))
@@ -200,7 +206,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                     </h3>
                   </div>
 
-                  <div className="pb-2 z-20 relative">
+                  <div className="relative z-20 pb-2">
                     <TagSelection onTagSelection={onTagSelection} />
                   </div>
 
@@ -261,7 +267,8 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                             ((!postInputs.title || !postInputs.body) &&
                               (!postInputs.title || !postInputs.url) &&
                               (!postInputs.title || !selectedFile)) ||
-                            loading
+                            loading ||
+                            !tags.length
                           }
                           type="button"
                           onClick={handleCreatePost}

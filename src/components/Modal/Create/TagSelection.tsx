@@ -33,8 +33,8 @@ const ClearIndicator = (props: ClearIndicatorProps) => {
   )
 }
 const controlStyles = {
-  base: 'min-h-[40px] rounded border border-gray-300 bg-gray-50 pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:border-gray-600 dark:bg-[#2b2b2b] dark:text-gray-500',
-  focus: 'border border-gray-900 dark:border-[#f5f5f4]',
+  base: 'min-h-[40px] rounded border bg-gray-50 pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:bg-[#2b2b2b] dark:text-gray-500',
+  focus: 'border-gray-900 dark:border-gray-100',
   nonFocus: 'border-gray-300 dark:border-gray-600',
   menuOpen: 'rounded-b-none',
 }
@@ -55,7 +55,7 @@ const multiValueStyles =
 const multiValueLabelStyles = 'mr-1'
 
 const multiValueRemoveStyles =
-  '-mx-2 rounded-r-[2px] py-1.5 px-1.5 hover:bg-gray-300 hover:dark:bg-gray-600'
+  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-gray-300 hover:dark:bg-gray-600'
 
 const indicatorSeparatorStyles = 'm-2 bg-gray-300 dark:bg-gray-600'
 
