@@ -98,7 +98,7 @@ const PostView = ({
             <div className="flex gap-2 px-4 text-xs font-medium">
               {post.tags &&
                 post.tags.map((tags) => (
-                  <div className="pb-3">
+                  <div key={tags} className="pb-3">
                     <div className="flex rounded border bg-gray-200 px-1.5 py-0.5 dark:bg-gray-700">
                       {tags}
                     </div>
