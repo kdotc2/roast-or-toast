@@ -83,7 +83,7 @@ const PostView = ({
         } `}
       >
         <Link
-          tabIndex={singlePostPage ? -1 : 0}
+          tabIndex={singlePostPage ? -1 : undefined}
           className={`${
             singlePostPage &&
             'pointer-events-none focus:outline-none focus:ring-0 focus:ring-offset-0'
@@ -94,6 +94,18 @@ const PostView = ({
           aria-label="Post card"
         >
           <div className="py-3 pb-12">
+            {/* TODO this is just to test that the tags are stored in the database and are retrieved. obviously not final */}
+            <div className="flex gap-2 px-4 text-xs font-medium">
+              {post.tags &&
+                post.tags.map((tags) => (
+                  <div key={tags} className="pb-3">
+                    <div className="flex rounded border bg-gray-200 px-1.5 py-0.5 dark:bg-gray-700">
+                      {tags}
+                    </div>
+                  </div>
+                ))}
+            </div>
+
             <div className="flex justify-between px-4">
               <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
                 <div className="flex gap-[6px]">
@@ -135,7 +147,7 @@ const PostView = ({
         </Link>
         <>
           <div
-            className="-mt-6 flex -translate-y-3 items-center justify-between px-4"
+            className="-mt-6 flex -translate-y-3 items-center justify-between py-0.5 px-4"
             onClick={() => {
               {
                 onSelectPost && post && onSelectPost(post, postIdx!)

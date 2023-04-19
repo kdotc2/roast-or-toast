@@ -20,7 +20,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import ImageUpload from './ImageUpload'
 import LinkAdd from './LinkAdd'
 import PostInputs from './PostInput'
+import { TagSelection } from './TagSelection'
 import { SpinningLoader } from '@/components/Posts/Loader'
+import { MultiValue } from 'react-select'
 
 type CreateModalProps = {
   onSelectPost?: (value: Post, postIdx: number) => void
@@ -43,6 +45,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const [user] = useAuthState(auth)
   const [count, setCount] = useState(0)
   const setNewUserModalState = useSetRecoilState(newUserModalState)
+  const [tags, setTags] = useState<Array<string>>([])
 
   const toggleView = (view: string) => {
     setModalState({
@@ -81,6 +84,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     postInputs.title = ''
     setSelectedFile('')
     setCount(0)
+    setTags([])
   }
 
   const onTextChange = ({
@@ -107,9 +111,15 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     setLoading(true)
     const { title, body, url } = postInputs
 
-    if (url.match('https://') || url.match('http://')) {
-      setLoading(false)
-      return setError('Please provide a valid url')
+    if (postInputs.url) {
+      if (
+        !url.match(
+          /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/
+        )
+      ) {
+        setLoading(false)
+        return setError('Please provide a valid url')
+      }
     }
 
     const userSnap = await getDoc(doc(db, 'users', user!.uid))
@@ -125,6 +135,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         voteStatus: 0,
         createdAt: serverTimestamp(),
         editedAt: serverTimestamp(),
+        tags,
       })
 
       // console.log('HERE IS NEW POST ID', postDocRef.id)
@@ -164,6 +175,12 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     resetState()
   }
 
+  const onTagSelection = (selectedOptions: MultiValue<unknown>) => {
+    setTags(selectedOptions.map((v: any) => v.value))
+    console.log(`Option selected:`, selectedOptions)
+  }
+  console.log(tags)
+
   return (
     <div onClick={handleClose}>
       {modalState.open ? (
@@ -187,6 +204,10 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                       {modalState.view === 'image' && 'Create an image post'}
                       {modalState.view === 'link' && 'Create a link post'}
                     </h3>
+                  </div>
+
+                  <div className="relative z-20 pb-2">
+                    <TagSelection onTagSelection={onTagSelection} />
                   </div>
 
                   <div className="flex w-full items-center pb-2">
@@ -246,7 +267,8 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                             ((!postInputs.title || !postInputs.body) &&
                               (!postInputs.title || !postInputs.url) &&
                               (!postInputs.title || !selectedFile)) ||
-                            loading
+                            loading ||
+                            !tags.length
                           }
                           type="button"
                           onClick={handleCreatePost}
