@@ -21,7 +21,7 @@ const PostDetail = ({ post, close }: Props) => {
 
   if (!close) {
     close = () => {
-      router.push("/")
+      router.push('/')
     }
   }
 
@@ -40,21 +40,21 @@ const PostDetail = ({ post, close }: Props) => {
         so we have duplicate click listeners for outside of the modal
        */}
       <div
-          id="post-detail" 
-          className="fixed inset-0 z-20 flex items-center justify-center overflow-y-auto overscroll-contain"
-          onClick={(e: any) => {
-            // since this element lays over the top of the modal wrapper we have to make a separate
-            // click listener for outside of the actual content to close
-            const el = document.getElementById('post-detail-content')
-            // ts-ignore
-            if (el && !el.contains(e.target)) {
-              safeClose()
-            }
-          }}
-        >
+        id="post-detail"
+        className="fixed inset-0 z-20 flex items-center justify-center overflow-y-auto overscroll-contain"
+        onClick={(e: any) => {
+          // since this element lays over the top of the modal wrapper we have to make a separate
+          // click listener for outside of the actual content to close
+          const el = document.getElementById('post-detail-content')
+          // ts-ignore
+          if (el && !el.contains(e.target)) {
+            safeClose()
+          }
+        }}
+      >
         <div
           id="post-detail-content"
-          className={`z-41 dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden overflow-y-auto overscroll-contain`}
+          className={`z-41 dark:bg-gray-80 relative w-[750px] overflow-y-auto overscroll-contain bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a] sm:h-screen [&::-webkit-scrollbar]:hidden`}
         >
           {error && (
             <p className="flex h-screen items-center justify-center text-xs font-medium text-red-500 dark:text-red-400">
@@ -62,7 +62,7 @@ const PostDetail = ({ post, close }: Props) => {
             </p>
           )}
           <div className="sm:mx-6">
-            <div className="sticky top-0 z-60 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#1c1b1b] sm:mx-8">
+            <div className="z-60 sticky top-0 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#06080a] sm:mx-8">
               <button
                 onClick={() => safeClose()}
                 className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-white dark:hover:bg-gray-800"
@@ -70,7 +70,10 @@ const PostDetail = ({ post, close }: Props) => {
                 <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
               </button>
             </div>
-            <div className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]" onClick={(e)=> e.preventDefault()}>
+            <div
+              className="mx-auto space-y-5 px-[20px] pb-12 sm:px-[32px]"
+              onClick={(e) => e.preventDefault()}
+            >
               {post && (
                 <div className="">
                   <PostView
@@ -79,26 +82,18 @@ const PostDetail = ({ post, close }: Props) => {
                     onDeletePost={onDeletePost}
                     userVoteValue={
                       postStateValue.postVotes.find(
-                        (item) =>
-                          item.postId === post.id
+                        (item) => item.postId === post.id
                       )?.voteValue
                     }
-                    userIsCreator={
-                      user?.uid === post.creatorId
-                    }
+                    userIsCreator={user?.uid === post.creatorId}
                   />
                 </div>
-             )}
-             {/*
+              )}
+              {/*
               this is redudant but there is a css spacing issue if you put this immediately after
               the PostView and i dont want to figure out right now
              */}
-             {post && (
-                <Comments
-                  user={user}
-                  selectedPost={post}
-                />
-             )}
+              {post && <Comments user={user} selectedPost={post} />}
             </div>
           </div>
         </div>

@@ -101,7 +101,7 @@ export default function Modal() {
             }}
           >
             <div className="fixed inset-0 z-50 flex items-center justify-center px-5 sm:px-0">
-              <div className="relative w-[400px] rounded-md bg-white px-6 pb-6 shadow-lg dark:bg-gray-800">
+              <div className="relative w-[400px] rounded-md bg-[#fdfdfd] px-6 pb-6 shadow-lg dark:bg-[#212121]">
                 <div className="pt-6">
                   <h3 className="text-lg font-semibold">
                     {modalState.view === 'newUser' &&
@@ -128,7 +128,7 @@ export default function Modal() {
                               value={userInputs.displayName}
                               minLength={4}
                               maxLength={24}
-                              className="h-[40px] w-full resize-none rounded border border-gray-300 bg-transparent pl-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+                              className="h-[40px] w-full resize-none rounded border border-gray-300 bg-[#f8f8f8] pl-3 text-sm text-gray-900 hover:bg-[#f3f3f3] focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:text-gray-200 hover:dark:bg-[#2b2b2b] dark:focus:border-gray-100"
                               placeholder="Display name"
                               onChange={onTextChange}
                             />
@@ -152,7 +152,7 @@ export default function Modal() {
                         !userInputs.displayName ||
                         userInputs.displayName.length < 4
                       }
-                      className="primaryButton disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
+                      className="primaryButton"
                       onClick={updateDisplayName}
                     >
                       {loading ? (

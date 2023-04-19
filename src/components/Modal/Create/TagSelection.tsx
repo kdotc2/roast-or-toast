@@ -33,14 +33,14 @@ const ClearIndicator = (props: ClearIndicatorProps) => {
   )
 }
 const controlStyles = {
-  base: 'min-h-[40px] rounded border bg-gray-50 pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:bg-[#2b2b2b] dark:text-gray-500',
+  base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:bg-[#262626] dark:text-gray-500',
   focus: 'border-gray-900 dark:border-gray-100',
   nonFocus: 'border-gray-300 dark:border-gray-600',
   menuOpen: 'rounded-b-none',
 }
 
 const menuStyles =
-  'rounded rounded-t-none border border-t-0 border-gray-900 bg-gray-50 p-2 text-sm dark:border-gray-100 dark:bg-[#2b2b2b] dark:text-gray-200'
+  'rounded rounded-t-none border border-t-0 border-gray-900 bg-[#f7f7f7] p-2 text-sm dark:border-gray-100 dark:bg-[#262626] dark:text-gray-200'
 
 const selectInputStyles = 'text-gray-900 dark:text-gray-200'
 
@@ -50,23 +50,23 @@ const noOptionsMessageStyles =
   'flex px-3 py-2 text-sm text-gray-500 dark:text-gray-400'
 
 const multiValueStyles =
-  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-gray-200 px-2 text-xs text-gray-900 dark:bg-gray-700 dark:text-gray-200'
+  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-gray-200 px-2 text-xs text-gray-900 dark:bg-[#151515] dark:text-gray-200'
 
 const multiValueLabelStyles = 'mr-1'
 
 const multiValueRemoveStyles =
-  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-gray-300 hover:dark:bg-gray-600'
+  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-gray-300 hover:dark:bg-[#333333]'
 
 const indicatorSeparatorStyles = 'm-2 bg-gray-300 dark:bg-gray-600'
 
 const optionStyles = {
-  base: 'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-gray-200 hover:dark:bg-gray-700',
+  base: 'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-gray-200 hover:dark:bg-[#333333]',
   focus: 'hover:bg-gray-200 active:bg-gray-200 dark:bg-gray-900',
 }
 
 const options = [
-  { value: 'Roast Me', label: 'Roast Me' },
-  { value: 'Toast Me', label: 'Toast Me' },
+  { value: '🔥 Roast Me', label: '🔥 Roast Me' },
+  { value: '🍺 Toast Me', label: '🍺 Toast Me' },
 ]
 
 type TagSelectionProps = {

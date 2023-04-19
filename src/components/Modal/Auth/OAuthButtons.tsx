@@ -24,7 +24,7 @@ const OAuthButtons = () => {
 
   return (
     <button
-      className="flex h-[40px] w-full items-center justify-center rounded border py-2 text-sm font-medium hover:bg-gray-200 dark:border-gray-700 dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+      className="flex h-[40px] w-full items-center justify-center rounded border bg-[#f8f8f8] py-2 text-sm font-medium hover:bg-[#f3f3f3]  dark:border-gray-700 dark:bg-[#262626] dark:hover:border-gray-700 hover:dark:bg-[#2b2b2b] dark:hover:text-white"
       onClick={signIn}
     >
       <div className="flex items-center gap-4 text-gray-500 dark:text-gray-400">

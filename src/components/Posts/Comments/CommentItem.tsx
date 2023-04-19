@@ -95,7 +95,7 @@ const CommentItem = ({
                                   event.stopPropagation()
                                 }}
                               >
-                                <div className="relative w-[400px] rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800">
+                                <div className="relative w-[400px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-gray-800">
                                   <div className="pt-6">
                                     <h3 className="text-lg font-semibold">
                                       Confirm delete

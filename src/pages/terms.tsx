@@ -8,19 +8,17 @@ export default function Terms() {
   return (
     <>
       <div className="mx-auto mb-12 max-w-[800px] flex-auto px-[20px]">
-        <div className="sticky top-0 z-10 bg-[#f5f2f2] py-2 dark:bg-[#1c1b1b]">
+        <div className="sticky top-0 z-10 bg-[#f5f2f2] py-2 dark:bg-[#06080a]">
           <button
             onClick={() => router.push('/', undefined, { scroll: false })}
-            className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-white dark:hover:bg-gray-800"
+            className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-gray-200 dark:hover:bg-gray-800"
           >
             <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
           </button>
         </div>
-        <div className="rounded border bg-[#fdfbfb] dark:bg-[#161515]">
-          <div className="prose max-w-[800px] p-10 text-sm text-gray-900 marker:text-gray-900 prose-h4:text-base prose-h4:text-gray-900 dark:text-gray-100 marker:dark:text-gray-100 prose-h4:dark:text-gray-100 md:p-20">
-            <div className="text-xl font-bold">
-              Roast or Toast Terms of Use
-            </div>
+        <div className="rounded border bg-[#fdfdfd] dark:bg-[#212121]">
+          <div className="prose max-w-[800px] p-10 text-sm text-gray-900 marker:text-gray-900 prose-h4:text-base prose-h4:text-gray-900 dark:text-[#dcdcdc] marker:dark:text-[#dcdcdc] prose-h4:dark:text-[#dcdcdc] md:p-20">
+            <div className="text-xl font-bold">Roast or Toast Terms of Use</div>
             <p>Last updated: March 20, 2023</p>
             <p>
               This Roast or Toast User Agreement (“Terms”) applies to your
@@ -318,8 +316,7 @@ export default function Terms() {
             <h4>Contact</h4>
             <p>
               If you have additional questions or concerns related to this Terms
-              or the Services, please contact us at
-              hello@roastortoast.me.
+              or the Services, please contact us at hello@roastortoast.me.
             </p>
           </div>
         </div>

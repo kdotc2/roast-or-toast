@@ -40,9 +40,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
   const [user, error] = useAuthState(auth)
   const setAuthModalState = useSetRecoilState(loginModalState)
   const setPostState = useSetRecoilState(postState)
-  const {
-    getPostComments,
-  } = usePosts()
+  const { getPostComments } = usePosts()
 
   const { onVote, commentStateValue } = useComments()
 
@@ -144,8 +142,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
 
   useEffect(() => {
     if (!selectedPost || !commentFetchLoading) return
-    getPostComments(selectedPost.id)
-    .then((comments) => {
+    getPostComments(selectedPost.id).then((comments) => {
       if (comments) {
         setComments(comments)
       }
@@ -155,7 +152,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
 
   return (
     <div>
-      <div className="rounded border bg-[#fdfbfb] p-4 dark:bg-[#161515]">
+      <div className="rounded border bg-[#fdfdfd] p-4 dark:bg-[#212121]">
         <CommentInput
           comment={comment}
           setComment={setComment}

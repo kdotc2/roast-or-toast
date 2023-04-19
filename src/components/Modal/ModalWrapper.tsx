@@ -19,15 +19,15 @@ export default function ModalWrapper({ child, close, width }: Props) {
   })
 
   useEffect(() => {
-    window.document.body.classList.add("overflow-hidden")
+    window.document.body.classList.add('overflow-hidden')
     return () => {
-      window.document.body.classList.remove("overflow-hidden")
+      window.document.body.classList.remove('overflow-hidden')
     }
   })
 
   return (
     <div id="modal-wrapper" onClick={() => close()}>
-      {/* TODO consider adding this to this element className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b] sm:h-screen [&::-webkit-scrollbar]:hidden ${
+      {/* TODO consider adding this to this element className={`dark:bg-gray-80 relative w-[750px] bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a] sm:h-screen [&::-webkit-scrollbar]:hidden ${
             modalState.open && 'overflow-y-auto overscroll-contain shadow-lg'
  */}
 
@@ -45,7 +45,7 @@ export default function ModalWrapper({ child, close, width }: Props) {
                   onClick={(event) => {
                     event.stopPropagation()
                   }}
-                  className={`relative rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800 w-[${width}px]`}
+                  className={`relative rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-[#212121] w-[${width}px]`}
                 >
                   {child}
                 </div>

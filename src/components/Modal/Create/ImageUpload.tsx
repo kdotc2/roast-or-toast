@@ -46,7 +46,7 @@ ImageUploadProps) => {
                 >
                   <XCircleIcon className="h-6 w-6" />
                 </button>
-                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-[#2b2b2b]">
+                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-gray-300 bg-[#f8f8f8] dark:border-gray-600 dark:bg-[#262626]">
                   <div className="fixed flex max-h-[250px] p-2">
                     <Image
                       className="object-scale-down"
@@ -60,24 +60,22 @@ ImageUploadProps) => {
               </div>
             </>
           ) : (
-            <div className="flex w-full cursor-pointer items-center justify-center">
-              <label className="flex h-[250px] w-full flex-col items-center justify-center rounded border border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-[#2b2b2b] dark:hover:border-gray-500 dark:hover:bg-[#303032]">
-                <span className="z-1 absolute hidden appearance-none text-sm text-gray-400 dark:text-gray-500 sm:flex">
-                  Drag and drop or click to upload
-                </span>
-                <span className="z-1 absolute appearance-none text-sm text-gray-400 dark:text-gray-500 sm:hidden">
-                  Tap to upload
-                </span>
-                <input
-                  id="file-upload"
-                  type="file"
-                  title=""
-                  className="imageUpload"
-                  accept=".jpg, .jpeg, .png"
-                  onChange={onSelectImage}
-                />
-              </label>
-            </div>
+            <label className="flex h-[250px] w-full items-center justify-center rounded border border-dashed border-gray-300 bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:border-gray-600 dark:bg-[#262626] dark:hover:border-gray-500 hover:dark:bg-[#2b2b2b]">
+              <span className="z-1 absolute hidden appearance-none text-sm text-gray-400 dark:text-gray-500 sm:flex">
+                Drag and drop or click to upload
+              </span>
+              <span className="z-1 absolute appearance-none text-sm text-gray-400 dark:text-gray-500 sm:hidden">
+                Tap to upload
+              </span>
+              <input
+                id="file-upload"
+                type="file"
+                title=""
+                className="imageUpload"
+                accept=".jpg, .jpeg, .png"
+                onChange={onSelectImage}
+              />
+            </label>
           )}
         </div>
       ) : null}

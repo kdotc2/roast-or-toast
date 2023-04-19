@@ -76,7 +76,7 @@ const PostView = ({
         onClick={() => {
           onSelectPost && post && onSelectPost(post, postIdx!)
         }}
-        className={`rounded border bg-[#fdfbfb] dark:bg-[#161515] ${
+        className={`rounded border bg-[#fdfdfd] dark:bg-[#212121] ${
           singlePostPage
             ? 'cursor-default'
             : 'cursor-pointer md:hover:border-gray-400 md:hover:dark:border-gray-500'
@@ -94,12 +94,11 @@ const PostView = ({
           aria-label="Post card"
         >
           <div className="py-3 pb-12">
-            {/* TODO this is just to test that the tags are stored in the database and are retrieved. obviously not final */}
             <div className="flex gap-2 px-4 text-xs font-medium">
               {post.tags &&
                 post.tags.map((tags) => (
                   <div key={tags} className="pb-3">
-                    <div className="flex rounded border bg-gray-200 px-1.5 py-0.5 dark:bg-gray-700">
+                    <div className="flex rounded bg-[#ededed] px-1.5 py-1 dark:bg-[#151515]">
                       {tags}
                     </div>
                   </div>
@@ -107,7 +106,7 @@ const PostView = ({
             </div>
 
             <div className="flex justify-between px-4">
-              <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
+              <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-[#8c8c8c]">
                 <div className="flex gap-[6px]">
                   <span className="font-bold">{post.displayName}</span> •{' '}
                   {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
@@ -147,14 +146,14 @@ const PostView = ({
         </Link>
         <>
           <div
-            className="-mt-6 flex -translate-y-3 items-center justify-between py-0.5 px-4"
+            className="-mt-6 flex -translate-y-3 items-center justify-between px-4 py-0.5"
             onClick={() => {
               {
                 onSelectPost && post && onSelectPost(post, postIdx!)
               }
             }}
           >
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-gray-500 dark:text-[#8c8c8c]">
               <button
                 aria-label="Upvote"
                 type="button"
@@ -179,7 +178,7 @@ const PostView = ({
                 {formatter.format(post.voteStatus)}
               </span>
             </div>
-            <div className="justify flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <div className="justify flex items-center gap-2 text-gray-500 dark:text-[#8c8c8c]">
               <ChatBubbleOvalLeftIcon className="h-5 w-5" />
               <span
                 className={`text-sm font-medium ${
@@ -202,7 +201,7 @@ const PostView = ({
                     <div>
                       <button
                         type="button"
-                        className="flex items-center text-gray-500 hover:text-gray-800 dark:text-gray-400 hover:dark:text-gray-200"
+                        className="flex items-center text-gray-500 hover:text-gray-800 dark:text-[#8c8c8c] hover:dark:text-gray-200"
                         onClick={(event) => {
                           setConfirmDeleteModal(true), event.stopPropagation()
                         }}
@@ -217,7 +216,7 @@ const PostView = ({
                 <div>
                   <button
                     type="button"
-                    className="invisible flex items-center text-gray-500 hover:text-gray-800 dark:text-gray-400 hover:dark:text-gray-200"
+                    className="invisible flex items-center text-gray-500 hover:text-gray-800 dark:text-[#8c8c8c] hover:dark:text-gray-200"
                     aria-label="Bookmark"
                   >
                     <BookmarkIcon className="h-5 w-5" />

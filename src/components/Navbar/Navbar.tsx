@@ -6,8 +6,8 @@ import {
   PhotoIcon,
   ArrowLeftOnRectangleIcon,
   Cog8ToothIcon,
-  Bars3Icon,
   XMarkIcon,
+  Bars3BottomRightIcon,
 } from '@heroicons/react/24/outline'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useSetRecoilState } from 'recoil'
@@ -34,7 +34,7 @@ export const Navbar = () => {
       {showSignupModal && (
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
-      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#161515] sm:flex">
+      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#212121] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
           onMouseEnter={() => setTooltipStatus(true)}
@@ -174,7 +174,7 @@ export const MobileNav = () => {
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
       <div className="fixed top-5 right-5 z-[40]">
-        <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#161515]">
+        <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#212121]">
           <button
             type="button"
             className={`flex items-center justify-center p-3`}
@@ -184,7 +184,7 @@ export const MobileNav = () => {
             {navShow ? (
               <XMarkIcon className="h-6 w-6 stroke-2" />
             ) : (
-              <Bars3Icon className="h-6 w-6 stroke-2" />
+              <Bars3BottomRightIcon className="h-6 w-6 stroke-2" />
             )}
           </button>
         </div>
@@ -198,7 +198,7 @@ export const MobileNav = () => {
         onClick={onToggleNav}
       ></div> */}
       <div
-        className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#1c1b1b]  ${
+        className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a]  ${
           navShow
             ? 'translate-x-0 shadow-lg duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'

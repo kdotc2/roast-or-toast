@@ -196,7 +196,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                   onClick={(event) => {
                     event.stopPropagation()
                   }}
-                  className="relative w-[500px] rounded-lg bg-white px-6 shadow-lg dark:bg-gray-800"
+                  className="relative w-[500px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-[#212121]"
                 >
                   <div className="py-6">
                     <h3 className="text-lg font-semibold">
@@ -217,7 +217,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                       value={postInputs.title}
                       onChange={onTitleChange}
                       placeholder="Title"
-                      className="group block h-[40px] w-full resize-none overflow-y-hidden break-words rounded border border-gray-300 bg-gray-50 py-2 pr-16 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#2b2b2b] dark:placeholder-gray-500 dark:focus:border-gray-100"
+                      className="group block h-[40px] w-full resize-none overflow-y-hidden break-words rounded border border-gray-300 bg-[#f8f8f8] py-2 pr-16 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:placeholder-gray-500 dark:focus:border-gray-100"
                     />
                     <div className="absolute right-9 flex justify-end text-xs font-semibold text-gray-400 dark:text-gray-500">
                       {count}/250
@@ -272,7 +272,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                           }
                           type="button"
                           onClick={handleCreatePost}
-                          className="primaryButton disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
+                          className="primaryButton"
                         >
                           {loading ? (
                             <>

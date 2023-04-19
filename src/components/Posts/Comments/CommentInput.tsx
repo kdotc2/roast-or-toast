@@ -31,14 +31,14 @@ const CommentInput = ({
             onChange={(event) => setComment(event.target.value)}
             name="body"
             value={comment}
-            className="border-1 peer block min-h-[84px] w-full resize-none appearance-none overflow-hidden rounded border-gray-300 bg-transparent px-[11px] pt-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-100 dark:focus:border-gray-100"
+            className="border-1 peer block min-h-[84px] w-full resize-none appearance-none overflow-hidden rounded border-gray-300 bg-transparent px-[11px] pt-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-gray-200 dark:focus:border-gray-100"
             placeholder={`Any feedback to share?`}
           />
         </form>
       </>
       <div className="flex justify-end">
         <button
-          className="primaryButton mt-2 disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
+          className="primaryButton mt-2"
           disabled={!comment.length}
           onClick={() => {
             user ? onCreateComment(comment) : setLoginState({ open: true })

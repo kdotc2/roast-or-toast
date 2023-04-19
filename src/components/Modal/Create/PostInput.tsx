@@ -35,7 +35,7 @@ const PostInputs = ({
             value={body}
             onChange={onChange}
             placeholder="Body"
-            className="flex min-h-[250px] w-full resize-none rounded border border-gray-300 bg-gray-50 py-2 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#2b2b2b] dark:placeholder-gray-500 dark:focus:border-gray-100"
+            className="flex min-h-[250px] w-full resize-none rounded border border-gray-300 bg-[#f8f8f8] py-2 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:placeholder-gray-500 dark:focus:border-gray-100"
           />
         </div>
       ) : null}
