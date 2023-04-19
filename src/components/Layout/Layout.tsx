@@ -7,6 +7,10 @@ import CurrentUserModal from '../Modal/Settings/CurrentUserModal'
 import { useRecoilState } from 'recoil'
 import { loginModalState } from '@/atoms/authModalAtom'
 import LoginModal from '../Modal/Auth/LoginModal'
+import Head from 'next/head'
+import Meta from '../Meta'
+import siteMetadata from '@/data/siteMetadata'
+import { useRouter } from 'next/router'
 
 type Props = {
   close: () => void
@@ -15,8 +19,20 @@ type Props = {
 const Layout = ({ children }: PropsWithChildren, { close }: Props) => {
   const [loginState, setLoginModalState] = useRecoilState(loginModalState)
 
+  const router = useRouter()
+
   return (
     <>
+      <Head>
+      <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="robots" content="follow, index" />
+      </Head>
+      <Meta url={`${siteMetadata.siteUrl}${router.asPath}`}/>
       <div className="relative z-10 flex w-full flex-row">
         <Navbar />
         <MobileNav />
