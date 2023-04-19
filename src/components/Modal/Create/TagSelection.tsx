@@ -50,19 +50,17 @@ const noOptionsMessageStyles =
   'flex px-3 py-2 text-sm text-gray-500 dark:text-gray-400'
 
 const multiValueStyles =
-  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-gray-200 px-2 text-xs text-gray-900 dark:bg-[#151515] dark:text-gray-200'
+  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-[#ededed] px-2 text-xs text-gray-900 dark:bg-[#151515] dark:text-gray-200'
 
 const multiValueLabelStyles = 'mr-1'
 
 const multiValueRemoveStyles =
-  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-gray-300 hover:dark:bg-[#333333]'
+  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-[#dcdcdc] hover:dark:bg-[#333333]'
 
 const indicatorSeparatorStyles = 'm-2 bg-gray-300 dark:bg-gray-600'
 
-const optionStyles = {
-  base: 'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-gray-200 hover:dark:bg-[#333333]',
-  focus: 'hover:bg-gray-200 active:bg-gray-200 dark:bg-gray-900',
-}
+const optionStyles =
+  'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-gray-200 hover:dark:bg-[#333333]'
 
 const options = [
   { value: '🔥 Roast Me', label: '🔥 Roast Me' },
@@ -120,7 +118,7 @@ export const TagSelection = ({ onTagSelection }: TagSelectionProps) => {
         multiValueRemove: () => multiValueRemoveStyles,
         indicatorSeparator: () => indicatorSeparatorStyles,
         noOptionsMessage: () => noOptionsMessageStyles,
-        option: ({ isFocused }) => optionStyles.base,
+        option: ({ isFocused }) => optionStyles,
       }}
       components={{ DropdownIndicator, MultiValueRemove, ClearIndicator }}
     />

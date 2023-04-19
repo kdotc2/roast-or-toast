@@ -9,7 +9,7 @@ type Props = {
 export default function AboutModal({ close }: Props) {
   const content = (
     <>
-      <div className="pt-6 space-y-6">
+      <div className="space-y-6 pt-6">
         <h3 className="text-lg font-semibold">About</h3>
         <div className="space-y-5 text-sm">
           <p className="">
@@ -18,25 +18,26 @@ export default function AboutModal({ close }: Props) {
             image, or a website link.{' '}
           </p>
           <p>
-            If you have any feedback, suggestions, or comments, feel free to{' '}
+            If you have any feedback, suggestions, or comments, feel free to
+            send us an email at{' '}
             <a href="mailto: hello@roastortoast.me" className="hover:underline">
-              send us an email
+              hello@roastortoast.me
             </a>
             .
           </p>
         </div>
 
         <div className="flex justify-between pb-6">
-          <div className="flex items-center justify-start gap-5 text-gray-400 dark:text-gray-500">
+          <div className="flex items-center justify-start gap-5 text-xs font-medium text-gray-400 dark:text-gray-500">
             <Link
-              className="text-xs font-medium hover:underline"
+              className="hover:underline"
               href="/privacy"
               onClick={() => close()}
             >
               Privacy Policy
             </Link>
             <Link
-              className="text-xs font-medium hover:underline"
+              className="hover:underline"
               href="/terms"
               onClick={() => close()}
             >

@@ -28,9 +28,9 @@ export default function LoginModal({ close }: Props) {
       <div className="relative">
         <div className="items-center justify-center space-y-4 pb-6 pt-6">
           <p className="text-sm">
-            By continuing, you are agreeing to our{' '}
+            By continuing, you agree to our{' '}
             <Link
-              className="hover:underline"
+              className="text-gray-400 hover:underline dark:text-gray-500"
               href="/terms"
               onClick={() => close()}
             >
@@ -38,7 +38,7 @@ export default function LoginModal({ close }: Props) {
             </Link>{' '}
             and{' '}
             <Link
-              className="hover:underline"
+              className="text-gray-400 hover:underline dark:text-gray-500"
               href="/privacy"
               onClick={() => close()}
             >

@@ -82,6 +82,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     postInputs.url = ''
     postInputs.body = ''
     postInputs.title = ''
+    setError('')
     setSelectedFile('')
     setCount(0)
     setTags([])
@@ -112,13 +113,17 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
     const { title, body, url } = postInputs
 
     if (postInputs.url) {
+      if (url.startsWith('https://' || 'http://')) {
+        setLoading(false)
+        return setError('Remove the https:// from the url')
+      }
       if (
         !url.match(
           /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/
         )
       ) {
         setLoading(false)
-        return setError('Please provide a valid url')
+        return setError('Provide a valid url')
       }
     }
 
@@ -176,7 +181,19 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   }
 
   const onTagSelection = (selectedOptions: MultiValue<unknown>) => {
-    setTags(selectedOptions.map((v: any) => v.value))
+    setTags(
+      selectedOptions
+        .map((v: any) => v.value)
+        .sort((a, b) =>
+          a
+            .replace(/[\p{Extended_Pictographic} ]/gu, '')
+            .localeCompare(
+              b.replace(/[\p{Extended_Pictographic} ]/gu, ''),
+              undefined,
+              { numeric: true }
+            )
+        )
+    )
     console.log(`Option selected:`, selectedOptions)
   }
   console.log(tags)

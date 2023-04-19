@@ -9,7 +9,7 @@ type Metadata = {
   url: string
 }
 
-const SWRTest = ({ url }: any) => {
+const LinkMetadata = ({ url }: any) => {
   const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const {
     data: metadata,
@@ -42,7 +42,7 @@ const SWRTest = ({ url }: any) => {
               <div className="flex justify-between gap-3">
                 <h3 className=" font-semibold">{metadata.title}</h3>
                 <a
-                  href={`https://${metadata.domain}`}
+                  href={`${metadata.url}`}
                   className="group pointer-events-auto lowercase hover:underline"
                   target="_blank"
                   rel="noreferrer"
@@ -80,4 +80,4 @@ const SWRTest = ({ url }: any) => {
   )
 }
 
-export default SWRTest
+export default LinkMetadata
