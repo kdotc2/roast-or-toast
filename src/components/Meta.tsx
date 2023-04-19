@@ -12,7 +12,7 @@ interface Props {
 const Meta:NextPage<Props> = ({
   title = siteMetadata.title,
   desc = siteMetadata.description,
-  imageURL = `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+  imageURL = `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`,
   url = siteMetadata.siteUrl
 }) => (
       <Head>
