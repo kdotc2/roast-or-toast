@@ -19,6 +19,7 @@ const LinkMetadata = ({ url }: any) => {
     `https://jsonlink.io/api/extract?url=https://${url}`,
     fetcher
   )
+
   return (
     <>
       {isLoading && <MetadataLoader />}
@@ -40,7 +41,7 @@ const LinkMetadata = ({ url }: any) => {
             </span>
             <div className="space-y-2 px-4">
               <div className="flex justify-between gap-3">
-                <h3 className=" font-semibold">{metadata.title}</h3>
+                <h3 className="font-semibold">{metadata.title}</h3>
                 <a
                   href={`${metadata.url}`}
                   className="group pointer-events-auto lowercase hover:underline"
@@ -66,7 +67,7 @@ const LinkMetadata = ({ url }: any) => {
                           d="M19.5 19.5l-15-15m0 0v11.25m0-11.25h11.25"
                         />
                       </svg>
-                      {metadata.domain}
+                      {metadata.domain.replace('www.', '')}
                     </div>
                   </span>
                 </a>

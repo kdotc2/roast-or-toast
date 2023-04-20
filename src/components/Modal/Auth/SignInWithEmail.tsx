@@ -142,13 +142,13 @@ export const SignInWithEmail = ({ close }: Props) => {
                 required
                 value={email}
                 id="label"
-                className="peer block h-[40px] w-full items-center rounded border-gray-200 bg-[#f8f8f8] px-[11px] py-2 pr-10 text-sm placeholder:text-center placeholder:font-medium focus:border-gray-900 focus:placeholder-transparent focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-[#262626] dark:focus:border-gray-100"
+                className="peer block h-[40px] w-full items-center rounded border-gray-300 bg-transparent px-[11px] py-2 pr-10 text-sm placeholder:text-center placeholder:font-medium focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:focus:border-[#dcdcdc]"
                 placeholder=" "
                 onChange={newEmail}
               />
               <label
                 htmlFor="label"
-                className="invisible absolute z-10 flex cursor-text items-center gap-4 bg-transparent px-2 text-sm text-gray-800 peer-placeholder-shown:visible peer-focus:text-transparent dark:text-gray-200"
+                className="invisible absolute z-10 flex cursor-text items-center gap-4 bg-transparent px-2 text-sm peer-placeholder-shown:visible peer-focus:text-transparent"
               >
                 <EnvelopeIcon className="h-[18px] w-[18px]" />
                 <p className="font-medium">Continue with Email</p>

@@ -34,13 +34,13 @@ const ClearIndicator = (props: ClearIndicatorProps) => {
 }
 const controlStyles = {
   base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:bg-[#262626] dark:text-gray-500',
-  focus: 'border-gray-900 dark:border-gray-100',
+  focus: 'border-gray-900 dark:border-[#dcdcdc]',
   nonFocus: 'border-gray-300 dark:border-gray-600',
   menuOpen: 'rounded-b-none',
 }
 
 const menuStyles =
-  'rounded rounded-t-none border border-t-0 border-gray-900 bg-[#f7f7f7] p-2 text-sm dark:border-gray-100 dark:bg-[#262626] dark:text-gray-200'
+  'rounded rounded-t-none border border-t-0 border-gray-900 bg-[#f7f7f7] p-2 text-sm dark:border-[#dcdcdc] dark:bg-[#262626] dark:text-gray-200'
 
 const selectInputStyles = 'text-gray-900 dark:text-gray-200'
 

@@ -34,10 +34,6 @@
   margin-bottom: 20px;
 }
 
-.buttonStyle {
-  @apply rounded-md border-2 py-[14px] px-6 font-medium md:hover:bg-gray-200 md:dark:hover:border-gray-700 md:dark:hover:bg-gray-700 md:dark:hover:text-white;
-}
-
 .primaryButton {
   @apply rounded-md h-8 px-3 font-medium bg-gray-200 md:dark:border-gray-700 dark:bg-[#383838] md:dark:text-gray-200 text-sm active:bg-[#dad4d4] active:dark:bg-[#4b4b4b] disabled:bg-gray-100 disabled:text-gray-200 disabled:dark:bg-gray-900 disabled:dark:text-gray-700 hover:disabled:cursor-no-drop;
 }
@@ -50,14 +46,18 @@
   @apply relative rounded-md py-3 px-3 font-medium hover:rounded-md hover:bg-gray-200 hover:py-3 hover:px-3 dark:text-gray-200 dark:hover:bg-[#333333];
 }
 
-.toolTip {
+.settingsButton {
+  @apply h-8 w-[110px] rounded-md border-none bg-gray-200 text-sm font-semibold text-gray-700 focus:ring-gray-900 active:bg-[#dad4d4] dark:bg-[#383838] dark:text-gray-300 dark:focus:ring-[#dcdcdc] active:dark:bg-[#5c5a5a] focus:ring-1 focus:outline-none;
+}
+
+.tooltip {
   @apply absolute left-full translate-x-2 translate-y-2 whitespace-nowrap rounded bg-[#333333] py-2 px-2 text-xs font-medium text-gray-200 opacity-0 transition-opacity group-hover:opacity-95;
 }
 
-.imageUpload {
-  @apply z-10 cursor-pointer rounded h-full text-sm text-slate-500 file:border-0 file:text-transparent text-transparent focus:outline-0 focus:ring-1 focus:ring-gray-900 focus:dark:ring-gray-100 w-full file:bg-transparent;
+.imageInput {
+  @apply z-10 h-full w-full cursor-pointer rounded border border-dashed border-gray-300 text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent hover:border-gray-400 focus:border-gray-900 focus:outline-0 focus:ring-0 dark:border-gray-600 hover:dark:border-gray-500 focus:dark:border-[#dcdcdc];
 }
 
-.settingsButton {
-  @apply h-8 w-[110px] rounded-md border-none bg-gray-200 text-sm font-semibold text-gray-700 focus:ring-gray-900 active:bg-[#dad4d4] dark:bg-[#383838] dark:text-gray-300 dark:focus:ring-gray-100 active:dark:bg-[#5c5a5a] focus:ring-1 focus:outline-none;
+.input {
+  @apply w-full rounded border border-gray-300 bg-[#f8f8f8] text-sm focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:focus:border-[#dcdcdc] placeholder:text-gray-400 dark:placeholder-gray-500;
 }

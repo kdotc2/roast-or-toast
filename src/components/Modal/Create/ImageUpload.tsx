@@ -29,6 +29,19 @@ ImageUploadProps) => {
   }
   const [modalState, setModalState] = useRecoilState(createModalState)
 
+  const onDragEnter = () => {
+    document.getElementById('image-upload-bg')!.className =
+      'flex h-[250px] w-full items-center justify-center rounded border-gray-400 bg-[#f3f3f3] dark:border-gray-500 dark:bg-[#2b2b2b]'
+    document.getElementById('image-upload')!.className =
+      'z-10 h-full w-full cursor-pointer rounded border border-dashed text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent border-gray-400 dark:border-gray-500'
+  }
+
+  const onDragLeave = () => {
+    document.getElementById('image-upload-bg')!.className =
+      'flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:bg-[#262626] hover:dark:bg-[#2b2b2b]'
+    document.getElementById('image-upload')!.className = 'imageInput'
+  }
+
   return (
     <div>
       {modalState.view === 'image' ? (
@@ -60,22 +73,27 @@ ImageUploadProps) => {
               </div>
             </>
           ) : (
-            <label className="flex h-[250px] w-full items-center justify-center rounded border border-dashed border-gray-300 bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:border-gray-600 dark:bg-[#262626] dark:hover:border-gray-500 hover:dark:bg-[#2b2b2b]">
-              <span className="z-1 absolute hidden appearance-none text-sm text-gray-400 dark:text-gray-500 sm:flex">
+            <div
+              id="image-upload-bg"
+              className="flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:bg-[#262626] hover:dark:bg-[#2b2b2b]"
+            >
+              <span className="absolute hidden appearance-none text-sm text-gray-400 hover:z-20 dark:text-gray-500 sm:flex">
                 Drag and drop or click to upload
               </span>
-              <span className="z-1 absolute appearance-none text-sm text-gray-400 dark:text-gray-500 sm:hidden">
+              <span className="absolute appearance-none text-sm text-gray-400 dark:text-gray-500 sm:hidden">
                 Tap to upload
               </span>
               <input
-                id="file-upload"
+                id="image-upload"
                 type="file"
                 title=""
-                className="imageUpload"
+                className="imageInput"
                 accept=".jpg, .jpeg, .png"
                 onChange={onSelectImage}
+                onDragEnter={onDragEnter}
+                onDragLeave={onDragLeave}
               />
-            </label>
+            </div>
           )}
         </div>
       ) : null}

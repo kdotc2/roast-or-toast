@@ -19,7 +19,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import ImageUpload from './ImageUpload'
 import LinkAdd from './LinkAdd'
-import PostInputs from './PostInput'
+import PostText from './PostText'
 import { TagSelection } from './TagSelection'
 import { SpinningLoader } from '@/components/Posts/Loader'
 import { MultiValue } from 'react-select'
@@ -33,7 +33,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const selectFileRef = useRef<HTMLInputElement>(null)
   const [postInputs, setPostInputs] = useState({
     title: '',
-    body: '',
+    text: '',
     url: '',
   })
   const [loading, setLoading] = useState(false)
@@ -80,7 +80,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
 
   const resetState = () => {
     postInputs.url = ''
-    postInputs.body = ''
+    postInputs.text = ''
     postInputs.title = ''
     setError('')
     setSelectedFile('')
@@ -110,7 +110,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
 
   const handleCreatePost = async () => {
     setLoading(true)
-    const { title, body, url } = postInputs
+    const { title, text, url } = postInputs
 
     if (postInputs.url) {
       if (url.startsWith('https://' || 'http://')) {
@@ -134,7 +134,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         creatorId: user?.uid,
         displayName: userSnap.data()!.displayName,
         title,
-        body,
+        text,
         url,
         numberOfComments: 0,
         voteStatus: 0,
@@ -234,17 +234,17 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                       value={postInputs.title}
                       onChange={onTitleChange}
                       placeholder="Title"
-                      className="group block h-[40px] w-full resize-none overflow-y-hidden break-words rounded border border-gray-300 bg-[#f8f8f8] py-2 pr-16 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:placeholder-gray-500 dark:focus:border-gray-100"
+                      className="input group block h-[40px] w-full resize-none overflow-y-hidden break-words py-2 pr-16"
                     />
                     <div className="absolute right-9 flex justify-end text-xs font-semibold text-gray-400 dark:text-gray-500">
                       {count}/250
                     </div>
                   </div>
-                  <PostInputs
+                  <PostText
                     toggleView={toggleView}
                     onChange={onTextChange}
                     loading={loading}
-                    body={postInputs.body}
+                    text={postInputs.text}
                   />
                   <ImageUpload
                     toggleView={toggleView}
@@ -281,7 +281,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                         {loading}
                         <button
                           disabled={
-                            ((!postInputs.title || !postInputs.body) &&
+                            ((!postInputs.title || !postInputs.text) &&
                               (!postInputs.title || !postInputs.url) &&
                               (!postInputs.title || !selectedFile)) ||
                             loading ||

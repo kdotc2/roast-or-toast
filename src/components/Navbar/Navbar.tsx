@@ -34,7 +34,7 @@ export const Navbar = () => {
       {showSignupModal && (
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
-      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfbfb] py-2 dark:bg-[#212121] sm:flex">
+      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfdfd] py-2 dark:bg-[#212121] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
           onMouseEnter={() => setTooltipStatus(true)}
@@ -58,7 +58,7 @@ export const Navbar = () => {
                     <Cog8ToothIcon className="h-6 w-6" />
                   )}
                 </button>
-                {tooltipStatus && <span className="toolTip">Settings</span>}
+                {tooltipStatus && <span className="tooltip">Settings</span>}
               </div>
             ) : (
               <div className="group">
@@ -76,7 +76,7 @@ export const Navbar = () => {
                   )}
                 </button>
                 {tooltipStatus && (
-                  <span className="toolTip">Log In / Sign Up</span>
+                  <span className="tooltip">Log In / Sign Up</span>
                 )}
               </div>
             )}
@@ -95,7 +95,7 @@ export const Navbar = () => {
               >
                 <DocumentTextIcon className="h-6 w-6" />
               </button>
-              {tooltipStatus && <span className="toolTip">Text Post</span>}
+              {tooltipStatus && <span className="tooltip">Text Post</span>}
             </div>
             <div className="group">
               <button
@@ -109,7 +109,7 @@ export const Navbar = () => {
               >
                 <PhotoIcon className="h-6 w-6" />
               </button>
-              {tooltipStatus && <span className="toolTip">Image Post</span>}
+              {tooltipStatus && <span className="tooltip">Image Post</span>}
             </div>
             <div className="group">
               <button
@@ -123,7 +123,7 @@ export const Navbar = () => {
               >
                 <LinkIcon className="h-6 w-6" />
               </button>
-              {tooltipStatus && <span className="toolTip">Link Post</span>}
+              {tooltipStatus && <span className="tooltip">Link Post</span>}
             </div>
           </div>
 
@@ -137,7 +137,7 @@ export const Navbar = () => {
             >
               <InformationCircleIcon className="h-6 w-6" />
             </button>
-            {tooltipStatus && <span className="toolTip">About</span>}
+            {tooltipStatus && <span className="tooltip">About</span>}
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@ export const MobileNav = () => {
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
       <div className="fixed top-5 right-5 z-[40]">
-        <div className="mt-auto flex transform rounded-full border bg-[#fdfbfb] shadow-md duration-100 ease-in-out active:scale-[.85] dark:bg-[#212121]">
+        <div className="mt-auto flex transform rounded-full border bg-[#fdfdfd] shadow-sm duration-100 ease-in-out active:scale-[.85] dark:bg-[#212121]">
           <button
             type="button"
             className={`flex items-center justify-center p-3`}
@@ -200,7 +200,7 @@ export const MobileNav = () => {
       <div
         className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a]  ${
           navShow
-            ? 'translate-x-0 shadow-lg duration-300 ease-out'
+            ? 'translate-x-0 shadow-sm duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'
         }`}
       >

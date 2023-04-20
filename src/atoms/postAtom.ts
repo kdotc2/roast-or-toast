@@ -7,7 +7,7 @@ export type Post = {
   creatorId: string
   displayName: string
   title: string
-  body: string
+  text: string
   url: string
   numberOfComments: number
   voteStatus: number

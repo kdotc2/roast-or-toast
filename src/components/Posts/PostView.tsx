@@ -120,7 +120,7 @@ const PostView = ({
                   singlePostPage ? 'line-clamp-none' : 'line-clamp-[20]'
                 }`}
               >
-                {post.body}
+                {post.tex}
               </p>
               <div className="">
                 {post.imageURL && (

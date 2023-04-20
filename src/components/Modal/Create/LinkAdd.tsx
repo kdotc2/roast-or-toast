@@ -33,11 +33,11 @@ const LinkAdd = ({ url, onChange, toggleView }: LinkAddProps) => {
               onChange={onChange}
               placeholder="example.com"
               id="url"
-              className="peer block h-[40px] w-full rounded border border-gray-300 bg-[#f8f8f8] px-4 py-2 pl-[60px] text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-0 focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:text-gray-200 dark:placeholder:text-gray-500 dark:focus:border-gray-100"
+              className="input peer block h-[40px] px-4 py-2 pl-[60px] placeholder:text-gray-400 dark:placeholder:text-gray-500"
             />
             <label
               htmlFor="url"
-              className="absolute left-2 top-1/2 -translate-y-1/2 pl-[5px] text-sm peer-placeholder-shown:text-gray-400 peer-focus:text-gray-900 dark:peer-placeholder-shown:text-gray-500 dark:peer-focus:text-gray-200"
+              className="absolute left-2 top-1/2 -translate-y-1/2 pl-[5px] text-sm peer-placeholder-shown:text-gray-400 peer-focus:text-gray-900 dark:peer-placeholder-shown:text-gray-500 dark:peer-focus:text-[#dcdcdc]"
             >
               https://
             </label>

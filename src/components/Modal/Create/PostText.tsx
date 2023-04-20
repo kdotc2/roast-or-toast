@@ -2,8 +2,8 @@ import { createModalState, ModalView } from '@/atoms/createModalAtom'
 import React from 'react'
 import { useRecoilState } from 'recoil'
 
-type PostInputProps = {
-  body: string
+type PostTextProps = {
+  text: string
 
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -13,13 +13,13 @@ type PostInputProps = {
   toggleView: (view: ModalView) => void
 }
 
-const PostInputs = ({
-  body,
+const PostText = ({
+  text,
   onChange,
   // handleCreatePost,
   loading,
   toggleView,
-}: PostInputProps) => {
+}: PostTextProps) => {
   const [modalState, setModalState] = useRecoilState(createModalState)
 
   return (
@@ -31,11 +31,11 @@ const PostInputs = ({
           }}
         >
           <textarea
-            name="body"
-            value={body}
+            name="text"
+            value={text}
             onChange={onChange}
-            placeholder="Body"
-            className="flex min-h-[250px] w-full resize-none rounded border border-gray-300 bg-[#f8f8f8] py-2 text-sm placeholder:text-gray-400 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:bg-[#262626] dark:placeholder-gray-500 dark:focus:border-gray-100"
+            placeholder="Text"
+            className="input flex min-h-[250px] w-full resize-none py-2"
           />
         </div>
       ) : null}
@@ -43,4 +43,4 @@ const PostInputs = ({
   )
 }
 
-export default PostInputs
+export default PostText
