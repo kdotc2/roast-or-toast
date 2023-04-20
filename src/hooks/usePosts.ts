@@ -223,16 +223,6 @@ const usePosts = () => {
     }
   }
 
-  const getPost = async (pid: string) => {
-    const docRef = doc(db, 'posts', pid as string)
-    const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) {
-      return {id: docSnap.id, ...docSnap.data()}
-    } else {
-      return undefined
-    }
-  }
-
   useEffect(() => {
     // Logout or no authenticated user
     if (!user?.uid && !loadingUser) {
@@ -269,6 +259,16 @@ const usePosts = () => {
     getPosts,
     getPost,
     getPostComments,
+  }
+}
+
+export const getPost = async (pid: string): Promise<Post | undefined> => {
+  const docRef = doc(db, 'posts', pid as string)
+  const docSnap = await getDoc(docRef)
+  if (docSnap.exists()) {
+    return {id: docSnap.id, ...docSnap.data()} as Post
+  } else {
+    return undefined
   }
 }
 
