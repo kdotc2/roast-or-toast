@@ -1,15 +1,17 @@
 import PostDetail from '@/components/Modal/Post/PostDetail'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import usePosts from '@/hooks/usePosts'
+import {getPost} from '@/hooks/usePosts'
 import { Post } from '@/atoms/postAtom'
 import Meta from '@/components/Meta'
 
-const PostPage = () => {
-  const [post, setPost] = useState<Post | undefined>(undefined)
+type PostPageProps =  {
+  post: Post
+}
+const PostPage = ({post}: PostPageProps) => {
+  // const [post, setPost] = useState<Post | undefined>(undefined)
   const router = useRouter()
   const { pid } = router.query
-  const { getPost } = usePosts()
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -23,8 +25,7 @@ const PostPage = () => {
   
   useEffect(() => {
     if (!post && pid) {
-      getPost(pid as string)
-      .then((pos) => setPost(pos as Post))
+
     }
   }, [pid])
 
@@ -43,6 +44,15 @@ const PostPage = () => {
       </div>
     </>
   )
+}
+
+PostPage.getInitialProps = async ({query}: any) => {
+  const { pid } = query
+
+  let finalPost: Post | undefined
+  await getPost(pid as string)
+  .then((pos: Post | undefined) => finalPost = pos)
+  return { post: finalPost }
 }
 
 export default PostPage

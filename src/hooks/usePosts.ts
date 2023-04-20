@@ -272,4 +272,14 @@ const usePosts = () => {
   }
 }
 
+export const getPost = async (pid: string): Promise<Post | undefined> => {
+  const docRef = doc(db, 'posts', pid as string)
+  const docSnap = await getDoc(docRef)
+  if (docSnap.exists()) {
+    return {id: docSnap.id, ...docSnap.data()} as Post
+  } else {
+    return undefined
+  }
+}
+
 export default usePosts
