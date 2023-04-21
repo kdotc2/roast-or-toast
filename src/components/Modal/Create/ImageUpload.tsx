@@ -1,9 +1,9 @@
 import { createModalState, ModalView } from '@/atoms/createModalAtom'
 import Image from 'next/image'
 import React from 'react'
-import { BsXCircleFill } from 'react-icons/bs'
 import { XCircleIcon } from '@heroicons/react/24/solid'
 import { useRecoilState } from 'recoil'
+import { SpinningLoader } from '@/components/Posts/Loader'
 
 type ImageUploadProps = {
   selectedFile?: string
@@ -12,7 +12,7 @@ type ImageUploadProps = {
   onSelectImage: (event: React.ChangeEvent<HTMLInputElement>) => void
   toggleView: (view: ModalView) => void
   // handleCreatePost: () => void
-  loading: boolean
+  loadingImage: boolean
 }
 
 const ImageUpload = ({
@@ -21,7 +21,7 @@ const ImageUpload = ({
   selectFileRef,
   onSelectImage,
   toggleView,
-  loading,
+  loadingImage,
 }: // handleCreatePost,
 ImageUploadProps) => {
   const onError = (error: any) => {
@@ -77,12 +77,18 @@ ImageUploadProps) => {
               id="image-upload-bg"
               className="flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:bg-[#262626] hover:dark:bg-[#2b2b2b]"
             >
-              <span className="absolute hidden appearance-none text-sm text-[#a3a3a3] hover:z-20 dark:text-[#737373] sm:flex">
-                Drag and drop or click to upload
-              </span>
-              <span className="absolute appearance-none text-sm text-[#a3a3a3] dark:text-[#737373] sm:hidden">
-                Tap to upload
-              </span>
+              {loadingImage ? (
+                <span className="absolute">
+                  <SpinningLoader height={5} width={5} />
+                </span>
+              ) : (
+                <div className="absolute text-sm text-[#a3a3a3] dark:text-[#737373]">
+                  <span className="hidden sm:block">
+                    Drag and drop or click to upload
+                  </span>
+                  <span className="block sm:hidden">Tap to upload</span>
+                </div>
+              )}
               <input
                 id="image-upload"
                 type="file"

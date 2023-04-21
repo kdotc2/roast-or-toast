@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { RecoilRoot } from 'recoil'
 import { ThemeProvider } from 'next-themes'
 import Layout from '@/components/Layout/Layout'
+import '@fontsource/inter/variable-full.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

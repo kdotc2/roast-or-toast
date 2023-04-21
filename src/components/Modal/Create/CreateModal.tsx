@@ -40,7 +40,8 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   const setPostItems = useSetRecoilState(postState)
   const router = useRouter()
   const [error, setError] = useState('')
-  const { selectedFile, setSelectedFile, onSelectFile } = useSelectFile()
+  const { selectedFile, setSelectedFile, onSelectFile, loadingImage } =
+    useSelectFile()
   const [show, setShow] = useState(false)
   const [user] = useAuthState(auth)
   const [count, setCount] = useState(0)
@@ -109,7 +110,6 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
   }
 
   const handleCreatePost = async () => {
-    setLoading(true)
     const { title, text, url } = postInputs
 
     if (postInputs.url) {
@@ -152,7 +152,6 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         await updateDoc(postDocRef, {
           imageURL: downloadURL,
         })
-
         // console.log('HERE IS DOWNLOAD URL', downloadURL)
       }
 
@@ -186,9 +185,9 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         .map((v: any) => v.value)
         .sort((a, b) =>
           a
-            .replace(/[\p{Extended_Pictographic} ]/gu, '')
+            .replace(/[\p{Extended_Pictographic}]/gu, '')
             .localeCompare(
-              b.replace(/[\p{Extended_Pictographic} ]/gu, ''),
+              b.replace(/[\p{Extended_Pictographic}]/gu, ''),
               undefined,
               { numeric: true }
             )
@@ -252,7 +251,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                     onSelectImage={onSelectFile}
                     setSelectedFile={setSelectedFile}
                     selectFileRef={selectFileRef}
-                    loading={loading}
+                    loadingImage={loadingImage}
                   />
                   <LinkAdd
                     toggleView={toggleView}

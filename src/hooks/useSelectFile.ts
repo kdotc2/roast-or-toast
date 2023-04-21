@@ -3,6 +3,7 @@ import Resizer from 'react-image-file-resizer'
 
 const useSelectFile = () => {
   const [selectedFile, setSelectedFile] = useState<string>()
+  const [loadingImage, setLoadingImage] = useState(false)
 
   const resizeFile = (file: Blob) =>
     new Promise((resolve) => {
@@ -21,13 +22,15 @@ const useSelectFile = () => {
     })
 
   const onSelectFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoadingImage(true)
     if (event.target.files?.[0]) {
       const image = (await resizeFile(event.target.files[0])) as string
       // console.log(image)
       setSelectedFile(image)
+      setLoadingImage(false)
     }
   }
 
-  return { selectedFile, setSelectedFile, onSelectFile }
+  return { selectedFile, setSelectedFile, onSelectFile, loadingImage }
 }
 export default useSelectFile

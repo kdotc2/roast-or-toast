@@ -103,6 +103,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
     }
 
     setCommentCreateLoading(false)
+    setComment('')
   }
 
   const onDeleteComment = useCallback(
