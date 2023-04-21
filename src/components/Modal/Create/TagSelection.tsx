@@ -20,7 +20,7 @@ const DropdownIndicator = (props: DropdownIndicatorProps) => {
 const MultiValueRemove = (props: MultiValueRemoveProps) => {
   return (
     <components.MultiValueRemove {...props}>
-      <XMarkIcon className="h-3 w-3 stroke-[2.5] hover:text-gray-800 hover:dark:text-gray-200" />
+      <XMarkIcon className="h-3 w-3 stroke-[2.5] hover:text-[#262626] hover:dark:text-[#e5e5e5]" />
     </components.MultiValueRemove>
   )
 }
@@ -28,39 +28,39 @@ const MultiValueRemove = (props: MultiValueRemoveProps) => {
 const ClearIndicator = (props: ClearIndicatorProps) => {
   return (
     <components.ClearIndicator {...props}>
-      <XMarkIcon className="h-4 w-4 stroke-[2.5] hover:text-gray-800 hover:dark:text-gray-200" />
+      <XMarkIcon className="h-4 w-4 stroke-[2.5] hover:text-[#262626] hover:dark:text-[#e5e5e5]" />
     </components.ClearIndicator>
   )
 }
 const controlStyles = {
-  base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-gray-400 hover:cursor-pointer dark:bg-[#262626] dark:text-gray-500',
-  focus: 'border-gray-900 dark:border-[#dcdcdc]',
-  nonFocus: 'border-gray-300 dark:border-gray-600',
+  base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-[#a3a3a3] hover:cursor-pointer dark:bg-[#262626] dark:text-[#737373]',
+  focus: 'border-[#121212] dark:border-[#dcdcdc]',
+  nonFocus: 'border-[#d4d4d4] dark:border-[#525252]',
   menuOpen: 'rounded-b-none',
 }
 
 const menuStyles =
-  'rounded rounded-t-none border border-t-0 border-gray-900 bg-[#f7f7f7] p-2 text-sm dark:border-[#dcdcdc] dark:bg-[#262626] dark:text-gray-200'
+  'rounded rounded-t-none border border-t-0 border-[#121212] bg-[#f7f7f7] p-2 text-sm dark:border-[#dcdcdc] dark:bg-[#262626] dark:text-[#e5e5e5]'
 
-const selectInputStyles = 'text-gray-900 dark:text-gray-200'
+const selectInputStyles = 'text-[#121212] dark:text-[#e5e5e5]'
 
-const dropdownIndicatorStyles = 'hover:text-gray-800 hover:dark:text-gray-200'
+const dropdownIndicatorStyles = 'hover:text-[#262626] hover:dark:text-[#e5e5e5]'
 
 const noOptionsMessageStyles =
-  'flex px-3 py-2 text-sm text-gray-500 dark:text-gray-400'
+  'flex px-3 py-2 text-sm text-[#737373] dark:text-[#a3a3a3]'
 
 const multiValueStyles =
-  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-[#ededed] px-2 text-xs text-gray-900 dark:bg-[#151515] dark:text-gray-200'
+  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-[#ededed] px-2 text-xs text-[#121212] dark:bg-[#151515] dark:text-[#e5e5e5]'
 
 const multiValueLabelStyles = 'mr-1'
 
 const multiValueRemoveStyles =
   '-mx-2 rounded-r-[2px] p-1.5 hover:bg-[#dcdcdc] hover:dark:bg-[#333333]'
 
-const indicatorSeparatorStyles = 'm-2 bg-gray-300 dark:bg-gray-600'
+const indicatorSeparatorStyles = 'm-2 bg-[#d4d4d4] dark:bg-[#525252]'
 
 const optionStyles =
-  'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-gray-200 hover:dark:bg-[#333333]'
+  'rounded px-3 py-2 text-sm hover:cursor-pointer hover:bg-[#e5e5e5] hover:dark:bg-[#333333]'
 
 const options = [
   { value: '🔥 Roast Me', label: '🔥 Roast Me' },

@@ -54,7 +54,7 @@ const PostDetail = ({ post, close }: Props) => {
       >
         <div
           id="post-detail-content"
-          className={`z-41 dark:bg-gray-80 relative w-[750px] overflow-y-auto overscroll-contain bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a] sm:h-screen [&::-webkit-scrollbar]:hidden`}
+          className={`relative z-40 w-[750px] overflow-y-auto overscroll-contain bg-[#f5f2f2] [-ms-overflow-style:'none'] [scrollbar-width:'none'] supports-[height:100dvh]:h-[100dvh] dark:bg-[#0b0b0b] sm:h-screen [&::-webkit-scrollbar]:hidden`}
         >
           {error && (
             <p className="flex h-screen items-center justify-center text-xs font-medium text-red-500 dark:text-red-400">
@@ -62,10 +62,10 @@ const PostDetail = ({ post, close }: Props) => {
             </p>
           )}
           <div className="sm:mx-6">
-            <div className="z-60 sticky top-0 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#06080a] sm:mx-8">
+            <div className="z-60 sticky top-0 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#0b0b0b] sm:mx-8">
               <button
                 onClick={() => safeClose()}
-                className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-gray-200 hover:py-2 hover:px-3 dark:text-white dark:hover:bg-gray-800"
+                className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-[#e5e5e5] hover:py-2 hover:px-3 dark:text-white dark:hover:bg-[#262626]"
               >
                 <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
               </button>

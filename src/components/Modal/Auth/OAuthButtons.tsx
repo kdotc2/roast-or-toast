@@ -24,10 +24,10 @@ const OAuthButtons = () => {
 
   return (
     <button
-      className="flex h-[40px] w-full items-center justify-center rounded border border-gray-300 py-2 text-sm font-medium dark:border-gray-600"
+      className="flex h-[40px] w-full items-center justify-center rounded border border-[#d4d4d4] py-2 text-sm font-medium dark:border-[#525252]"
       onClick={signIn}
     >
-      <div className="flex items-center gap-4 text-gray-500 dark:text-gray-400">
+      <div className="flex items-center gap-4 text-[#737373] dark:text-[#a3a3a3]">
         <svg
           width="16"
           height="16"

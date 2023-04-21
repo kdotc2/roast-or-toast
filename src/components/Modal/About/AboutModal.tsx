@@ -28,7 +28,7 @@ export default function AboutModal({ close }: Props) {
         </div>
 
         <div className="flex justify-between pb-6">
-          <div className="flex items-center justify-start gap-5 text-xs font-medium text-gray-400 dark:text-gray-500">
+          <div className="flex items-center justify-start gap-5 text-xs font-medium text-[#a3a3a3] dark:text-[#737373]">
             <Link
               className="hover:underline"
               href="/privacy"

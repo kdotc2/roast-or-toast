@@ -3,11 +3,11 @@ import React from 'react'
 export const Loader = () => {
   return (
     <div className="">
-      <div className="mb-2 flex animate-pulse flex-col space-y-3 rounded border border-gray-200 p-4 shadow dark:border-gray-700">
+      <div className="mb-2 flex animate-pulse flex-col space-y-3 rounded border border-[#e5e5e5] p-4 shadow dark:border-[#404040]">
         <div className="flex justify-between">
           <div className="flex items-center space-x-3">
             <svg
-              className="h-14 w-14 text-gray-200 dark:text-gray-700"
+              className="h-14 w-14 text-[#e5e5e5] dark:text-[#404040]"
               aria-hidden="true"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -21,15 +21,15 @@ export const Loader = () => {
             </svg>
             <div>
               <div>
-                <div className="mb-2 h-2.5 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                <div className="h-2.5 w-40 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                <div className="mb-2 h-2.5 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+                <div className="h-2.5 w-40 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
               </div>
             </div>
           </div>
         </div>
-        <div className="mb-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="mb-4 flex h-48 items-center justify-center rounded bg-gray-300 dark:bg-gray-700"></div>
+        <div className="mb-2 h-2 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="mb-4 flex h-48 items-center justify-center rounded bg-[#d4d4d4] dark:bg-[#404040]"></div>
       </div>
     </div>
   )
@@ -37,7 +37,7 @@ export const Loader = () => {
 
 export const LoaderImage = () => {
   return (
-    <div className="-mx-4 mb-4 flex h-48 animate-pulse items-center justify-center bg-gray-300 dark:bg-gray-700"></div>
+    <div className="-mx-4 mb-4 flex h-48 animate-pulse items-center justify-center bg-[#d4d4d4] dark:bg-[#404040]"></div>
   )
 }
 
@@ -45,12 +45,12 @@ export const CommentLoader = () => {
   return (
     <div className="w-full">
       <div className="mb-2 flex animate-pulse flex-col space-y-3 p-4">
-        <div className="mb-2 h-2 w-32 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
+        <div className="mb-2 h-2 w-32 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
         {/* <div className="flex justify-between">
-          <div className="h-4 w-10 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-          <div className="h-4 w-16 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+          <div className="h-4 w-10 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+          <div className="h-4 w-16 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
         </div> */}
       </div>
     </div>
@@ -61,10 +61,10 @@ export const MetadataLoader = () => {
   return (
     <>
       <div className="animate-pulse space-y-2">
-        <div className="mb-5 flex h-52 items-center justify-center bg-gray-300 dark:bg-gray-700"></div>
-        <div className="mx-4 h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="mx-4 h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
-        <div className="mx-4 h-2 w-auto rounded-full bg-gray-200 dark:bg-gray-700"></div>
+        <div className="mb-5 flex h-52 items-center justify-center bg-[#d4d4d4] dark:bg-[#404040]"></div>
+        <div className="mx-4 h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="mx-4 h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="mx-4 h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
       </div>
     </>
   )
@@ -79,7 +79,7 @@ export const SpinningLoader = ({ height, width }: SpinningLoaderProps) => {
     <div role="status spinner">
       <svg
         aria-hidden="true"
-        className={`animate-spin fill-gray-800 text-gray-200 dark:fill-gray-200 dark:text-gray-600 h-${height} w-${width}`}
+        className={`animate-spin fill-[#262626] text-[#e5e5e5] dark:fill-[#e5e5e5] dark:text-[#525252] h-${height} w-${width}`}
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

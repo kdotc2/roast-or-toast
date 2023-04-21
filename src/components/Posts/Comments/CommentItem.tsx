@@ -38,7 +38,7 @@ const CommentItem = ({
   return (
     <div className="p-2">
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+        <div className="flex justify-between text-xs text-[#737373] dark:text-[#a3a3a3]">
           <div className="flex gap-[6px]">
             <span className="font-bold">{comment.creatorDisplayName}</span> •{' '}
             {comment.createdAt?.seconds && (
@@ -51,11 +51,11 @@ const CommentItem = ({
         <p className="whitespace-pre-line text-sm">{comment.text}</p>
         <div className="flex items-center">
           <div className="flex items-center gap-10">
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-[#737373] dark:text-[#a3a3a3]">
               <button
                 aria-label="Upvote"
                 type="button"
-                className="hover:text-gray-800 hover:dark:text-gray-200"
+                className="hover:text-[#262626] hover:dark:text-[#e5e5e5]"
                 onClick={(event) => onVote(event, comment, 1)}
               >
                 <HeartIcon
@@ -95,7 +95,7 @@ const CommentItem = ({
                                   event.stopPropagation()
                                 }}
                               >
-                                <div className="relative w-[400px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-gray-800">
+                                <div className="relative w-[400px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-[#262626]">
                                   <div className="pt-6">
                                     <h3 className="text-lg font-semibold">
                                       Confirm delete
@@ -141,7 +141,7 @@ const CommentItem = ({
                       </>
                       <button
                         type="button"
-                        className="flex items-center text-gray-500 hover:text-gray-800 dark:text-gray-400 hover:dark:text-gray-200"
+                        className="flex items-center text-[#737373] hover:text-[#262626] dark:text-[#a3a3a3] hover:dark:text-[#e5e5e5]"
                         aria-label="Delete"
                       >
                         <TrashIcon

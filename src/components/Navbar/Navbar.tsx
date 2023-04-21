@@ -198,7 +198,7 @@ export const MobileNav = () => {
         onClick={onToggleNav}
       ></div> */}
       <div
-        className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#06080a]  ${
+        className={`fixed bottom-0 z-30 flex w-full transform bg-[#f5f2f2] supports-[height:100dvh]:h-[100dvh] dark:bg-[#0b0b0b]  ${
           navShow
             ? 'translate-x-0 shadow-sm duration-300 ease-out'
             : 'translate-x-full duration-300 ease-in'
@@ -206,7 +206,7 @@ export const MobileNav = () => {
       >
         <nav className="z-[150] mx-auto ml-8 flex flex-col justify-center space-y-16 text-sm">
           <div className="flex flex-col justify-between space-y-6">
-            <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
+            <p className="-mb-2 text-xs font-semibold uppercase text-[#a3a3a3] dark:text-[#737373]">
               Create a post
             </p>
             <button
@@ -257,7 +257,7 @@ export const MobileNav = () => {
             </button>
           </div>
           <div className="flex-col space-y-6">
-            <p className="-mb-2 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
+            <p className="-mb-2 text-xs font-semibold uppercase text-[#a3a3a3] dark:text-[#737373]">
               miscellaneous
             </p>
             {currentUser ? (

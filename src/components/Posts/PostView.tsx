@@ -79,7 +79,7 @@ const PostView = ({
         className={`rounded border bg-[#fdfdfd] dark:bg-[#212121] ${
           singlePostPage
             ? 'cursor-default'
-            : 'cursor-pointer md:hover:border-gray-400 md:hover:dark:border-gray-500'
+            : 'cursor-pointer md:hover:border-[#a3a3a3] md:hover:dark:border-[#737373]'
         } `}
       >
         <Link
@@ -106,7 +106,7 @@ const PostView = ({
             </div>
 
             <div className="flex justify-between px-4">
-              <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-[#8c8c8c]">
+              <div className="flex items-center space-x-2 text-xs text-[#737373] dark:text-[#8c8c8c]">
                 <div className="flex gap-[6px]">
                   <span className="font-bold">{post.displayName}</span> •{' '}
                   {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
@@ -153,11 +153,11 @@ const PostView = ({
               }
             }}
           >
-            <div className="flex items-center gap-2 text-gray-500 dark:text-[#8c8c8c]">
+            <div className="flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
               <button
                 aria-label="Upvote"
                 type="button"
-                className="pointer-events-auto hover:text-gray-800 hover:dark:text-gray-200"
+                className="pointer-events-auto hover:text-[#262626] hover:dark:text-[#e5e5e5]"
                 onClick={(event) => onVote(event, post, 1)}
               >
                 <HeartIcon
@@ -178,7 +178,7 @@ const PostView = ({
                 {formatter.format(post.voteStatus)}
               </span>
             </div>
-            <div className="justify flex items-center gap-2 text-gray-500 dark:text-[#8c8c8c]">
+            <div className="justify flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
               <ChatBubbleOvalLeftIcon className="h-5 w-5" />
               <span
                 className={`text-sm font-medium ${
@@ -201,7 +201,7 @@ const PostView = ({
                     <div>
                       <button
                         type="button"
-                        className="flex items-center text-gray-500 hover:text-gray-800 dark:text-[#8c8c8c] hover:dark:text-gray-200"
+                        className="flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
                         onClick={(event) => {
                           setConfirmDeleteModal(true), event.stopPropagation()
                         }}
@@ -216,7 +216,7 @@ const PostView = ({
                 <div>
                   <button
                     type="button"
-                    className="invisible flex items-center text-gray-500 hover:text-gray-800 dark:text-[#8c8c8c] hover:dark:text-gray-200"
+                    className="invisible flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
                     aria-label="Bookmark"
                   >
                     <BookmarkIcon className="h-5 w-5" />

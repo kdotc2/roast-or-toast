@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html lang={siteMetadata.language}>
       <Head />
-      <body className="overflow-x-hidden overscroll-y-none bg-[#f5f2f2] text-gray-900 antialiased dark:bg-[#06080a] dark:text-[#dcdcdc]">
+      <body className="overflow-x-hidden overscroll-y-none bg-[#f2f2f2] text-[#272727] antialiased dark:bg-[#0b0b0b] dark:text-[#dbdbdb]">
         <Main />
         <NextScript />
       </body>

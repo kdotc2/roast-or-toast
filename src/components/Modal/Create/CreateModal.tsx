@@ -236,7 +236,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
                       placeholder="Title"
                       className="input group block h-[40px] w-full resize-none overflow-y-hidden break-words py-2 pr-16"
                     />
-                    <div className="absolute right-9 flex justify-end text-xs font-semibold text-gray-400 dark:text-gray-500">
+                    <div className="absolute right-9 flex justify-end text-xs font-semibold text-[#a3a3a3] dark:text-[#737373]">
                       {count}/250
                     </div>
                   </div>

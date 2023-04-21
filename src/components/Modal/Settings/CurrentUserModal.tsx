@@ -97,7 +97,7 @@ export default function CurrentUserModal() {
                   event.stopPropagation()
                 }}
               >
-                <div className="relative w-[400px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-gray-800">
+                <div className="relative w-[400px] rounded-lg bg-[#fdfdfd] px-6 shadow-lg dark:bg-[#262626]">
                   <div className="pt-5">
                     <h3 className="text-xl font-semibold">
                       Confirm delete account
@@ -163,7 +163,7 @@ export default function CurrentUserModal() {
                         </h3>
                       </div>
                       <div className="space-y-4 text-sm">
-                        <p className="-mb-3 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
+                        <p className="-mb-3 text-xs font-semibold uppercase text-[#a3a3a3] dark:text-[#737373]">
                           Appearance
                         </p>
                         <div>
@@ -171,7 +171,7 @@ export default function CurrentUserModal() {
                         </div>
                       </div>
                       <div className="space-y-4 text-sm">
-                        <p className="-mb-3 text-xs font-semibold uppercase text-gray-400 dark:text-gray-500">
+                        <p className="-mb-3 text-xs font-semibold uppercase text-[#a3a3a3] dark:text-[#737373]">
                           Account
                         </p>
                         <div className="flex items-center justify-between">

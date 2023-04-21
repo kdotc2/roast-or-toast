@@ -118,7 +118,7 @@ export default function Modal() {
                           least four characters.
                         </p>
                         <form
-                          className="relative flex flex-col border-gray-500"
+                          className="relative flex flex-col border-[#737373]"
                           onSubmit={updateDisplayName}
                         >
                           <div className="relative flex">

@@ -142,7 +142,7 @@ export const SignInWithEmail = ({ close }: Props) => {
                 required
                 value={email}
                 id="label"
-                className="peer block h-[40px] w-full items-center rounded border-gray-300 bg-transparent px-[11px] py-2 pr-10 text-sm placeholder:text-center placeholder:font-medium focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-600 dark:focus:border-[#dcdcdc]"
+                className="peer block h-[40px] w-full items-center rounded border-[#d4d4d4] bg-transparent px-[11px] py-2 pr-10 text-sm placeholder:text-center placeholder:font-medium focus:border-[#121212] focus:outline-none focus:ring-0 dark:border-[#525252] dark:focus:border-[#dcdcdc]"
                 placeholder=" "
                 onChange={newEmail}
               />
@@ -162,7 +162,7 @@ export const SignInWithEmail = ({ close }: Props) => {
                     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                   ) || loginLoading
                 }
-                className="absolute right-[7px] flex rounded-[2px] bg-gray-200 p-2 text-sm font-medium active:bg-[#dad4d4] disabled:bg-gray-100 disabled:text-gray-200 hover:disabled:cursor-no-drop peer-placeholder-shown:invisible peer-focus:visible dark:bg-[#383838] active:dark:bg-[#4b4b4b] disabled:dark:bg-gray-900 disabled:dark:text-gray-700"
+                className="absolute right-[7px] flex rounded-[2px] bg-[#e5e5e5] p-2 text-sm font-medium active:bg-[#d8d8d8] disabled:bg-[#f5f5f5] disabled:text-[#e5e5e5] hover:disabled:cursor-no-drop peer-placeholder-shown:invisible peer-focus:visible dark:bg-[#383838] active:dark:bg-[#4b4b4b] disabled:dark:bg-[#121212] disabled:dark:text-[#404040]"
                 onClick={handleLogin}
               >
                 {loginLoading ? (

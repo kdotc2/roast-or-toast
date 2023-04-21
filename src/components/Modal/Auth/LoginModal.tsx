@@ -30,7 +30,7 @@ export default function LoginModal({ close }: Props) {
           <p className="text-sm">
             By continuing, you agree to our{' '}
             <Link
-              className="text-gray-400 hover:underline dark:text-gray-500"
+              className="text-[#a3a3a3] hover:underline dark:text-[#737373]"
               href="/terms"
               onClick={() => close()}
             >
@@ -38,7 +38,7 @@ export default function LoginModal({ close }: Props) {
             </Link>{' '}
             and{' '}
             <Link
-              className="text-gray-400 hover:underline dark:text-gray-500"
+              className="text-[#a3a3a3] hover:underline dark:text-[#737373]"
               href="/privacy"
               onClick={() => close()}
             >

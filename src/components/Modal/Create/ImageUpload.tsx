@@ -31,9 +31,9 @@ ImageUploadProps) => {
 
   const onDragEnter = () => {
     document.getElementById('image-upload-bg')!.className =
-      'flex h-[250px] w-full items-center justify-center rounded border-gray-400 bg-[#f3f3f3] dark:border-gray-500 dark:bg-[#2b2b2b]'
+      'flex h-[250px] w-full items-center justify-center rounded border-[#a3a3a3] bg-[#f3f3f3] dark:border-[#737373] dark:bg-[#2b2b2b]'
     document.getElementById('image-upload')!.className =
-      'z-10 h-full w-full cursor-pointer rounded border border-dashed text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent border-gray-400 dark:border-gray-500'
+      'z-10 h-full w-full cursor-pointer rounded border border-dashed text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent border-[#a3a3a3] dark:border-[#737373]'
   }
 
   const onDragLeave = () => {
@@ -54,12 +54,12 @@ ImageUploadProps) => {
             <>
               <div className="flex justify-end">
                 <button
-                  className="absolute z-10 translate-y-2 -translate-x-2 text-gray-400 hover:text-gray-800 dark:text-gray-500 hover:dark:text-gray-200"
+                  className="absolute z-10 translate-y-2 -translate-x-2 text-[#a3a3a3] hover:text-[#262626] dark:text-[#737373] hover:dark:text-[#e5e5e5]"
                   onClick={() => setSelectedFile('')}
                 >
                   <XCircleIcon className="h-6 w-6" />
                 </button>
-                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-gray-300 bg-[#f8f8f8] dark:border-gray-600 dark:bg-[#262626]">
+                <div className="relative flex min-h-[250px] w-full items-center justify-center rounded border border-[#d4d4d4] bg-[#f8f8f8] dark:border-[#525252] dark:bg-[#262626]">
                   <div className="fixed flex max-h-[250px] p-2">
                     <Image
                       className="object-scale-down"
@@ -77,10 +77,10 @@ ImageUploadProps) => {
               id="image-upload-bg"
               className="flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:bg-[#262626] hover:dark:bg-[#2b2b2b]"
             >
-              <span className="absolute hidden appearance-none text-sm text-gray-400 hover:z-20 dark:text-gray-500 sm:flex">
+              <span className="absolute hidden appearance-none text-sm text-[#a3a3a3] hover:z-20 dark:text-[#737373] sm:flex">
                 Drag and drop or click to upload
               </span>
-              <span className="absolute appearance-none text-sm text-gray-400 dark:text-gray-500 sm:hidden">
+              <span className="absolute appearance-none text-sm text-[#a3a3a3] dark:text-[#737373] sm:hidden">
                 Tap to upload
               </span>
               <input
