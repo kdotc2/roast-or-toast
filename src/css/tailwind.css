@@ -57,7 +57,7 @@
 }
 
 .imageInput {
-  @apply z-10 h-full w-full cursor-pointer rounded border border-dashed border-[#d4d4d4] text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent hover:border-[#a3a3a3] focus:border-[#121212] focus:outline-0 focus:ring-0 dark:border-[#525252] hover:dark:border-[#737373] focus:dark:border-[#dcdcdc];
+  @apply absolute z-10 h-full w-full cursor-pointer rounded border border-dashed border-[#d4d4d4] text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent hover:border-[#a3a3a3] focus:border-[#121212] focus:outline-0 focus:ring-0 dark:border-[#525252] hover:dark:border-[#737373] focus:dark:border-[#dcdcdc];
 }
 
 .input {

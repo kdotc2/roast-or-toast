@@ -28,6 +28,10 @@ const CommentInput = ({
   const [text, setText] = useState('')
   const setAuthModalState = useSetRecoilState(loginModalState)
 
+  const resetState = () => {
+    setText(''), setIsRoast(false), setIsToast(false)
+  }
+
   const onSubmit = () => {
     if (!user) {
       setAuthModalState({ open: true })
@@ -38,12 +42,12 @@ const CommentInput = ({
       isRoast,
       isToast,
     }
-    createComment(preComment, user, post)
-    .then((comment) => {
+    createComment(preComment, user, post).then((comment) => {
       if (comment) {
         onCreateComment(comment)
       }
     })
+    resetState()
   }
 
   return (

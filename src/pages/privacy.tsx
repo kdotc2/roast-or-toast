@@ -16,7 +16,7 @@ export default function Privacy() {
             <ArrowLongLeftIcon className="h-5 w-5" /> Back to posts
           </button>
         </div>
-        <div className="rounded border bg-[#fdfdfd] dark:bg-[#212121]">
+        <div className="rounded border border-[#e5e5e5] bg-[#fdfdfd] dark:border-[#333333] dark:bg-[#212121]">
           <div className="prose max-w-[800px] p-10 text-sm text-[#121212] marker:text-[#121212] prose-h4:text-base prose-h4:text-[#121212] dark:text-[#dcdcdc] marker:dark:text-[#dcdcdc] prose-h4:dark:text-[#dcdcdc] md:p-20">
             <div className="text-xl font-bold">
               Roast or Toast Privacy Policy

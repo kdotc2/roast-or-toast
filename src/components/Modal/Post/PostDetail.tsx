@@ -62,7 +62,7 @@ const PostDetail = ({ post, close }: Props) => {
             </p>
           )}
           <div className="sm:mx-6">
-            <div className="z-60 sticky top-0 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#0b0b0b] sm:mx-8">
+            <div className="z-50 sticky top-0 mx-5 bg-[#f5f2f2] py-2 dark:bg-[#0b0b0b] sm:mx-8">
               <button
                 onClick={() => safeClose()}
                 className="relative flex items-center gap-2 rounded-md py-2 px-3 text-sm font-medium hover:rounded-md hover:bg-[#e5e5e5] hover:py-2 hover:px-3 dark:text-white dark:hover:bg-[#262626]"

@@ -1,11 +1,7 @@
 import { loginModalState } from '@/atoms/authModalAtom'
 import { Post, postState } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
-import {
-  doc,
-  increment,
-  writeBatch,
-} from 'firebase/firestore'
+import { doc, increment, writeBatch } from 'firebase/firestore'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useSetRecoilState } from 'recoil'
@@ -36,10 +32,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
   const { onVote, commentStateValue } = useComments()
 
   const onCreateComment = async (comment: Comment) => {
-    setComments((prev) => [
-      comment,
-      ...prev,
-    ])
+    setComments((prev) => [comment, ...prev])
     setPostState((prev) => ({
       ...prev,
       selectedPost: {
@@ -97,9 +90,7 @@ const Comments = ({ selectedPost }: CommentsProps) => {
 
   return (
     <div>
-      <div
-        className="rounded border border-[#e5e5e5] bg-[#fdfdfd] p-4 dark:border-[#333333] dark:bg-[#212121]"
-      >
+      <div className="rounded border border-[#e5e5e5] bg-[#fdfdfd] p-4 dark:border-[#333333] dark:bg-[#212121]">
         <CommentInput
           loading={commentCreateLoading}
           user={user}

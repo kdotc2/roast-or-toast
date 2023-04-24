@@ -44,10 +44,10 @@ export const LoaderImage = () => {
 export const CommentLoader = () => {
   return (
     <div className="w-full">
-      <div className="mb-2 flex animate-pulse flex-col space-y-3 p-4">
-        <div className="mb-2 h-2 w-32 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
-        <div className="h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
-        <div className="h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+      <div className="mb-2 flex animate-pulse flex-col space-y-4 px-2 py-4">
+        <div className="h-2.5 w-32 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="h-2.5 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
+        <div className="h-2.5 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
         {/* <div className="flex justify-between">
           <div className="h-4 w-10 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
           <div className="h-4 w-16 rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>

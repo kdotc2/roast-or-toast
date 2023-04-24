@@ -174,7 +174,7 @@ export const MobileNav = () => {
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
       <div className="fixed top-5 right-5 z-[40]">
-        <div className="mt-auto flex transform rounded-full border bg-[#fdfdfd] shadow-sm duration-100 ease-in-out active:scale-[.85] dark:bg-[#212121]">
+        <div className="mt-auto flex transform rounded-full border border-[#e5e5e5] bg-[#fdfdfd] shadow-sm duration-100 ease-in-out active:scale-[.85] dark:border-[#333333] dark:bg-[#212121]">
           <button
             type="button"
             className={`flex items-center justify-center p-3`}

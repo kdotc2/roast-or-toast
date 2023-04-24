@@ -31,9 +31,9 @@ ImageUploadProps) => {
 
   const onDragEnter = () => {
     document.getElementById('image-upload-bg')!.className =
-      'flex h-[250px] w-full items-center justify-center rounded border-[#a3a3a3] bg-[#f3f3f3] dark:border-[#737373] dark:bg-[#2b2b2b]'
+      'relative flex h-[250px] w-full items-center justify-center rounded border-[#a3a3a3] bg-[#f3f3f3] dark:border-[#737373] dark:bg-[#2b2b2b]'
     document.getElementById('image-upload')!.className =
-      'z-10 h-full w-full cursor-pointer rounded border border-dashed text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent border-[#a3a3a3] dark:border-[#737373]'
+      'absolute z-10 h-full w-full cursor-pointer rounded border border-dashed text-sm text-transparent file:border-0 file:bg-transparent file:text-transparent border-[#a3a3a3] dark:border-[#737373]'
   }
 
   const onDragLeave = () => {
@@ -73,32 +73,34 @@ ImageUploadProps) => {
               </div>
             </>
           ) : (
-            <div
-              id="image-upload-bg"
-              className="flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] dark:bg-[#262626] hover:dark:bg-[#2b2b2b]"
-            >
-              {loadingImage ? (
-                <span className="absolute">
-                  <SpinningLoader height={5} width={5} />
-                </span>
-              ) : (
-                <div className="absolute text-sm text-[#a3a3a3] dark:text-[#737373]">
-                  <span className="hidden sm:block">
-                    Drag and drop or click to upload
-                  </span>
-                  <span className="block sm:hidden">Tap to upload</span>
-                </div>
-              )}
+            <div className="relative flex items-center justify-center">
               <input
                 id="image-upload"
                 type="file"
                 title=""
-                className="imageInput"
+                className="imageInput peer"
                 accept=".jpg, .jpeg, .png"
                 onChange={onSelectImage}
                 onDragEnter={onDragEnter}
                 onDragLeave={onDragLeave}
               />
+              <label
+                id="image-upload-bg"
+                className="relative flex h-[250px] w-full items-center justify-center rounded bg-[#f8f8f8] hover:bg-[#f3f3f3] peer-focus:bg-transparent dark:bg-[#262626] hover:dark:bg-[#2b2b2b]"
+              >
+                {loadingImage ? (
+                  <span className="absolute">
+                    <SpinningLoader height={5} width={5} />
+                  </span>
+                ) : (
+                  <div className="absolute text-sm text-[#a3a3a3] dark:text-[#737373]">
+                    <span className="hidden sm:block">
+                      Drag and drop or click to upload
+                    </span>
+                    <span className="block sm:hidden">Tap to upload</span>
+                  </div>
+                )}
+              </label>
             </div>
           )}
         </div>

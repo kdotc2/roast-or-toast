@@ -3,10 +3,7 @@ import { Comment } from '@/atoms/commentAtom'
 import { Timestamp } from 'firebase/firestore'
 import moment from 'moment'
 import { Loader, SpinningLoader } from '../Loader'
-import {
-  HeartIcon,
-  TrashIcon,
-} from '@heroicons/react/24/outline'
+import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 type CommentItemProps = {
   comment: Comment
@@ -35,7 +32,7 @@ const CommentItem = ({
   const [loadingDelete, setLoadingDelete] = useState(false)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState(false)
   return (
-    <div className="p-2">
+    <div className="p-2 mt-4">
       <div className="space-y-2">
         <div className="flex justify-between text-xs text-[#737373] dark:text-[#a3a3a3]">
           <div className="flex gap-[6px]">
@@ -46,29 +43,18 @@ const CommentItem = ({
               </span>
             )}
             {(comment.isRoast || comment.isToast) && (
-              <>
-              <span>
-                •
-              </span>
-              <span>
-                {comment.isRoast && (
-                  <>
-                    🔥
-                  </>
-                )}
-                {comment.isToast && (
-                  <>
-                    🍺 
-                  </>
-                )}
-            </span>
-            </>
+              <div className="">
+                <span>• </span>
+                <span>
+                  {comment.isRoast && <>🔥</>} {comment.isToast && <>🍺</>}
+                </span>
+              </div>
             )}
           </div>
         </div>
         <p className="whitespace-pre-line text-sm">{comment.text}</p>
         <div className="flex items-center">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 text-[#737373] dark:text-[#a3a3a3]">
               <button
                 aria-label="Upvote"
