@@ -4,7 +4,6 @@ import { Timestamp } from 'firebase/firestore'
 import moment from 'moment'
 import { Loader, SpinningLoader } from '../Loader'
 import {
-  ChatBubbleOvalLeftIcon,
   HeartIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline'
@@ -45,6 +44,25 @@ const CommentItem = ({
               <span>
                 {moment(new Date(comment.createdAt?.seconds * 1000)).fromNow()}
               </span>
+            )}
+            {(comment.isRoast || comment.isToast) && (
+              <>
+              <span>
+                •
+              </span>
+              <span>
+                {comment.isRoast && (
+                  <>
+                    🔥
+                  </>
+                )}
+                {comment.isToast && (
+                  <>
+                    🍺 
+                  </>
+                )}
+            </span>
+            </>
             )}
           </div>
         </div>

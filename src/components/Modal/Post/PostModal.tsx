@@ -8,7 +8,6 @@ type Props = {
 }
 
 const PostModal = ({ close, post }: Props) => {
-  console.log(`modal for ${post?.title}`)
   const content = <PostDetail post={post} close={close} />
 
   return <ModalWrapper close={close} child={content} width={750} />

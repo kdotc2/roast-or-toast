@@ -193,9 +193,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
             )
         )
     )
-    console.log(`Option selected:`, selectedOptions)
   }
-  console.log(tags)
 
   return (
     <div onClick={handleClose}>
