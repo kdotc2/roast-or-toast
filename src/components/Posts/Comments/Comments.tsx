@@ -2,16 +2,8 @@ import { loginModalState } from '@/atoms/authModalAtom'
 import { Post, postState } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
 import {
-  collection,
   doc,
-  getDoc,
-  getDocs,
   increment,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-  where,
   writeBatch,
 } from 'firebase/firestore'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -23,7 +15,7 @@ import { Comment } from '@/atoms/commentAtom'
 import CommentInput from './CommentInput'
 import { CommentLoader, Loader } from '../Loader'
 import { User } from 'firebase/auth'
-import useComments from '@/hooks/useComments'
+import useComments, { createComment } from '@/hooks/useComments'
 import usePosts from '@/hooks/usePosts'
 
 type CommentsProps = {
@@ -32,78 +24,30 @@ type CommentsProps = {
 }
 
 const Comments = ({ selectedPost }: CommentsProps) => {
-  const [comment, setComment] = useState('')
+  const [text, setText] = useState('')
   const [comments, setComments] = useState<Comment[]>([])
   const [commentFetchLoading, setCommentFetchLoading] = useState(true)
   const [commentCreateLoading, setCommentCreateLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState('')
   const [user, error] = useAuthState(auth)
-  const setAuthModalState = useSetRecoilState(loginModalState)
   const setPostState = useSetRecoilState(postState)
   const { getPostComments } = usePosts()
 
   const { onVote, commentStateValue } = useComments()
 
-  const onCreateComment = async (comment: string) => {
-    if (!user) {
-      setAuthModalState({ open: true })
-      return
-    }
-
-    try {
-      const batch = writeBatch(db)
-      const userSnap = await getDoc(doc(db, 'users', user.uid))
-      // Create comment document
-      const commentDocRef = doc(collection(db, 'comments'))
-      batch.set(commentDocRef, {
-        postId: selectedPost.id,
-        creatorId: user!.uid,
-        creatorDisplayName: userSnap.data()?.displayName,
-        // creatorPhotoURL: user!.photoURL,
-        text: comment,
-        voteStatus: 0,
-        postTitle: selectedPost.title,
-        createdAt: serverTimestamp(),
-      } as Comment)
-
-      // Update post numberOfComments
-      batch.update(doc(db, 'posts', selectedPost.id), {
-        numberOfComments: increment(1),
-      })
-      await batch.commit()
-
-      const { id: postId, title } = selectedPost
-      setComments((prev) => [
-        {
-          id: commentDocRef.id,
-          creatorId: user!.uid,
-          creatorDisplayName: userSnap.data()?.displayName,
-          // creatorPhotoURL: user!.photoURL,
-          postId,
-          postTitle: title,
-          text: comment,
-          voteStatus: 0,
-          createdAt: {
-            seconds: Date.now() / 1000,
-          },
-        } as Comment,
-        ...prev,
-      ])
-      setPostState((prev) => ({
-        ...prev,
-        selectedPost: {
-          ...prev.selectedPost,
-          numberOfComments: prev.selectedPost?.numberOfComments! + 1,
-        } as Post,
-        postUpdateRequired: true,
-      }))
-    } catch (error: any) {
-      // console.log('onCreateComment error', error.message)
-      alert('Error creating comment')
-    }
-
-    setCommentCreateLoading(false)
-    setComment('')
+  const onCreateComment = async (comment: Comment) => {
+    setComments((prev) => [
+      comment,
+      ...prev,
+    ])
+    setPostState((prev) => ({
+      ...prev,
+      selectedPost: {
+        ...prev.selectedPost,
+        numberOfComments: prev.selectedPost?.numberOfComments! + 1,
+      } as Post,
+      postUpdateRequired: true,
+    }))
   }
 
   const onDeleteComment = useCallback(
@@ -157,11 +101,10 @@ const Comments = ({ selectedPost }: CommentsProps) => {
         className="rounded border border-[#e5e5e5] bg-[#fdfdfd] p-4 dark:border-[#333333] dark:bg-[#212121]"
       >
         <CommentInput
-          comment={comment}
-          setComment={setComment}
           loading={commentCreateLoading}
           user={user}
           onCreateComment={onCreateComment}
+          post={selectedPost}
         />
         {commentFetchLoading ? (
           <>

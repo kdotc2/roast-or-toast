@@ -1,10 +1,12 @@
 import { loginModalState } from '@/atoms/authModalAtom'
 import { Comment, commentState, CommentVote } from '@/atoms/commentAtom'
+import { Post } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
-import { collection, doc, getDocs, query, writeBatch } from 'firebase/firestore'
+import { User } from 'firebase/auth'
+import { collection, doc, getDoc, getDocs, increment, query, serverTimestamp, writeBatch } from 'firebase/firestore'
 import { useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 const useComments = () => {
   const [commentStateValue, setCommentStateValue] = useRecoilState(commentState)
@@ -131,3 +133,36 @@ const useComments = () => {
 }
 
 export default useComments
+
+type preComment = {
+  text: string
+  isRoast: boolean
+  isToast: boolean
+}
+
+export const createComment = async ({text, isRoast, isToast}: preComment, user: User, post: Post): Promise<Comment | undefined> => {
+  const userSnap = await getDoc(doc(db, 'users', user.uid))
+  let comment: Comment | undefined = {
+    postId: post.id,
+    creatorId: user!.uid,
+    creatorDisplayName: userSnap.data()?.displayName,
+    text: text,
+    voteStatus: 0,
+    postTitle: post.title,
+    createdAt: serverTimestamp(),
+    isRoast,
+    isToast,
+  } as Comment
+
+  const batch = writeBatch(db)
+  // Create comment document
+  const commentDocRef = doc(collection(db, 'comments'))
+  batch.set(commentDocRef, comment)
+
+  // Update post numberOfComments
+  batch.update(doc(db, 'posts', post.id), {
+    numberOfComments: increment(1),
+  })
+  await batch.commit().catch((e) => e ? comment = undefined : null)
+  return comment
+}

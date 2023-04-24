@@ -5,35 +5,55 @@ import { loginModalState } from '@/atoms/authModalAtom'
 import TextareaAutosize from 'react-textarea-autosize'
 import { SpinningLoader } from '../Loader'
 import { CheckCircleIcon, TagIcon } from '@heroicons/react/24/solid'
+import { Post } from '@/atoms/postAtom'
+import { createComment } from '@/hooks/useComments'
+import { Comment } from '@/atoms/commentAtom'
 
 type CommentInputProps = {
-  comment: string
-  setComment: (value: string) => void
+  post: Post
   loading: boolean
   user?: User | null
-  onCreateComment: (comment: string) => void
+  onCreateComment: (comment: Comment) => void
 }
 
 const CommentInput = ({
-  comment,
-  setComment,
   loading,
   user,
   onCreateComment,
+  post,
 }: CommentInputProps) => {
   const setLoginState = useSetRecoilState(loginModalState)
-  const [toggle, setToggle] = useState(false)
-  const [toggle2, setToggle2] = useState(false)
-  // const [user, error] = useAuthState(auth)
+  const [isRoast, setIsRoast] = useState(false)
+  const [isToast, setIsToast] = useState(false)
+  const [text, setText] = useState('')
+  const setAuthModalState = useSetRecoilState(loginModalState)
+
+  const onSubmit = () => {
+    if (!user) {
+      setAuthModalState({ open: true })
+      return
+    }
+    const preComment = {
+      text,
+      isRoast,
+      isToast,
+    }
+    createComment(preComment, user, post)
+    .then((comment) => {
+      if (comment) {
+        onCreateComment(comment)
+      }
+    })
+  }
 
   return (
     <div className="relative mb-6 block">
       <>
         <form className="relative flex">
           <TextareaAutosize
-            onChange={(event) => setComment(event.target.value)}
+            onChange={(event) => setText(event.target.value)}
             name="body"
-            value={comment}
+            value={text}
             className="input peer block min-h-[176px] resize-none overflow-hidden px-[11px] pb-16  placeholder:text-[#a3a3a3]"
             placeholder={`Any feedback to share?`}
           />
@@ -44,36 +64,34 @@ const CommentInput = ({
                 <TagIcon className="h-[18px] w-[18px] text-[#a3a3a3] dark:text-[#737373]" />
               </div>
               <button
-                onClick={() => setToggle((prev) => !prev)}
+                onClick={() => setIsRoast((prev) => !prev)}
                 className={`flex gap-1 rounded-md px-2 py-1.5 ${
-                  toggle
-                    ? 'bg-[#ededed] opacity-50 hover:opacity-75 dark:bg-[#151515]'
-                    : 'bg-[#ededed] dark:bg-[#151515]'
+                  isRoast
+                    ? 'bg-[#ededed] dark:bg-[#151515]'
+                    : 'bg-[#ededed] opacity-50 hover:opacity-75 dark:bg-[#151515]'
                 }`}
               >
                 🔥
                 <span className="hidden justify-center sm:inline">Roast</span>
-                {!toggle && <CheckCircleIcon className="h-4 w-4" />}
+                {isRoast && <CheckCircleIcon className="h-4 w-4" />}
               </button>
               <button
-                onClick={() => setToggle2((prev) => !prev)}
+                onClick={() => setIsToast((prev) => !prev)}
                 className={`flex gap-1 rounded-md px-2 py-1.5 ${
-                  toggle2
-                    ? 'bg-[#ededed] opacity-50 hover:opacity-75 dark:bg-[#151515]'
-                    : 'bg-[#ededed] dark:bg-[#151515]'
+                  isToast
+                    ? 'bg-[#ededed] dark:bg-[#151515]'
+                    : 'bg-[#ededed] opacity-50 hover:opacity-75 dark:bg-[#151515]'
                 }`}
               >
                 🍺 <span className="hidden sm:inline">Toast</span>
-                {!toggle2 && <CheckCircleIcon className="h-4 w-4" />}
+                {isToast && <CheckCircleIcon className="h-4 w-4" />}
               </button>
             </div>
 
             <button
               className="primaryButton"
-              disabled={!comment.length}
-              onClick={() => {
-                user ? onCreateComment(comment) : setLoginState({ open: true })
-              }}
+              disabled={!text.length}
+              onClick={onSubmit}
             >
               {loading ? (
                 <div className="px-[22.5px]">

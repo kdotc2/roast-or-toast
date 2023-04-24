@@ -17,6 +17,8 @@ export type Comment = {
     id: string
     voteValue: number
   }
+  isRoast: boolean
+  isToast: boolean
 }
 
 export type CommentVote = {
