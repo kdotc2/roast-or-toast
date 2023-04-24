@@ -34,13 +34,13 @@ const ClearIndicator = (props: ClearIndicatorProps) => {
 }
 const controlStyles = {
   base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-[#a3a3a3] hover:cursor-pointer dark:bg-[#262626] dark:text-[#737373]',
-  focus: 'border-[#121212] dark:border-[#dcdcdc]',
+  focus: 'border-[#121212] dark:border-[#dcdcdc] bg-transparent dark:bg-transparent',
   nonFocus: 'border-[#d4d4d4] dark:border-[#525252]',
   menuOpen: 'rounded-b-none',
 }
 
 const menuStyles =
-  'rounded rounded-t-none border border-t-0 border-[#121212] bg-[#f7f7f7] p-2 text-sm dark:border-[#dcdcdc] dark:bg-[#262626] dark:text-[#e5e5e5]'
+  'rounded rounded-t-none border border-t-0 border-[#121212] bg-[#fdfdfd] p-2 text-sm dark:border-[#dcdcdc] dark:bg-[#212121] dark:text-[#e5e5e5]'
 
 const selectInputStyles = 'text-[#121212] dark:text-[#e5e5e5]'
 
@@ -50,12 +50,12 @@ const noOptionsMessageStyles =
   'flex px-3 py-2 text-sm text-[#737373] dark:text-[#a3a3a3]'
 
 const multiValueStyles =
-  'my-1 mr-2 items-center gap-2 rounded-[2px] bg-[#ededed] px-2 text-xs text-[#121212] dark:bg-[#151515] dark:text-[#e5e5e5]'
+  'my-1 mr-2 items-center gap-2 rounded bg-[#ededed] px-2 text-xs text-[#121212] dark:bg-[#151515] dark:text-[#e5e5e5]'
 
 const multiValueLabelStyles = 'mr-1'
 
 const multiValueRemoveStyles =
-  '-mx-2 rounded-r-[2px] p-1.5 hover:bg-[#dcdcdc] hover:dark:bg-[#333333]'
+  '-mx-2 rounded-r p-1.5 hover:bg-[#dcdcdc] hover:dark:bg-[#333333]'
 
 const indicatorSeparatorStyles = 'm-2 bg-[#d4d4d4] dark:bg-[#525252]'
 

@@ -153,7 +153,9 @@ const Comments = ({ selectedPost }: CommentsProps) => {
 
   return (
     <div>
-      <div className="rounded border bg-[#fdfdfd] p-4 dark:bg-[#212121]">
+      <div
+        className="rounded border border-[#e5e5e5] bg-[#fdfdfd] p-4 dark:border-[#333333] dark:bg-[#212121]"
+      >
         <CommentInput
           comment={comment}
           setComment={setComment}

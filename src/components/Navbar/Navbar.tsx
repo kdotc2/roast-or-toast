@@ -34,7 +34,7 @@ export const Navbar = () => {
       {showSignupModal && (
         <LoginModal close={() => setShowSignupModal(false)} />
       )}
-      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r bg-[#fdfdfd] py-2 dark:bg-[#212121] sm:flex">
+      <div className="sticky top-0 z-[40] hidden h-screen w-16 flex-shrink-0 justify-center border-r border-r-[#e5e5e5] bg-[#fdfdfd] py-2 dark:border-r-[#333333] dark:bg-[#212121] sm:flex">
         <div
           className="relative flex flex-col items-center justify-between text-center"
           onMouseEnter={() => setTooltipStatus(true)}

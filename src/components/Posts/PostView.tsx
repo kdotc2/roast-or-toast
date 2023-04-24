@@ -76,7 +76,7 @@ const PostView = ({
         onClick={() => {
           onSelectPost && post && onSelectPost(post, postIdx!)
         }}
-        className={`rounded border bg-[#fdfdfd] dark:bg-[#212121] ${
+        className={`rounded border border-[#e5e5e5] bg-[#fdfdfd] dark:border-[#333333] dark:bg-[#212121] ${
           singlePostPage
             ? 'cursor-default'
             : 'cursor-pointer md:hover:border-[#a3a3a3] md:hover:dark:border-[#737373]'
@@ -98,7 +98,7 @@ const PostView = ({
               {post.tags &&
                 post.tags.map((tags) => (
                   <div key={tags} className="pb-3">
-                    <div className="flex rounded bg-[#ededed] px-1.5 py-1 dark:bg-[#151515]">
+                    <div className="flex rounded-md bg-[#ededed] px-1.5 py-1 dark:bg-[#151515]">
                       {tags}
                     </div>
                   </div>
