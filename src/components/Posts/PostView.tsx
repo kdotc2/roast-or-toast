@@ -106,10 +106,13 @@ const PostView = ({
             </div>
 
             <div className="flex justify-between px-4">
-              <div className="flex items-center space-x-2 text-xs text-[#737373] dark:text-[#8c8c8c]">
-                <div className="flex gap-[6px]">
-                  <span className="font-bold">{post.displayName}</span> •{' '}
-                  {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
+              <div className="flex items-center text-xs text-[#737373] dark:text-[#8c8c8c]">
+                <div className="space-x-0.5">
+                  <span className="font-bold">{post.displayName}</span>
+                  <span>∙</span>
+                  <span>
+                    {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
+                  </span>
                 </div>
               </div>
             </div>
