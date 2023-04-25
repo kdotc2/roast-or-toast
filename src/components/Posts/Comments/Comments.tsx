@@ -20,7 +20,6 @@ type CommentsProps = {
 }
 
 const Comments = ({ selectedPost }: CommentsProps) => {
-  const [text, setText] = useState('')
   const [comments, setComments] = useState<Comment[]>([])
   const [commentFetchLoading, setCommentFetchLoading] = useState(true)
   const [commentCreateLoading, setCommentCreateLoading] = useState(false)
