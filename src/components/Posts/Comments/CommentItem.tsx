@@ -29,19 +29,19 @@ const CommentItem = ({
   onVote,
   userVoteValue,
 }: CommentItemProps) => {
-  const [loadingDelete, setLoadingDelete] = useState(false)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState(false)
+
+  const commentDelay = comment.createdAt?.seconds ? moment(new Date(comment.createdAt?.seconds * 1000)).fromNow() : 'Just Now'
+
   return (
     <div className="p-2 mt-4">
       <div className="space-y-2">
         <div className="flex justify-between text-xs text-[#737373] dark:text-[#a3a3a3]">
           <div className="flex gap-[6px]">
             <span className="font-bold">{comment.creatorDisplayName}</span> •{' '}
-            {comment.createdAt?.seconds && (
-              <span>
-                {moment(new Date(comment.createdAt?.seconds * 1000)).fromNow()}
-              </span>
-            )}
+            <span>
+              {commentDelay}
+            </span>
             {(comment.isRoast || comment.isToast) && (
               <div className="">
                 <span>• </span>

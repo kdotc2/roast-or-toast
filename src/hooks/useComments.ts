@@ -157,6 +157,8 @@ export const createComment = async ({text, isRoast, isToast}: preComment, user: 
   const batch = writeBatch(db)
   // Create comment document
   const commentDocRef = doc(collection(db, 'comments'))
+  comment.id = commentDocRef.id
+
   batch.set(commentDocRef, comment)
 
   // Update post numberOfComments
