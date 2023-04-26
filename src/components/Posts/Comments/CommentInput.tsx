@@ -65,7 +65,7 @@ const CommentInput = ({
           <div className="absolute bottom-3 -mb-3 flex w-full items-center justify-between rounded-b border border-[#d4d4d4] bg-[#fdfdfd] p-4 px-3 pt-3 pb-3 peer-focus:border-t-0 peer-focus:border-[#121212] dark:border-[#525252] dark:bg-[#212121] dark:peer-focus:border-[#dcdcdc]">
             <div className="flex space-x-2 text-xs font-medium">
               <div className="flex items-center">
-                <TagIcon className="h-[18px] w-[18px] text-[#a3a3a3] dark:text-[#737373]" />
+                <TagIcon className="h-4 w-4 text-[#a3a3a3] dark:text-[#737373]" />
               </div>
               <button
                 onClick={() => setIsRoast((prev) => !prev)}

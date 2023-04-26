@@ -93,7 +93,7 @@ const PostView = ({
           as={`/post/${post.id}`}
           aria-label="Post card"
         >
-          <div className="py-3 pb-12">
+          <div className="pt-4 pb-12">
             <div className="flex gap-2 px-4 text-xs font-medium">
               {post.tags &&
                 post.tags.map((tags) => (
@@ -142,8 +142,8 @@ const PostView = ({
                 )}
               </div>
             </div>
-            <div className="z-10">
-              {post.url && <LinkMetadata url={post.url} />}
+              <div className="z-10">
+                {post.url && <LinkMetadata url={post.url} />}
             </div>
           </div>
         </Link>

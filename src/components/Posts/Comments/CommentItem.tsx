@@ -45,7 +45,7 @@ const CommentItem = ({
             <span>{commentDelay}</span>
             {(comment.isRoast || comment.isToast) && (
               <>
-                <span className="px-0.5 text-sm">
+                <span className="px-0.5">
                   {comment.isRoast && <>🔥</>} {comment.isToast && <>🍺</>}
                 </span>
               </>
