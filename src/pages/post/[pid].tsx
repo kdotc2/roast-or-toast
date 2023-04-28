@@ -10,7 +10,6 @@ type PostPageProps = {
 }
 const PostPage = ({ post }: PostPageProps) => {
   const router = useRouter()
-  const { pid } = router.query
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -22,11 +21,6 @@ const PostPage = ({ post }: PostPageProps) => {
     return () => window.removeEventListener('keydown', handleEscape)
   })
 
-  useEffect(() => {
-    if (!post && pid) {
-    }
-  }, [pid])
-
   return (
     <>
       <Meta
@@ -37,7 +31,7 @@ const PostPage = ({ post }: PostPageProps) => {
       />
       <div>
         <div className="fixed inset-0 z-[90] flex items-center justify-center">
-          <PostDetail post={post} />
+          <PostDetail initialPost={post} />
         </div>
       </div>
     </>

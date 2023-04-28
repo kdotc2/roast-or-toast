@@ -272,4 +272,47 @@ export const getPost = async (pid: string): Promise<Post | undefined> => {
   }
 }
 
+export const hasHeartedPost = async (uid: string, pid: string): Promise<boolean> => {
+  if (!uid || !pid) {
+    return false
+  }
+
+  const docRef = doc(db, `users/${uid}/postVotes/${pid}`)
+  const docSnap = await getDoc(docRef)
+  return docSnap.exists()
+}
+
+export const togglePostHeart = async (uid: string, post: Post): Promise<Post | void> => {
+  const pid = post?.id
+
+  if (!uid || !pid) {
+    return
+  }
+
+
+  const votesRef = doc(db, `users/${uid}/postVotes/${pid}`)
+  const votesSnap = await getDoc(votesRef)
+  const postRef = doc(db, 'posts', pid)
+  const currVotes = post.voteStatus
+  let newVotes = 0
+
+  const batch = writeBatch(db)
+  if (votesSnap.exists()) {
+    newVotes = currVotes - 1
+    batch.delete(votesRef)
+    batch.update(postRef, {voteStatus: newVotes})
+  } else {
+    newVotes = currVotes + 1
+    const newVote: PostVote = {
+      id: pid,
+      postId: pid,
+      voteValue: 1,
+    }
+    batch.set(votesRef, newVote)
+    batch.update(postRef, {voteStatus: newVotes})
+  }
+  batch.commit()
+  return {...post, voteStatus: newVotes} as Post
+}
+
 export default usePosts

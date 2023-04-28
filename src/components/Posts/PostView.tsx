@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Post } from '../../atoms/postAtom'
 import {
   HeartIcon,
@@ -13,31 +13,28 @@ import LinkMetadata from './LinkMetadata'
 import Link from 'next/link'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
 import { SpinningLoader } from './Loader'
+import { hasHeartedPost, togglePostHeart } from '@/hooks/usePosts'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '@/firebase/clientApp'
 
 type PostViewProps = {
   post: Post
   userIsCreator: boolean
-  userVoteValue?: number
-  onVote: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    post: Post,
-    vote: number,
-    postIdx?: number
-  ) => void
   onDeletePost: (post: Post) => Promise<boolean>
   onSelectPost?: (value: Post, postIdx: number) => void
   postIdx?: number
+  onHeart?: (p: Post) => void
 }
 
 const PostView = ({
   post,
   postIdx,
   userIsCreator,
-  userVoteValue,
-  onVote,
   onDeletePost,
   onSelectPost,
+  onHeart,
 }: PostViewProps) => {
+  const [user] = useAuthState(auth)
   const [loadingDelete, setLoadingDelete] = useState(false)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState(false)
   const [error, setError] = useState(false)
@@ -45,6 +42,15 @@ const PostView = ({
   const router = useRouter()
 
   const formatter = Intl.NumberFormat('en', { notation: 'compact' })
+
+  const [hearted, setHearted] = useState(false)
+  useEffect(() => {
+    if (user && post) {
+      hasHeartedPost(user?.uid, post?.id)
+      .then((b: boolean) => setHearted(b))
+    }
+  })
+
 
   const handleDelete = async () => {
     setLoadingDelete(true)
@@ -161,16 +167,21 @@ const PostView = ({
                 aria-label="Upvote"
                 type="button"
                 className="pointer-events-auto hover:text-[#262626] hover:dark:text-[#e5e5e5]"
-                onClick={(event) => onVote(event, post, 1)}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  togglePostHeart(user?.uid || '', post)
+                  .then((p) => onHeart && p && onHeart(p))
+                  }
+                }
               >
                 <HeartIcon
                   onClick={(event) => {
                     event.preventDefault()
                   }}
                   className={`h-5 w-5 ${
-                    userVoteValue === 1 ? 'text-red-500 dark:text-red-400' : ''
+                    hearted ? 'text-red-500 dark:text-red-400' : ''
                   }`}
-                  fill={`${userVoteValue === 1 ? 'currentColor' : 'none'}`}
+                  fill={`${hearted ? 'currentColor' : 'none'}`}
                 />
               </button>
               <span

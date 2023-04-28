@@ -1,23 +1,25 @@
 import { Post } from '@/atoms/postAtom'
 import Comments from '@/components/Posts/Comments/Comments'
 import PostView from '@/components/Posts/PostView'
-import { auth, db } from '@/firebase/clientApp'
-import usePosts from '@/hooks/usePosts'
+import { auth } from '@/firebase/clientApp'
+import usePosts, { hasHeartedPost, togglePostHeart } from '@/hooks/usePosts'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 type Props = {
-  post?: Post
+  initialPost?: Post
   close?: () => void
 }
-const PostDetail = ({ post, close }: Props) => {
-  const { postStateValue, onDeletePost, onVote } = usePosts()
+const PostDetail = ({ initialPost, close }: Props) => {
+  const { onDeletePost } = usePosts()
   const [user] = useAuthState(auth)
   const router = useRouter()
   const [error, setError] = useState('')
+  const [hearted, setHearted] = useState(false)
+  const [post, setPost] = useState(initialPost)
 
   if (!close) {
     close = () => {
@@ -26,6 +28,17 @@ const PostDetail = ({ post, close }: Props) => {
   }
 
   const safeClose = close
+
+  useEffect(() => {
+    if (user && post) {
+      hasHeartedPost(user?.uid, post?.id)
+      .then((b: boolean) => setHearted(b))
+    }
+  })
+
+  const onHeart = (p: Post) => {
+    setPost(p)
+  }
 
   return (
     <>
@@ -78,14 +91,9 @@ const PostDetail = ({ post, close }: Props) => {
                 <div className="">
                   <PostView
                     post={post}
-                    onVote={onVote}
                     onDeletePost={onDeletePost}
-                    userVoteValue={
-                      postStateValue.postVotes.find(
-                        (item) => item.postId === post.id
-                      )?.voteValue
-                    }
                     userIsCreator={user?.uid === post.creatorId}
+                    onHeart={onHeart}
                   />
                 </div>
               )}

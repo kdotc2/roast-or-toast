@@ -8,7 +8,7 @@ type Props = {
 }
 
 const PostModal = ({ close, post }: Props) => {
-  const content = <PostDetail post={post} close={close} />
+  const content = <PostDetail initialPost={post} close={close} />
 
   return <ModalWrapper close={close} child={content} width={750} />
 }
