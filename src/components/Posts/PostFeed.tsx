@@ -32,7 +32,6 @@ const PostFeed = () => {
   const [clickedPost, setClickedPost] = useState<Post | undefined>(undefined)
   const {
     postStateValue,
-    onVote,
     onDeletePost,
     getPosts,
   } = usePosts()
@@ -68,15 +67,9 @@ const PostFeed = () => {
               <PostView
                 post={post}
                 userIsCreator={user?.uid === post.creatorId}
-                userVoteValue={
-                  postStateValue.postVotes.find(
-                    (item) => item.postId === post.id
-                  )?.voteValue
-                }
-                onVote={onVote}
                 onSelectPost={() => {
+                  console.log('selecting post:', JSON.stringify(post))
                   setClickedPost(post)
-                  // setShowPostModal(true)
                 }}
                 onDeletePost={onDeletePost}
               />
