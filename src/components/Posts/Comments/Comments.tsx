@@ -4,7 +4,6 @@ import { auth, db } from '@/firebase/clientApp'
 import { doc, increment, writeBatch } from 'firebase/firestore'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useSetRecoilState } from 'recoil'
 import CommentItem from './CommentItem'
 import { Comment } from '@/atoms/commentAtom'
 
@@ -16,34 +15,33 @@ import usePosts from '@/hooks/usePosts'
 
 type CommentsProps = {
   user?: User | null // if the user is nil they are not logged in
-  selectedPost: Post
+  initialPost: Post
+  onChange?: (p: Post) => void
 }
 
-const Comments = ({ selectedPost }: CommentsProps) => {
+const Comments = ({ initialPost, onChange }: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [commentFetchLoading, setCommentFetchLoading] = useState(true)
   const [commentCreateLoading, setCommentCreateLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState('')
   const [user, error] = useAuthState(auth)
-  const setPostState = useSetRecoilState(postState)
   const { getPostComments } = usePosts()
+
+  const [post, setPost] = useState(initialPost)
 
   const { onVote, commentStateValue } = useComments()
 
-  const onCreateComment = async (comment: Comment) => {
+  const onCreateComment = (comment: Comment) => {
     setComments((prev) => [comment, ...prev])
-    setPostState((prev) => ({
-      ...prev,
-      selectedPost: {
-        ...prev.selectedPost,
-        numberOfComments: prev.selectedPost?.numberOfComments! + 1,
-      } as Post,
-      postUpdateRequired: true,
-    }))
+    const newP = {
+      ...post,
+      numberOfComments: post.numberOfComments + 1,
+    } as Post
+    onChange && onChange(newP)
+    setPost(newP)
   }
 
-  const onDeleteComment = useCallback(
-    async (comment: Comment) => {
+  const onDeleteComment = async (comment: Comment) => {
       setDeleteLoading(comment.id as string)
       try {
         if (!comment.id) throw 'Comment has no ID'
@@ -57,14 +55,12 @@ const Comments = ({ selectedPost }: CommentsProps) => {
 
         await batch.commit()
 
-        setPostState((prev) => ({
-          ...prev,
-          selectedPost: {
-            ...prev.selectedPost,
-            numberOfComments: prev.selectedPost?.numberOfComments! - 1,
-          } as Post,
-          postUpdateRequired: true,
-        }))
+        const newP = {
+          ...post,
+          numberOfComments: post.numberOfComments - 1,
+        } as Post
+        onChange && onChange(newP)
+        setPost(newP)
 
         setComments((prev) => prev.filter((item) => item.id !== comment.id))
         // return true;
@@ -73,19 +69,17 @@ const Comments = ({ selectedPost }: CommentsProps) => {
         // return false;
       }
       setDeleteLoading('')
-    },
-    [setComments, setPostState]
-  )
+    }
 
   useEffect(() => {
-    if (!selectedPost || !commentFetchLoading) return
-    getPostComments(selectedPost.id).then((comments) => {
+    if (!post || !commentFetchLoading) return
+    getPostComments(post.id).then((comments) => {
       if (comments) {
         setComments(comments)
       }
       setCommentFetchLoading(false)
     })
-  })
+  }, [post.numberOfComments])
 
   return (
     <div>
@@ -94,8 +88,9 @@ const Comments = ({ selectedPost }: CommentsProps) => {
           loading={commentCreateLoading}
           user={user}
           onCreateComment={onCreateComment}
-          post={selectedPost}
+          post={post}
         />
+
         {commentFetchLoading ? (
           <>
             {[...Array(10)].map((_, i) => (

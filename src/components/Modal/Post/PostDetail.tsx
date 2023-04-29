@@ -34,9 +34,10 @@ const PostDetail = ({ initialPost, close }: Props) => {
       hasHeartedPost(user?.uid, post?.id)
       .then((b: boolean) => setHearted(b))
     }
-  })
+  }, [post])
 
-  const onHeart = (p: Post) => {
+  const onUpdate = (p: Post) => {
+    console.log('setting post ', p.numberOfComments)
     setPost(p)
   }
 
@@ -93,7 +94,7 @@ const PostDetail = ({ initialPost, close }: Props) => {
                     post={post}
                     onDeletePost={onDeletePost}
                     userIsCreator={user?.uid === post.creatorId}
-                    onHeart={onHeart}
+                    onHeart={onUpdate}
                   />
                 </div>
               )}
@@ -101,7 +102,7 @@ const PostDetail = ({ initialPost, close }: Props) => {
               this is redudant but there is a css spacing issue if you put this immediately after
               the PostView and i dont want to figure out right now
              */}
-              {post && <Comments user={user} selectedPost={post} />}
+              {post && <Comments user={user} initialPost={post} onChange={onUpdate}/>}
             </div>
           </div>
         </div>
