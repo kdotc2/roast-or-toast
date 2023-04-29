@@ -24,6 +24,7 @@ type PostViewProps = {
   onSelectPost?: (value: Post, postIdx: number) => void
   postIdx?: number
   onHeart?: (p: Post) => void
+  onComment?: (p: Post) => void
 }
 
 const PostView = ({

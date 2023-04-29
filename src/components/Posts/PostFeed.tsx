@@ -68,7 +68,6 @@ const PostFeed = () => {
                 post={post}
                 userIsCreator={user?.uid === post.creatorId}
                 onSelectPost={() => {
-                  console.log('selecting post:', JSON.stringify(post))
                   setClickedPost(post)
                 }}
                 onDeletePost={onDeletePost}
