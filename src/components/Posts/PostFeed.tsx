@@ -30,11 +30,7 @@ const PostFeed = () => {
   const [user] = useAuthState(auth)
   // const [showPostModal, setShowPostModal] = useState(false)
   const [clickedPost, setClickedPost] = useState<Post | undefined>(undefined)
-  const {
-    postStateValue,
-    onDeletePost,
-    getPosts,
-  } = usePosts()
+  const { postStateValue, onDeletePost, getPosts } = usePosts()
 
   useEffect(() => {
     getPosts()
@@ -43,14 +39,22 @@ const PostFeed = () => {
 
   return (
     <div>
-      { clickedPost && (
+      {clickedPost && (
         <PostModal
           close={() => {
             setClickedPost(undefined)
             router.push('/')
           }}
+          post={clickedPost}
+        />
+      )}
 
-          post={clickedPost} />
+      {postStateValue?.posts?.length === 0 && (
+        <div className="flex h-screen items-center justify-center gap-12 text-sm font-medium uppercase">
+          {' '}
+          <span className="text-4xl">🔥</span> or{' '}
+          <span className="text-4xl">🍺</span>
+        </div>
       )}
 
       <Masonry
@@ -58,20 +62,16 @@ const PostFeed = () => {
         className="my-masonry-grid w-auto"
         columnClassName="my-masonry-grid_column"
       >
-        {postStateValue?.posts?.length === 0 && (
-          <Loader />
-        )}
-
         {postStateValue.posts.map((post: Post) => (
           <div key={post.id}>
-              <PostView
-                post={post}
-                userIsCreator={user?.uid === post.creatorId}
-                onSelectPost={() => {
-                  setClickedPost(post)
-                }}
-                onDeletePost={onDeletePost}
-              />
+            <PostView
+              post={post}
+              userIsCreator={user?.uid === post.creatorId}
+              onSelectPost={() => {
+                setClickedPost(post)
+              }}
+              onDeletePost={onDeletePost}
+            />
           </div>
         ))}
       </Masonry>
