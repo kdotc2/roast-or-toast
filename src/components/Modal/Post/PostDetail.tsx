@@ -37,7 +37,6 @@ const PostDetail = ({ initialPost, close }: Props) => {
   }, [post])
 
   const onUpdate = (p: Post) => {
-    console.log('setting post ', p.numberOfComments)
     setPost(p)
   }
 

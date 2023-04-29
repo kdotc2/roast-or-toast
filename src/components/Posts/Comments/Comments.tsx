@@ -1,8 +1,7 @@
-import { loginModalState } from '@/atoms/authModalAtom'
-import { Post, postState } from '@/atoms/postAtom'
+import { Post } from '@/atoms/postAtom'
 import { auth, db } from '@/firebase/clientApp'
 import { doc, increment, writeBatch } from 'firebase/firestore'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import CommentItem from './CommentItem'
 import { Comment } from '@/atoms/commentAtom'
@@ -10,7 +9,7 @@ import { Comment } from '@/atoms/commentAtom'
 import CommentInput from './CommentInput'
 import { CommentLoader, Loader } from '../Loader'
 import { User } from 'firebase/auth'
-import useComments, { createComment } from '@/hooks/useComments'
+import useComments from '@/hooks/useComments'
 import usePosts from '@/hooks/usePosts'
 
 type CommentsProps = {
@@ -27,18 +26,15 @@ const Comments = ({ initialPost, onChange }: CommentsProps) => {
   const [user, error] = useAuthState(auth)
   const { getPostComments } = usePosts()
 
-  const [post, setPost] = useState(initialPost)
-
   const { onVote, commentStateValue } = useComments()
 
   const onCreateComment = (comment: Comment) => {
     setComments((prev) => [comment, ...prev])
     const newP = {
-      ...post,
-      numberOfComments: post.numberOfComments + 1,
+      ...initialPost,
+      numberOfComments: initialPost.numberOfComments + 1,
     } as Post
     onChange && onChange(newP)
-    setPost(newP)
   }
 
   const onDeleteComment = async (comment: Comment) => {
@@ -56,30 +52,27 @@ const Comments = ({ initialPost, onChange }: CommentsProps) => {
         await batch.commit()
 
         const newP = {
-          ...post,
-          numberOfComments: post.numberOfComments - 1,
+          ...initialPost,
+          numberOfComments: initialPost.numberOfComments - 1,
         } as Post
         onChange && onChange(newP)
-        setPost(newP)
 
         setComments((prev) => prev.filter((item) => item.id !== comment.id))
-        // return true;
       } catch (error: any) {
         alert('Error deleting comment')
-        // return false;
       }
       setDeleteLoading('')
     }
 
   useEffect(() => {
-    if (!post || !commentFetchLoading) return
-    getPostComments(post.id).then((comments) => {
+    if (!initialPost || !commentFetchLoading) return
+    getPostComments(initialPost.id).then((comments) => {
       if (comments) {
         setComments(comments)
       }
       setCommentFetchLoading(false)
     })
-  }, [post.numberOfComments])
+  }, [initialPost.numberOfComments])
 
   return (
     <div>
@@ -88,7 +81,7 @@ const Comments = ({ initialPost, onChange }: CommentsProps) => {
           loading={commentCreateLoading}
           user={user}
           onCreateComment={onCreateComment}
-          post={post}
+          post={initialPost}
         />
 
         {commentFetchLoading ? (
