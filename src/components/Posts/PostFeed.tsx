@@ -43,7 +43,7 @@ const PostFeed = () => {
         <PostModal
           close={() => {
             setClickedPost(undefined)
-            router.push('/')
+            router.push('/', undefined, { scroll: false })
           }}
           post={clickedPost}
         />
