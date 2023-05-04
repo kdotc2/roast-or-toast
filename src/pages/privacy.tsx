@@ -49,7 +49,6 @@ export default function Privacy() {
               private. This information will not be visible to other users
               unless it is shared with them directly by you.
             </p>
-            <ul className="list-inside list-decimal"></ul>
             <h4>Email</h4>
             <p>
               By providing Roast or Toast with your email address you consent to

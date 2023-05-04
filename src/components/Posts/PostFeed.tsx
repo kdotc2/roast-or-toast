@@ -8,6 +8,7 @@ import PostView from './PostView'
 import Masonry from 'react-masonry-css'
 import { Loader } from './Loader'
 import PostModal from '../Modal/Post/PostModal'
+import { PinnedPost } from './PinnedPost'
 
 const breakpointCols = {
   7200: 14,
@@ -62,6 +63,8 @@ const PostFeed = () => {
         className="my-masonry-grid w-auto"
         columnClassName="my-masonry-grid_column"
       >
+        <PinnedPost />
+
         {postStateValue.posts.map((post: Post) => (
           <div key={post.id}>
             <PostView

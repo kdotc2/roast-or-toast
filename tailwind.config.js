@@ -13,6 +13,12 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      roman: 'lower-roman',
+    },
     extend: {
       fontFamily: {
         sans: ['InterVariable', ...fontFamily.sans],
