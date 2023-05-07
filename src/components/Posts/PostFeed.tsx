@@ -63,7 +63,7 @@ const PostFeed = () => {
         className="my-masonry-grid w-auto"
         columnClassName="my-masonry-grid_column"
       >
-        <PinnedPost />
+        {postStateValue.posts.length && <PinnedPost />}
 
         {postStateValue.posts.map((post: Post) => (
           <div key={post.id}>
