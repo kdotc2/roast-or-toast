@@ -11,13 +11,13 @@ const useSelectFile = () => {
         file,
         500,
         750,
-        'JPEG',
-        100,
+        'WEBP',
+        95,
         0,
         (uri) => {
           resolve(uri)
         },
-        'base64'
+        'string'
       )
     })
 
