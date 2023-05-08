@@ -12,12 +12,12 @@ const useSelectFile = () => {
         500,
         750,
         'WEBP',
-        95,
+        90,
         0,
         (uri) => {
           resolve(uri)
         },
-        'string'
+        'base64'
       )
     })
 
