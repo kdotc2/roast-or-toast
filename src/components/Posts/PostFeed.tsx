@@ -9,6 +9,7 @@ import Masonry from 'react-masonry-css'
 import { Loader } from './Loader'
 import PostModal from '../Modal/Post/PostModal'
 import { PinnedPost } from './PinnedPost'
+import Link from 'next/link'
 
 const breakpointCols = {
   7200: 14,
@@ -67,14 +68,24 @@ const PostFeed = () => {
 
         {postStateValue.posts.map((post: Post) => (
           <div key={post.id}>
-            <PostView
-              post={post}
-              userIsCreator={user?.uid === post.creatorId}
-              onSelectPost={() => {
-                setClickedPost(post)
-              }}
-              onDeletePost={onDeletePost}
-            />
+            <Link
+              tabIndex={undefined}
+              className='pointer-events-none focus:outline-none focus:ring-0 focus:ring-offset-0'
+              scroll={false}
+              href={`/?pid=${post.id}`}
+              as={`/post/${post.id}`}
+              aria-label="Post card"
+              onClick={() => setClickedPost(post)}
+            >
+              <PostView
+                post={post}
+                userIsCreator={user?.uid === post.creatorId}
+                onSelectPost={() => {
+                  setClickedPost(post)
+                }}
+                onDeletePost={onDeletePost}
+              />
+            </Link>
           </div>
         ))}
       </Masonry>
