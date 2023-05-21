@@ -89,17 +89,6 @@ const PostView = ({
             : 'cursor-pointer md:hover:border-[#a3a3a3] md:hover:dark:border-[#737373]'
         } `}
       >
-        <Link
-          tabIndex={singlePostPage ? -1 : undefined}
-          className={`${
-            singlePostPage &&
-            'pointer-events-none focus:outline-none focus:ring-0 focus:ring-offset-0'
-          } `}
-          scroll={false}
-          href={`/?pid=${post.id}`}
-          as={`/post/${post.id}`}
-          aria-label="Post card"
-        >
           <div className="pt-4 pb-12">
             <div className="flex gap-2 px-4 text-xs font-medium">
               {post.tags &&
@@ -111,7 +100,6 @@ const PostView = ({
                   </div>
                 ))}
             </div>
-
             <div className="flex justify-between px-4">
               <div className="flex items-center text-xs text-[#737373] dark:text-[#8c8c8c]">
                 <div className="space-x-0.5">
@@ -153,7 +141,6 @@ const PostView = ({
                 {post.url && <LinkMetadata url={post.url} />}
             </div>
           </div>
-        </Link>
         <>
           <div
             className="-mt-6 flex -translate-y-3 items-center justify-between px-4 py-0.5"
