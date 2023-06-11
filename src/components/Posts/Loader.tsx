@@ -60,7 +60,7 @@ export const CommentLoader = () => {
 export const MetadataLoader = () => {
   return (
     <>
-      <div className="animate-pulse space-y-2">
+      <div className="animate-pulse space-y-2 overflow-hidden rounded-md border border-[#e5e5e5] pb-4 dark:border-[#333333]">
         <div className="mb-5 flex h-52 items-center justify-center bg-[#d4d4d4] dark:bg-[#404040]"></div>
         <div className="mx-4 h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>
         <div className="mx-4 h-2 w-auto rounded-full bg-[#e5e5e5] dark:bg-[#404040]"></div>

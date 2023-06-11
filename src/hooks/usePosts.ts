@@ -244,7 +244,9 @@ const usePosts = () => {
 
       const snapshot = await getDocs(commentsQuery)
       let comments: Array<Comment> = []
-      snapshot.forEach((doc) => comments.push({id: doc.id, ...doc.data()} as Comment))
+      snapshot.forEach((doc) =>
+        comments.push({ id: doc.id, ...doc.data() } as Comment)
+      )
       return comments
     } catch (error: any) {
       console.log('getPostComments error', error.message)
@@ -266,13 +268,16 @@ export const getPost = async (pid: string): Promise<Post | undefined> => {
   const docRef = doc(db, 'posts', pid as string)
   const docSnap = await getDoc(docRef)
   if (docSnap.exists()) {
-    return {id: docSnap.id, ...docSnap.data()} as Post
+    return { id: docSnap.id, ...docSnap.data() } as Post
   } else {
     return undefined
   }
 }
 
-export const hasHeartedPost = async (uid: string, pid: string): Promise<boolean> => {
+export const hasHeartedPost = async (
+  uid: string,
+  pid: string
+): Promise<boolean> => {
   if (!uid || !pid) {
     return false
   }
@@ -282,13 +287,15 @@ export const hasHeartedPost = async (uid: string, pid: string): Promise<boolean>
   return docSnap.exists()
 }
 
-export const togglePostHeart = async (uid: string, post: Post): Promise<Post | void> => {
+export const togglePostHeart = async (
+  uid: string,
+  post: Post
+): Promise<Post | void> => {
   const pid = post?.id
 
   if (!uid || !pid) {
     return
   }
-
 
   const votesRef = doc(db, `users/${uid}/postVotes/${pid}`)
   const votesSnap = await getDoc(votesRef)
@@ -300,7 +307,7 @@ export const togglePostHeart = async (uid: string, post: Post): Promise<Post | v
   if (votesSnap.exists()) {
     newVotes = currVotes - 1
     batch.delete(votesRef)
-    batch.update(postRef, {voteStatus: newVotes})
+    batch.update(postRef, { voteStatus: newVotes })
   } else {
     newVotes = currVotes + 1
     const newVote: PostVote = {
@@ -309,10 +316,10 @@ export const togglePostHeart = async (uid: string, post: Post): Promise<Post | v
       voteValue: 1,
     }
     batch.set(votesRef, newVote)
-    batch.update(postRef, {voteStatus: newVotes})
+    batch.update(postRef, { voteStatus: newVotes })
   }
   batch.commit()
-  return {...post, voteStatus: newVotes} as Post
+  return { ...post, voteStatus: newVotes } as Post
 }
 
 export default usePosts

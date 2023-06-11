@@ -9,13 +9,15 @@ import {
 
 import moment from 'moment'
 import { useRouter } from 'next/router'
-import LinkMetadata from './LinkMetadata'
+import LinkPreview from './LinkPreview'
 import Link from 'next/link'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
 import { SpinningLoader } from './Loader'
 import { hasHeartedPost, togglePostHeart } from '@/hooks/usePosts'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/firebase/clientApp'
+import { loginModalState } from '@/atoms/authModalAtom'
+import { useSetRecoilState } from 'recoil'
 
 type PostViewProps = {
   post: Post
@@ -41,17 +43,16 @@ const PostView = ({
   const [error, setError] = useState(false)
   const singlePostPage = !onSelectPost
   const router = useRouter()
+  const setAuthModalState = useSetRecoilState(loginModalState)
 
   const formatter = Intl.NumberFormat('en', { notation: 'compact' })
 
   const [hearted, setHearted] = useState(false)
   useEffect(() => {
     if (user && post) {
-      hasHeartedPost(user?.uid, post?.id)
-      .then((b: boolean) => setHearted(b))
+      hasHeartedPost(user?.uid, post?.id).then((b: boolean) => setHearted(b))
     }
   })
-
 
   const handleDelete = async () => {
     setLoadingDelete(true)
@@ -89,58 +90,58 @@ const PostView = ({
             : 'cursor-pointer md:hover:border-[#a3a3a3] md:hover:dark:border-[#737373]'
         } `}
       >
-          <div className="pt-4 pb-12">
-            <div className="flex gap-2 px-4 text-xs font-medium">
-              {post.tags &&
-                post.tags.map((tags) => (
-                  <div key={tags} className="pb-3">
-                    <div className="flex rounded-md bg-[#ededed] px-1.5 py-1 dark:bg-[#151515]">
-                      {tags}
-                    </div>
+        <div className="pt-4 pb-12">
+          <div className="flex gap-2 px-4 text-xs font-medium">
+            {post.tags &&
+              post.tags.map((tags) => (
+                <div key={tags} className="pb-3">
+                  <div className="flex rounded-md bg-[#ededed] px-1.5 py-1 dark:bg-[#151515]">
+                    {tags}
                   </div>
-                ))}
-            </div>
-            <div className="flex justify-between px-4">
-              <div className="flex items-center text-xs text-[#737373] dark:text-[#8c8c8c]">
-                <div className="space-x-0.5">
-                  <span className="font-bold">{post.displayName}</span>
-                  <span>∙</span>
-                  <span>
-                    {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
-                  </span>
                 </div>
+              ))}
+          </div>
+          <div className="flex justify-between px-4">
+            <div className="flex items-center text-xs text-[#737373] dark:text-[#8c8c8c]">
+              <div className="space-x-0.5">
+                <span className="font-bold">{post.displayName}</span>
+                <span>∙</span>
+                <span>
+                  {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
+                </span>
               </div>
-            </div>
-            <div className="pt-3">
-              <div className="px-4 text-sm font-bold">{post.title}</div>
-              <p
-                className={`whitespace-pre-line px-4 pt-3 text-sm ${
-                  singlePostPage ? 'line-clamp-none' : 'line-clamp-[20]'
-                }`}
-              >
-                {post.text}
-              </p>
-              <div className="">
-                {post.imageURL && (
-                  <div
-                    className={`flex justify-center ${
-                      singlePostPage &&
-                      'mx-auto flex object-scale-down sm:w-[500px]'
-                    }`}
-                  >
-                    <img
-                      src={post.imageURL}
-                      alt="Post image"
-                      // onLoad={() => setLoadingImage(false)}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-              <div className="z-10">
-                {post.url && <LinkMetadata url={post.url} />}
             </div>
           </div>
+          <div className="pt-3">
+            <div className="px-4 text-sm font-bold">{post.title}</div>
+            <p
+              className={`whitespace-pre-line px-4 pt-3 text-sm ${
+                singlePostPage ? 'line-clamp-none' : 'line-clamp-[20]'
+              }`}
+            >
+              {post.text}
+            </p>
+            <div className="">
+              {post.imageURL && (
+                <div
+                  className={`flex justify-center ${
+                    singlePostPage &&
+                    'mx-auto flex object-scale-down sm:w-[500px]'
+                  }`}
+                >
+                  <img
+                    src={post.imageURL}
+                    alt="Post image"
+                    // onLoad={() => setLoadingImage(false)}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="z-10 px-4">
+            {post.url && <LinkPreview url={post.url} />}
+          </div>
+        </div>
         <>
           <div
             className="-mt-6 flex -translate-y-3 items-center justify-between px-4 py-0.5"
@@ -157,10 +158,11 @@ const PostView = ({
                 className="pointer-events-auto hover:text-[#262626] hover:dark:text-[#e5e5e5]"
                 onClick={(event) => {
                   event.stopPropagation()
-                  togglePostHeart(user?.uid || '', post)
-                  .then((p) => onHeart && p && onHeart(p))
-                  }
-                }
+                  !user && setAuthModalState({ open: true })
+                  togglePostHeart(user?.uid || '', post).then(
+                    (p) => onHeart && p && onHeart(p)
+                  )
+                }}
               >
                 <HeartIcon
                   onClick={(event) => {

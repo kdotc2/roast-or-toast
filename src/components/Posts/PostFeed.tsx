@@ -70,7 +70,7 @@ const PostFeed = () => {
           <div key={post.id}>
             <Link
               tabIndex={undefined}
-              className='focus:outline-none focus:ring-0 focus:ring-offset-0'
+              className="focus:outline-none focus:ring-0 focus:ring-offset-0"
               scroll={false}
               href={`/?pid=${post.id}`}
               as={`/post/${post.id}`}

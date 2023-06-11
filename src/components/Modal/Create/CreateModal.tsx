@@ -117,6 +117,7 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
         setLoading(false)
         return setError('Remove the https:// from the url')
       }
+
       if (
         !url.match(
           /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/
@@ -124,6 +125,9 @@ export default function CreateModal({ onSelectPost }: CreateModalProps) {
       ) {
         setLoading(false)
         return setError('Provide a valid url')
+      }
+      if (url.match('www')) {
+        url.replace('www', '')
       }
     }
 
