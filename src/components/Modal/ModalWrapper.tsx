@@ -1,5 +1,6 @@
 import FocusTrap from 'focus-trap-react'
 import { ReactNode, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 type Props = {
   child: ReactNode
@@ -8,6 +9,8 @@ type Props = {
 }
 
 export default function ModalWrapper({ child, close, width }: Props) {
+  const router = useRouter()
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -24,6 +27,19 @@ export default function ModalWrapper({ child, close, width }: Props) {
       window.document.body.classList.remove('overflow-hidden')
     }
   })
+
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as !== router.asPath) {
+        close()
+      }
+      return true
+    })
+
+    // return () => {
+    //   router.beforePopState(() => true)
+    // }
+  }, [router])
 
   return (
     <div id="modal-wrapper" onClick={() => close()}>

@@ -10,7 +10,6 @@ import {
 import moment from 'moment'
 import { useRouter } from 'next/router'
 import LinkPreview from './LinkPreview'
-import Link from 'next/link'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
 import { SpinningLoader } from './Loader'
 import { hasHeartedPost, togglePostHeart } from '@/hooks/usePosts'
@@ -105,10 +104,10 @@ const PostView = ({
             <div className="flex items-center text-xs text-[#737373] dark:text-[#8c8c8c]">
               <div className="space-x-0.5">
                 <span className="font-bold">{post.displayName}</span>
-                <span>∙</span>
+                {/* <span>∙</span>
                 <span>
                   {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
@@ -142,95 +141,91 @@ const PostView = ({
             {post.url && <LinkPreview url={post.url} />}
           </div>
         </div>
-        <>
-          <div
-            className="-mt-6 flex -translate-y-3 items-center justify-between px-4 py-0.5"
-            onClick={() => {
-              {
-                onSelectPost && post && onSelectPost(post, postIdx!)
-              }
-            }}
-          >
-            <div className="flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
-              <button
-                aria-label="Upvote"
-                type="button"
-                className="pointer-events-auto hover:text-[#262626] hover:dark:text-[#e5e5e5]"
-                onClick={(event) => {
-                  event.stopPropagation()
-                  !user && setAuthModalState({ open: true })
-                  togglePostHeart(user?.uid || '', post).then(
-                    (p) => onHeart && p && onHeart(p)
-                  )
-                }}
-              >
-                <HeartIcon
-                  onClick={(event) => {
-                    event.preventDefault()
-                  }}
-                  className={`h-5 w-5 ${
-                    hearted ? 'text-red-500 dark:text-red-400' : ''
-                  }`}
-                  fill={`${hearted ? 'currentColor' : 'none'}`}
-                />
-              </button>
-              <span
-                className={`text-sm font-medium ${
-                  post.voteStatus === 0 ? 'hidden' : ''
-                }`}
-              >
-                {formatter.format(post.voteStatus)}
-              </span>
-            </div>
-            <div className="justify flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
-              <ChatBubbleOvalLeftIcon className="h-5 w-5" />
-              <span
-                className={`text-sm font-medium ${
-                  post.numberOfComments === 0 ? 'hidden' : ''
-                }`}
-              >
-                {formatter.format(post.numberOfComments)}
-              </span>
-            </div>
-            <div>
-              {userIsCreator ? (
-                <>
-                  {loadingDelete ? (
-                    <>
-                      <div className="mx-[2px]">
-                        <SpinningLoader height={4} width={4} />
-                      </div>
-                    </>
-                  ) : (
-                    <div>
-                      <button
-                        type="button"
-                        className="flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
-                        onClick={(event) => {
-                          setConfirmDeleteModal(true), event.stopPropagation()
-                        }}
-                        aria-label="Delete"
-                      >
-                        <TrashIcon className="h-5 w-5" />
-                      </button>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div>
-                  <button
-                    type="button"
-                    className="invisible flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
-                    aria-label="Bookmark"
-                  >
-                    <BookmarkIcon className="h-5 w-5" />
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </>
       </div>
+      <>
+        <div
+          className="-mt-6 flex -translate-y-3 items-center justify-between px-4 py-0.5"
+        >
+          <div className="flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
+            <button
+              aria-label="Upvote"
+              type="button"
+              className="pointer-events-auto hover:text-[#262626] hover:dark:text-[#e5e5e5]"
+              onClick={(event) => {
+                event.stopPropagation()
+                !user && setAuthModalState({ open: true })
+                togglePostHeart(user?.uid || '', post).then(
+                  (p) => onHeart && p && onHeart(p)
+                )
+              }}
+            >
+              <HeartIcon
+                onClick={(event) => {
+                  event.preventDefault()
+                }}
+                className={`h-5 w-5 ${
+                  hearted ? 'text-red-500 dark:text-red-400' : ''
+                }`}
+                fill={`${hearted ? 'currentColor' : 'none'}`}
+              />
+            </button>
+            <span
+              className={`text-sm font-medium ${
+                post.voteStatus === 0 ? 'hidden' : ''
+              }`}
+            >
+              {formatter.format(post.voteStatus)}
+            </span>
+          </div>
+          <div className="justify flex items-center gap-2 text-[#737373] dark:text-[#8c8c8c]">
+            <ChatBubbleOvalLeftIcon className="h-5 w-5" />
+            <span
+              className={`text-sm font-medium ${
+                post.numberOfComments === 0 ? 'hidden' : ''
+              }`}
+            >
+              {formatter.format(post.numberOfComments)}
+            </span>
+          </div>
+          <div>
+            {userIsCreator ? (
+              <>
+                {loadingDelete ? (
+                  <>
+                    <div className="mx-[2px]">
+                      <SpinningLoader height={4} width={4} />
+                    </div>
+                  </>
+                ) : (
+                  <div>
+                    <button
+                      className="flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        event.preventDefault()
+                        setConfirmDeleteModal(true)
+                      }}
+                      aria-label="Delete"
+                    >
+                      <TrashIcon className="h-5 w-5" />
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div>
+                <button
+                  type="button"
+                  className="invisible flex items-center text-[#737373] hover:text-[#262626] dark:text-[#8c8c8c] hover:dark:text-[#e5e5e5]"
+                  aria-label="Bookmark"
+                >
+                  <BookmarkIcon className="h-5 w-5" />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </>
     </>
   )
 }

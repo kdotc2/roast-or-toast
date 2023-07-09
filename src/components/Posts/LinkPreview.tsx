@@ -1,5 +1,6 @@
 import { MetadataLoader } from '@/components/Posts/Loader'
 import useSWR from 'swr'
+import { LinkIcon } from '@heroicons/react/24/outline'
 
 type Metadata = {
   title?: string
@@ -23,8 +24,44 @@ const LinkPreview = ({ url }: any) => {
     isLoading,
   } = useSWR<Metadata>(
     `https://metainfo.vercel.app/api?url=https://${url}`,
-    fetcher
+    fetcher,
+    { errorRetryCount: 1 }
   )
+
+  if (!metadata || error) {
+    return (
+      <div className="flex items-center overflow-hidden rounded-md border border-[#e5e5e5] dark:border-[#333333]">
+        <LinkIcon className="mx-6 h-6 w-6" />
+        <div className="flex w-full flex-row bg-[#f8f8f8] py-4 px-6 dark:bg-[#292929] ">
+          <a
+            href={`https://${url}`}
+            className="group pointer-events-auto flex items-center gap-0.5 lowercase hover:underline"
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => {
+              event.stopPropagation()
+            }}
+          >
+            <span className="text-xs line-clamp-1">{url}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="hidden h-3 w-3 group-hover:flex"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -52,25 +89,23 @@ const LinkPreview = ({ url }: any) => {
                     event.stopPropagation()
                   }}
                 >
-                  <span>
-                    <div className="flex items-center gap-0.5">
-                      {getDomainName(metadata.url)?.replace('www.', '')}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="hidden h-3 w-3 group-hover:flex"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                        />
-                      </svg>
-                    </div>
-                  </span>
+                  <div className="flex items-center gap-0.5">
+                    {getDomainName(metadata.url)?.replace('www.', '')}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="hidden h-3 w-3 group-hover:flex"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                      />
+                    </svg>
+                  </div>
                 </a>
               </div>
             </div>

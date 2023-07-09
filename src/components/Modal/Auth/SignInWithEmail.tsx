@@ -20,7 +20,7 @@ type Props = {
 }
 
 const getEmailLink = () => {
-  return process.env.LOCAL_DEV
+  return process.env.NEXT_PUBLIC_LOCAL_DEV
     ? 'http://localhost:3000'
     : 'https://roastortoast.me'
 }

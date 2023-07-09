@@ -53,7 +53,6 @@ const PostFeed = () => {
 
       {postStateValue?.posts?.length === 0 && (
         <div className="flex h-screen items-center justify-center gap-12 text-sm font-medium uppercase">
-          {' '}
           <span className="text-4xl">🔥</span> or{' '}
           <span className="text-4xl">🍺</span>
         </div>

@@ -41,12 +41,12 @@ const CommentItem = ({
         <div className="flex text-xs leading-5 text-[#737373] dark:text-[#a3a3a3]">
           <div className="space-x-0.5">
             <span className="font-bold">{comment.creatorDisplayName}</span>
-            <span>∙</span>
-            <span>{commentDelay}</span>
+            {/* <span>∙</span>
+            <span>{commentDelay}</span> */}
             {(comment.isRoast || comment.isToast) && (
               <>
                 <span className="px-0.5">
-                  {comment.isRoast && <>🔥</>} {comment.isToast && <>🍺</>}
+                  ∙ {comment.isRoast && <>🔥</>} {comment.isToast && <>🍺</>}
                 </span>
               </>
             )}
