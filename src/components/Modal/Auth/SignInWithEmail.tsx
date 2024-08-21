@@ -22,7 +22,7 @@ type Props = {
 const getEmailLink = () => {
   return process.env.NEXT_PUBLIC_LOCAL_DEV
     ? 'http://localhost:3000'
-    : 'https://roastortoast.me'
+    : 'https://rot-chi.vercel.app'
 }
 
 export const SignInWithEmail = ({ close }: Props) => {
