@@ -2,10 +2,11 @@ const siteMetadata = {
   title: 'Roast or Toast',
   author: 'RoT',
   headerTitle: 'RoT',
-  description: 'Roast or Toast is a place where users can share their content and get feedback. Content can be in the form of a copy of text, an image, or a website link.',
+  description:
+    'Roast or Toast is a place where users can share their content and get feedback. Content can be in the form of a copy of text, an image, or a website link.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://roastortoast.me',
+  siteUrl: 'https://rot-chi.vercel.app',
   // siteRepo: '',
   siteLogo: '/images/logo.png',
   image: '/images/avatar.png',
