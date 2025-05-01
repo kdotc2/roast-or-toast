@@ -91,14 +91,6 @@ export const SignInWithEmail = ({ close }: Props) => {
     sendSignInLinkToEmail(auth, email, {
       url: getEmailLink(),
       handleCodeInApp: true,
-      iOS: {
-        bundleId: 'com.example.ios',
-      },
-      android: {
-        packageName: 'com.example.android',
-        installApp: true,
-        minimumVersion: '12',
-      },
     })
       .then((result) => {
         localStorage.setItem('email', email)
