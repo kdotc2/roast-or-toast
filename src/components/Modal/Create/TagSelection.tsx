@@ -9,6 +9,15 @@ import Select, {
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 
+type BaseStyleProps = {
+  [key: string]: any
+}
+
+type ClassNameState = {
+  isFocused: boolean
+  menuIsOpen: boolean
+}
+
 const DropdownIndicator = (props: DropdownIndicatorProps) => {
   return (
     <components.DropdownIndicator {...props}>
@@ -34,7 +43,8 @@ const ClearIndicator = (props: ClearIndicatorProps) => {
 }
 const controlStyles = {
   base: 'min-h-[40px] rounded border bg-[#f7f7f7] pl-3 pr-2 text-sm text-[#a3a3a3] hover:cursor-pointer dark:bg-[#262626] dark:text-[#737373]',
-  focus: 'border-[#121212] dark:border-[#dcdcdc] bg-transparent dark:bg-transparent',
+  focus:
+    'border-[#121212] dark:border-[#dcdcdc] bg-transparent dark:bg-transparent',
   nonFocus: 'border-[#d4d4d4] dark:border-[#525252]',
   menuOpen: 'rounded-b-none',
 }
@@ -86,25 +96,25 @@ export const TagSelection = ({ onTagSelection }: TagSelectionProps) => {
       options={options}
       unstyled
       styles={{
-        input: (base) => ({
+        input: (base: BaseStyleProps) => ({
           ...base,
           'input:focus': {
             boxShadow: 'none',
           },
         }),
-        multiValueLabel: (base) => ({
+        multiValueLabel: (base: BaseStyleProps) => ({
           ...base,
           whiteSpace: 'normal',
           overflow: 'visible',
         }),
-        control: (base) => ({
+        control: (base: BaseStyleProps) => ({
           ...base,
           transition: 'none',
         }),
       }}
       noOptionsMessage={() => 'No tags left...'}
       classNames={{
-        control: ({ isFocused, menuIsOpen }) =>
+        control: ({ isFocused, menuIsOpen }: ClassNameState) =>
           clsx(
             isFocused ? controlStyles.focus : controlStyles.nonFocus,
             controlStyles.base,
@@ -118,7 +128,7 @@ export const TagSelection = ({ onTagSelection }: TagSelectionProps) => {
         multiValueRemove: () => multiValueRemoveStyles,
         indicatorSeparator: () => indicatorSeparatorStyles,
         noOptionsMessage: () => noOptionsMessageStyles,
-        option: ({ isFocused }) => optionStyles,
+        option: ({ isFocused }: { isFocused: boolean }) => optionStyles,
       }}
       components={{ DropdownIndicator, MultiValueRemove, ClearIndicator }}
     />
