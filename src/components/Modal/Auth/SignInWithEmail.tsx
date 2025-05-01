@@ -22,7 +22,7 @@ type Props = {
 const getEmailLink = () => {
   return process.env.NEXT_PUBLIC_LOCAL_DEV
     ? 'http://localhost:3000'
-    : 'https://rotapp-f5483.web.app'
+    : 'https://rot-chi.vercel.app'
 }
 
 export const SignInWithEmail = ({ close }: Props) => {
@@ -91,6 +91,14 @@ export const SignInWithEmail = ({ close }: Props) => {
     sendSignInLinkToEmail(auth, email, {
       url: getEmailLink(),
       handleCodeInApp: true,
+      iOS: {
+        bundleId: 'com.example.ios',
+      },
+      android: {
+        packageName: 'com.example.android',
+        installApp: true,
+        minimumVersion: '12',
+      },
     })
       .then((result) => {
         localStorage.setItem('email', email)
