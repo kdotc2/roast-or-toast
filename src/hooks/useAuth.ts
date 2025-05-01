@@ -1,22 +1,26 @@
 import { auth } from '@/firebase/clientApp'
 import { useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import nookies from 'nookies'
 import { User } from 'firebase/auth'
+import { setCookie, deleteCookie } from 'cookies-next'
 
 const useAuth = () => {
   const [user] = useAuthState(auth)
 
   useEffect(() => {
-    // console.log('HERE IS USER', user)
-
-    user ? setUserCookie(user) : nookies.set(undefined, 'token', '')
+    if (user) {
+      setUserCookie(user)
+    } else {
+      deleteCookie('token')
+    }
   }, [user])
 
   const setUserCookie = async (user: User) => {
     const token = await user.getIdToken()
-    // console.log('HERE IS TOKEN', token)
-    nookies.set(undefined, 'token', token)
+    setCookie('token', token)
+
+    setCookie('token', token)
   }
 }
+
 export default useAuth
