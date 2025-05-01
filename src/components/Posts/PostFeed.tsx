@@ -67,24 +67,17 @@ const PostFeed = () => {
 
         {postStateValue.posts.map((post: Post) => (
           <div key={post.id}>
-            <Link
-              tabIndex={undefined}
-              className="focus:outline-none focus:ring-0 focus:ring-offset-0"
-              scroll={false}
-              href={`/?pid=${post.id}`}
-              as={`/post/${post.id}`}
-              aria-label="Post card"
-              onClick={() => setClickedPost(post)}
-            >
-              <PostView
-                post={post}
-                userIsCreator={user?.uid === post.creatorId}
-                onSelectPost={() => {
-                  setClickedPost(post)
-                }}
-                onDeletePost={onDeletePost}
-              />
-            </Link>
+            <PostView
+              post={post}
+              userIsCreator={user?.uid === post.creatorId}
+              onSelectPost={() => {
+                setClickedPost(post)
+                router.push(`/?pid=${post.id}`, `/post/${post.id}`, {
+                  scroll: false,
+                })
+              }}
+              onDeletePost={onDeletePost}
+            />
           </div>
         ))}
       </Masonry>
